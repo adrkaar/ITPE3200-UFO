@@ -41,4 +41,13 @@ export class EditObservationComponent implements OnInit {
                 error => console.log(error)
             );
     }
+
+    deleteObservation(id: number) {
+        this.http.delete<Observation>("api/ufo/deleteObservation" + id)
+            .subscribe( () => {
+                location.reload();
+            },
+                error => console.log(error)
+            );
+    }
 }
