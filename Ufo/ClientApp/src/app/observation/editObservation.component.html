@@ -1,6 +1,6 @@
 ﻿<h1>Edit UFO Observation</h1>
 
-<form #form="ngForm" (ngSubmit)="updateObservation()">
+<form #form="ngForm" (ngSubmit)="updateObservation(editObservation.id)"> <!--vet ikke om jeg trenger parameter-->
     <div class="form-group">
         <label for="id">Id</label>
         <input type="text" class="form-control" id="id" name="id" [(ngModel)]="editObservation.id" readonly>
