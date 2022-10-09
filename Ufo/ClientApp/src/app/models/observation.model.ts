@@ -3,6 +3,6 @@
     name: string;
     date: string;
     time: string;
-    loacation: string;
+    location: string;
     description: string;
 }

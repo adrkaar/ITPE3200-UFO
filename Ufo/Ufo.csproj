@@ -29,6 +29,8 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\observation.model.ts" />
+    <None Remove="ClientApp\src\app\observation\addObservation.component.ts" />
+    <None Remove="ClientApp\src\app\observation\editObservation.component.ts" />
     <None Remove="ClientApp\src\app\observation\observation.component.ts" />
   </ItemGroup>
 

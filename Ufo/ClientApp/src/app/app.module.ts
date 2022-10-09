@@ -11,6 +11,8 @@ import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 
 import { ObservationComponent } from './observation/observation.component'
+import { AddObservationComponent } from './observation/addObservation.component'
+import { EditObservationComponent } from './observation/editObservation.component'
 
 @NgModule({
     declarations: [
@@ -19,7 +21,9 @@ import { ObservationComponent } from './observation/observation.component'
         HomeComponent,
         CounterComponent,
         FetchDataComponent,
-        ObservationComponent
+        ObservationComponent,
+        AddObservationComponent,
+        EditObservationComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -29,7 +33,9 @@ import { ObservationComponent } from './observation/observation.component'
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
-            { path: 'observation', component: ObservationComponent}
+            { path: 'observation', component: ObservationComponent },
+            { path: 'addObservation', component: AddObservationComponent },
+            { path: 'editObservation', component: EditObservationComponent },
         ])
     ],
     providers: [],
