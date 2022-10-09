@@ -29,10 +29,7 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\models\observation.model.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\observation\" />
+    <None Remove="ClientApp\src\app\observation\observation.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
