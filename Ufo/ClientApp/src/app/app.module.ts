@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 
 import { ObservationComponent } from './observation/observation.component'
 import { AddObservationComponent } from './observation/addObservation.component'
-import { EditObservationComponent } from './observation/editObservation.component'
+import { EditObservationComponent } from './observation/editObservation.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 
 @NgModule({
     declarations: [
@@ -30,7 +31,8 @@ import { EditObservationComponent } from './observation/editObservation.componen
             { path: 'observation', component: ObservationComponent },
             { path: 'addObservation', component: AddObservationComponent },
             { path: 'editObservation', component: EditObservationComponent },
-        ])
+        ]),
+        NoopAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
