@@ -7,7 +7,9 @@ namespace Observation.Models
 {
     public class UFO
     {
-        public int Id { get; set; }
-        public string Navn { get; set; }
+        public int IdUfo { get; set; }                
+        public string NavnUfo { get; set; }              
+        public string TypeUfo { get; set; }
+        public string BeskrivelseUfo { get; set; }
     }
 }
