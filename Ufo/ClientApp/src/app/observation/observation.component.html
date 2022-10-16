@@ -1,0 +1,28 @@
+﻿<h1>UFO Observations</h1>
+
+<a [routerLink]="['/addObservation']">Register a new UFO observation</a>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Description</th>
+            <th> </th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let observation of allObservations">
+        <tr>
+            <td>{{ observation.id }}</td>
+            <td>{{ observation.name }}</td>
+            <td>{{ observation.date }}</td>
+            <td>{{ observation.time }}</td>
+            <td>{{ observation.location }}</td>
+            <td>{{ observation.description }}</td>
+            <td><a [routerLink]="['/editObservation']">view</a></td>
+        </tr>
+    </tbody>
+</table>
