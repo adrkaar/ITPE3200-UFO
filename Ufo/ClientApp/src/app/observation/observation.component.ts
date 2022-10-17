@@ -17,7 +17,7 @@ export class ObservationComponent {
     }
 
     fetchAllObservations() {
-        this.http.get<Observation[]>('api/ufo/fetchAllObservations')
+        this.http.get<Observation[]>('api/Observasjon/fetchAllObservations')
             .subscribe(response => {
                 console.log(response)
                 this.allObservations = response;

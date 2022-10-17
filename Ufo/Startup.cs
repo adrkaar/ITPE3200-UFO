@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Observation.Models;
 
 namespace Ufo
 {
@@ -20,12 +22,17 @@ namespace Ufo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+
+            services.AddControllers();
+            services.AddDbContext<ObservasjonContext>(options => options.UseSqlite("Data source=Observasjon.db"));
+            // services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,25 +41,30 @@ namespace Ufo
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                //DBInit.Initialize(app); // denne må fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
             }
-            else
+            /*
+            else           
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            app.UseStaticFiles(); */
+
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
 
             app.UseRouting();
+            // app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllers();
+                
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");

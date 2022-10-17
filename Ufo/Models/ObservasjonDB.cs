@@ -12,14 +12,16 @@ namespace Observation.Models                                        // In relasj
     {
         public int Id { get; set; }                                     // to copy all PK for Observasjon
         public string Dato { get; set; }
+        public string Navn { get; set; }
         public string Tid { get; set; }
         public string Beskrivelse { get; set; }
-        virtual public Ufoer UFO { get; set; }
+        public string Lokasjon { get; set; }
+        // virtual public Ufoer UFO { get; set; }
 
-        public static implicit operator Observasjoner(Observasjon v)
+        /*public static implicit operator Observasjoner(Observasjon v)
         {
             throw new NotImplementedException();
-        }
+        }*/
     }
 
     public class Ufoer
@@ -31,16 +33,15 @@ namespace Observation.Models                                        // In relasj
         public string TypeUfo { get; set; }
         public string BeskrivelseUfo { get; set; }
 
-        public static implicit operator Ufoer(UFO v)
+        /* public static implicit operator Ufoer(UFO v)
         {
             throw new NotImplementedException();
-        }
+        } */
     }
 
     public class ObservasjonContext: DbContext                  // Our file calls "ObservasjonDB.cs", but we create ObservasjonContext
     {
         public ObservasjonContext(DbContextOptions<ObservasjonContext> options) : base(options)
-
         {
             Database.EnsureCreated();
         }
