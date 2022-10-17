@@ -31,6 +31,7 @@ namespace Observation.Controllers
             }
         }
         */
+        
 
         [HttpPost("addObservation")]
         public async Task<bool> Lagre(Observasjon innObservasjon)                         // To insert data from a small Observasjon-table into our huge Observasjoner-table      
@@ -62,7 +63,7 @@ namespace Observation.Controllers
                 {
                     nyObservasjonRad.UFO = sjekkUfoEn;
                 }
-                //_db.Observasjoner.Add(nyObservasjonRad);
+                _db.Observasjoner.Add(nyObservasjonRad);
                 await _db.SaveChangesAsync();
                 return true;
             } catch
@@ -84,8 +85,8 @@ namespace Observation.Controllers
                     Tid =obs.Tid,
                     Beskrivelse = obs.Beskrivelse,
 
-                    //IdUfo = obs.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
-                    //NavnUfo = obs.UFO.NavnUfo
+                    IdUfo = obs.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
+                    NavnUfo = obs.UFO.NavnUfo
                 }).ToListAsync();
                 return alleObservasjoner;
             }
@@ -168,7 +169,8 @@ namespace Observation.Controllers
             try
             {
                 Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                // _db.Observasjoner.Remove(enObservasjon);
+                
+                _db.Observasjoner.Remove(enObservasjon);
                 await _db.SaveChangesAsync();
                 return true;
             }
