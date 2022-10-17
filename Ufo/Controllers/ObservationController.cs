@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Observation.Controllers
 {
-    [Route("[controller]/[action]")]
+    [ApiController]
+    [Route("api/[controller]")]
     public class ObservationController: ControllerBase
     {
         private readonly ObservasjonContext _db;
@@ -31,14 +32,13 @@ namespace Observation.Controllers
             }
         }
         */
-        
 
         [HttpPost("addObservation")]
         public async Task<bool> Lagre(Observasjon innObservasjon)                         // To insert data from a small Observasjon-table into our huge Observasjoner-table      
         {
             try
             {
-                var nyObservasjonRad = new Observasjoner();                                 // Aa lagre ny observasjon raad
+                var nyObservasjonRad = new Observasjon();                                 // Aa lagre ny observasjon raad
                 nyObservasjonRad.Dato = innObservasjon.Dato;
                 nyObservasjonRad.Tid = innObservasjon.Tid;
                 nyObservasjonRad.Beskrivelse = innObservasjon.Beskrivelse;
@@ -85,8 +85,8 @@ namespace Observation.Controllers
                     Tid =obs.Tid,
                     Beskrivelse = obs.Beskrivelse,
 
-                    IdUfo = obs.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
-                    NavnUfo = obs.UFO.NavnUfo
+                    IdUfo = obs.IdUfo,                         // Data of 1 UFO are inserted in Observasjon-table
+                    NavnUfo = obs.NavnUfo                     //Tror Oleksandra prøvde å koble til models/ufo
                 }).ToListAsync();
                 return alleObservasjoner;
             }
@@ -96,7 +96,7 @@ namespace Observation.Controllers
             }
         }
 
-        [HttpGet("fetchOneObservation")]
+        [HttpGet("fetchOneObservation{id}")]
         public async Task <Observasjon> HentEn (int id)                                  // Hente en Observasjon paa ID
         {
             try
@@ -119,7 +119,8 @@ namespace Observation.Controllers
                 return null;
             }
         }
-        [HttpPut("editObservation")]
+
+        [HttpPost("editObservation")]
         public async Task<bool> Endre (Observasjon endreObservasjon)                // Gi mulighet til aa endre alle linjer i en Observasjon
         {
             try
@@ -168,8 +169,8 @@ namespace Observation.Controllers
         {
             try
             {
-                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                
+                // Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
+                Observasjon enObservasjon = await _db.Observasjoner.FindAsync(id);
                 _db.Observasjoner.Remove(enObservasjon);
                 await _db.SaveChangesAsync();
                 return true;
