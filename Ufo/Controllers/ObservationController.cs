@@ -32,6 +32,7 @@ namespace Observation.Controllers
         }
         */
 
+        [HttpPost("addObservation")]
         public async Task<bool> Lagre(Observasjon innObservasjon)                         // To insert data from a small Observasjon-table into our huge Observasjoner-table      
         {
             try
@@ -71,7 +72,7 @@ namespace Observation.Controllers
             }
         }
 
-
+        [HttpGet("fetchAllObservation")]
         public async Task<List<Observasjon>> HentAlle()
         {
             try
@@ -94,6 +95,7 @@ namespace Observation.Controllers
             }
         }
 
+        [HttpGet("fetchOneObservation")]
         public async Task <Observasjon> HentEn (int id)                                  // Hente en Observasjon paa ID
         {
             try
@@ -116,7 +118,7 @@ namespace Observation.Controllers
                 return null;
             }
         }
-
+        [HttpPut("editObservation")]
         public async Task<bool> Endre (Observasjon endreObservasjon)                // Gi mulighet til aa endre alle linjer i en Observasjon
         {
             try
@@ -160,12 +162,13 @@ namespace Observation.Controllers
             }
         }
 
+        [HttpDelete("deleteObservation")]
         public async Task <bool> Slett(int id)                                       // Slett en Observasjon paa ID
         {
             try
             {
                 Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                //_db.Observasjoner.Remove(enObservasjon);
+                // _db.Observasjoner.Remove(enObservasjon);
                 await _db.SaveChangesAsync();
                 return true;
             }
