@@ -25,8 +25,8 @@ namespace Observation.Models
                 var observasjon1 = new Observasjoner { Dato = "22.22.01", Tid = "22.22", Beskrivelse = "Jeg gikk ut pub og så en stor egg i skyen.", UFO = ufo1 };
                 var observasjon2 = new Observasjoner { Dato = "30.01.01", Tid = "00.09", Beskrivelse = "Bla-bla-bla.", UFO = ufo2 };
 
-                context.Observasjoner.Add(observasjon1);
-                context.Observasjoner.Add(observasjon2);
+                //context.Observasjoner.Add(observasjon1);
+                //context.Observasjoner.Add(observasjon2);
 
                 context.SaveChanges();
             }

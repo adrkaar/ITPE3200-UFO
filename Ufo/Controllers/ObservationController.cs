@@ -16,6 +16,8 @@ namespace Observation.Controllers
         {
             _db = db;
         }
+
+        /*
         public async Task<List<Observasjon>> HentAlle()                                                 // Med async +
         {
             try
@@ -28,6 +30,7 @@ namespace Observation.Controllers
                 return null;
             }
         }
+        */
 
         public async Task<bool> Lagre(Observasjon innObservasjon)                         // To insert data from a small Observasjon-table into our huge Observasjoner-table      
         {
@@ -58,9 +61,13 @@ namespace Observation.Controllers
                 {
                     nyObservasjonRad.UFO = sjekkUfoEn;
                 }
-                _db.Observasjoner.Add(nyObservasjonRad);
+                //_db.Observasjoner.Add(nyObservasjonRad);
                 await _db.SaveChangesAsync();
                 return true;
+            } catch
+     
+            {
+                return false;
             }
         }
 
@@ -76,8 +83,8 @@ namespace Observation.Controllers
                     Tid =obs.Tid,
                     Beskrivelse = obs.Beskrivelse,
 
-                    IdUfo = obs.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
-                    NavnUfo = obs.UFO.NavnUfo
+                    //IdUfo = obs.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
+                    //NavnUfo = obs.UFO.NavnUfo
                 }).ToListAsync();
                 return alleObservasjoner;
             }
@@ -120,7 +127,7 @@ namespace Observation.Controllers
                 if (enObservasjon.UFO.NavnUfo != endreObservasjon.NavnUfo || enObservasjon.UFO.IdUfo != endreObservasjon.IdUfo);
                 {
                     var sjekkUfoEn = await _db.Ufoer.FindAsync(endreObservasjon.IdUfo);
-                    var sjekkUfoEn = await _db.Ufoer.FindAsync(endreObservasjon.NavnUfo);
+                    var sjekkUfoTo = await _db.Ufoer.FindAsync(endreObservasjon.NavnUfo);                 //Het sjeffUfoEn tidligere
 
                     if (sjekkUfoEn == null)                                                               // UFO ikke finnes
                     {
@@ -158,7 +165,7 @@ namespace Observation.Controllers
             try
             {
                 Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                _db.Observasjoner.Remove(enObservasjon);
+                //_db.Observasjoner.Remove(enObservasjon);
                 await _db.SaveChangesAsync();
                 return true;
             }
