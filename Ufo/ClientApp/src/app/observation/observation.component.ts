@@ -1,5 +1,5 @@
-﻿import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+﻿import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observation } from '../models/observation.model';
 
 @Component({
@@ -16,14 +16,16 @@ export class ObservationComponent {
         this.fetchAllObservations();
     }
 
+
+    
     fetchAllObservations() {
         this.http.get<Observation[]>('api/observation/fetchAllObservations')
             .subscribe(response => {
                 console.log(response)
                 this.allObservations = response;
-                console.log("YES")
             },
                 error => console.log(error)
             );
     }
+    
 }

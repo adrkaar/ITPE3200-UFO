@@ -14,14 +14,14 @@
             <th> </th>
         </tr>
     </thead>
-    <tbody *ngFor="let observation of allObservations">
+    <tbody *ngFor="let observation of allObservations ">
         <tr>
             <td>{{ observation.id }}</td>
-            <td>{{ observation.name }}</td>
-            <td>{{ observation.date }}</td>
-            <td>{{ observation.time }}</td>
-            <td>{{ observation.location }}</td>
-            <td>{{ observation.description }}</td>
+            <td>{{ observation.navn }}</td>
+            <td>{{ observation.dato }}</td>
+            <td>{{ observation.tid }}</td>
+            <td>{{ observation.lokasjon }}</td>
+            <td>{{ observation.beskrivelse }}</td>
             <td><a [routerLink]="['/editObservation']">view</a></td>
         </tr>
     </tbody>
