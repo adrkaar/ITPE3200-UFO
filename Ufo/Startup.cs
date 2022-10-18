@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Observation.Models;
+using Ufo.DAL;
+using Ufo.Models;
 
 namespace Ufo
 {
@@ -41,7 +41,7 @@ namespace Ufo
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //DBInit.Initialize(app); // denne må fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
+                DBInit.Initialize(app); // denne må fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
             }
             /*
             else           
@@ -59,12 +59,13 @@ namespace Ufo
             }
 
             app.UseRouting();
-            // app.UseStaticFiles();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapControllers();
-                
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");

@@ -41,7 +41,7 @@ namespace Ufo.Models                                        // In relasjonsdatab
             Database.EnsureCreated();
         }
 
-        public DbSet<Observasjon> Observasjoner { get; set; }
+        public DbSet<Observasjoner> Observasjoner { get; set; }
         //public DbSet<UFO> Ufoer { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
