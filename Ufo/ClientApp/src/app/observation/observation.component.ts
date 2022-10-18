@@ -17,10 +17,11 @@ export class ObservationComponent {
     }
 
     fetchAllObservations() {
-        this.http.get<Observation[]>('api/Observasjon/fetchAllObservations')
+        this.http.get<Observation[]>('api/observation/fetchAllObservations')
             .subscribe(response => {
                 console.log(response)
                 this.allObservations = response;
+                console.log("YES")
             },
                 error => console.log(error)
             );

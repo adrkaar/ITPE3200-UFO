@@ -1,10 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Observation.Models                                        // In relasjonsdatabaser - det er som KundeContekst.cs
 {
@@ -24,7 +18,8 @@ namespace Observation.Models                                        // In relasj
         }*/
     }
 
-    public class Ufoer
+
+    /*public class Ufoer
     {
         [Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(DatabaseGeneratedOption.None)]         
@@ -37,9 +32,9 @@ namespace Observation.Models                                        // In relasj
         {
             throw new NotImplementedException();
         } */
-    }
-
-    public class ObservasjonContext: DbContext                  // Our file calls "ObservasjonDB.cs", but we create ObservasjonContext
+    /* }
+ */
+    public class ObservasjonContext : DbContext                  // Our file calls "ObservasjonDB.cs", but we create ObservasjonContext
     {
         public ObservasjonContext(DbContextOptions<ObservasjonContext> options) : base(options)
         {
@@ -47,9 +42,9 @@ namespace Observation.Models                                        // In relasj
         }
 
         public DbSet<Observasjon> Observasjoner { get; set; }
-        public DbSet<UFO> Ufoer { get; set; }
+        //public DbSet<UFO> Ufoer { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // må importere pakken Microsoft.EntityFrameworkCore.Proxies
             // og legge til"viritual" på de attriuttene som ønskes å lastes automatisk (LazyLoading)

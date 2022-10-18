@@ -25,7 +25,7 @@ export class EditObservationComponent implements OnInit {
             const id = response.get('id');
 
             if (id) {
-                this.http.get<Observation>("api/Observasjon/fetchOneObservation" + id)
+                this.http.get<Observation>("api/observation/fetchOneObservation" + id)
                     .subscribe(data => {
                         this.editObservation = data;
                     })
@@ -34,7 +34,7 @@ export class EditObservationComponent implements OnInit {
     }
 
     updateObservation() {
-        this.http.post<Observation>("api/Observasjon/editObservation", this.editObservation)
+        this.http.post<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe( () => {
                 this.router.navigate(['observation'])
             },
@@ -43,7 +43,7 @@ export class EditObservationComponent implements OnInit {
     }
 
     deleteObservation(id: number) {
-        this.http.delete<Observation>("api/Observasjon/deleteObservation" + id)
+        this.http.delete<Observation>("api/observation/deleteObservation" + id)
             .subscribe( () => {
                 location.reload();
             },

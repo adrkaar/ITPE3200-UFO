@@ -21,7 +21,7 @@ export class AddObservationComponent {
     constructor(private http: HttpClient, private router: Router) { }
 
     addObservation() {
-        this.http.post<Observation>('api/Observasjon/addObservation', this.newObservation)
+        this.http.post<Observation>('api/observation/addObservation', this.newObservation)
             .subscribe(() => {
                 this.router.navigate(['observation'])
             },
