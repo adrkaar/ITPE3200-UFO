@@ -1,4 +1,4 @@
-﻿namespace Observation.Models
+﻿namespace Ufo.Models
 {
     public class Observasjon
     {

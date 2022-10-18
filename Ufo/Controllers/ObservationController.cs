@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Observation.Models;
+using Ufo.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Observation.Controllers
+namespace Ufo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -39,8 +39,8 @@ namespace Observation.Controllers
             try
             {
                 var nyObservasjonRad = new Observasjon();                                 // Aa lagre ny observasjon raad
-                nyObservasjonRad.Dato = innObservasjon.Dato;
                 nyObservasjonRad.Navn = innObservasjon.Navn;
+                nyObservasjonRad.Dato = innObservasjon.Dato;
                 nyObservasjonRad.Tid = innObservasjon.Tid;
                 nyObservasjonRad.Beskrivelse = innObservasjon.Beskrivelse;
                 nyObservasjonRad.Lokasjon = innObservasjon.Lokasjon;
@@ -160,8 +160,7 @@ namespace Observation.Controllers
                     */
 
                 }
-
-                enObservasjon.Dato = endreObservasjon.Dato;
+                 
                 enObservasjon.Navn = endreObservasjon.Navn;
                 enObservasjon.Tid = endreObservasjon.Tid;
                 enObservasjon.Beskrivelse = endreObservasjon.Beskrivelse;

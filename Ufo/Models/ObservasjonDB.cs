@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Observation.Models                                        // In relasjonsdatabaser - det er som KundeContekst.cs
+namespace Ufo.Models                                        // In relasjonsdatabaser - det er som KundeContekst.cs
 {
     public class Observasjoner
     {
