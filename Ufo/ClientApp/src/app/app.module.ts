@@ -30,7 +30,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'observation', component: ObservationComponent },
             { path: 'addObservation', component: AddObservationComponent },
-            { path: 'editObservation', component: EditObservationComponent },
+            { path: 'editObservation/:id', component: EditObservationComponent },
         ]),
         NoopAnimationsModule
     ],

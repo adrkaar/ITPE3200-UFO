@@ -21,13 +21,23 @@ export class EditObservationComponent implements OnInit {
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.route.paramMap.subscribe(response => {
-            const id = response.get('id');
+        console.log(this.editObservation);
 
+        // skal hente id via url, i observation html blir iden lagt med i rouring til edit
+        this.route.paramMap.subscribe(param => {
+            console.log(param)
+            const id = param.get('id');
+            console.log("id: ", id) // id er null, klarer ikke hente id
+
+            // skal bruke id for å hente objeket med iden
             if (id) {
+                console.log("HER")
                 this.http.get<Observation>("api/observation/fetchOneObservation" + id)
                     .subscribe(data => {
+                        console.log("HergER")
+                        console.log(data)
                         this.editObservation = data;
+                        console.log(this.editObservation)
                     })
             }
         })
@@ -42,12 +52,12 @@ export class EditObservationComponent implements OnInit {
             );
     }
 
-    deleteObservation(id: number) {
-        this.http.delete<Observation>("api/observation/deleteObservation" + id)
-            .subscribe( () => {
-                location.reload();
-            },
-                error => console.log(error)
-            );
-    }
+    //deleteObservation(id: number) {
+    //    this.http.delete<Observation>("api/observation/deleteObservation" + id)
+    //        .subscribe( () => {
+    //            location.reload();
+    //        },
+    //            error => console.log(error)
+    //        );
+    //}
 }

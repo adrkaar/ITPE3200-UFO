@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Ufo.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ufo.Models;
 
 namespace Ufo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ObservationController: ControllerBase
+    public class ObservationController : ControllerBase
     {
         private readonly ObservasjonContext _db;
         public ObservationController(ObservasjonContext db)
@@ -38,7 +37,7 @@ namespace Ufo.Controllers
         {
             try
             {
-                var nyObservasjonRad = new Observasjon();                                 // Aa lagre ny observasjon raad
+                var nyObservasjonRad = new Observasjoner();                                 // Aa lagre ny observasjon raad
                 nyObservasjonRad.Navn = innObservasjon.Navn;
                 nyObservasjonRad.Dato = innObservasjon.Dato;
                 nyObservasjonRad.Tid = innObservasjon.Tid;
@@ -58,19 +57,20 @@ namespace Ufo.Controllers
                     nyUfoRad.TypeUfo = innObservasjon.TypeUfo;
                     nyUfoRad.BeskrivelseUfo = innObservasjon.BeskrivelseUfo;
                     */
-                    /*
-                    nyObservasjonRad.UFO = nyUfoRad;                               // Aa lagre UFO i Observasjon
-                }
-                else
-                {
-                    nyObservasjonRad.UFO = sjekkUfoEn;
-                }
-                */
+                /*
+                nyObservasjonRad.UFO = nyUfoRad;                               // Aa lagre UFO i Observasjon
+            }
+            else
+            {
+                nyObservasjonRad.UFO = sjekkUfoEn;
+            }
+            */
                 _db.Observasjoner.Add(nyObservasjonRad);
                 await _db.SaveChangesAsync();
                 return true;
-            } catch
-     
+            }
+            catch
+
             {
                 return false;
             }
@@ -86,7 +86,7 @@ namespace Ufo.Controllers
                     Id = obs.Id,
                     Dato = obs.Dato,
                     Navn = obs.Navn,
-                    Tid =obs.Tid,
+                    Tid = obs.Tid,
                     Beskrivelse = obs.Beskrivelse,
                     Lokasjon = obs.Lokasjon
 
@@ -101,23 +101,24 @@ namespace Ufo.Controllers
             }
         }
 
-        [HttpGet("fetchOneObservation")]
-        public async Task <Observasjon> HentEn (int id)                                  // Hente en Observasjon paa ID
+        [HttpGet("fetchOneObservation{id}")]
+        public async Task<Observasjon> HentEn(int id)                                  // Hente en Observasjon paa ID
         {
             try
             {
-                Observasjon enObservasjon = await _db.Observasjoner.FindAsync(id);
+                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
                 var hentetObservasjon = new Observasjon()
                 {
                     Id = enObservasjon.Id,
+                    Navn = enObservasjon.Navn,
                     Dato = enObservasjon.Dato,
-                    Navn=enObservasjon.Navn,
                     Tid = enObservasjon.Tid,
+                    Lokasjon = enObservasjon.Lokasjon,
                     Beskrivelse = enObservasjon.Beskrivelse,
 
-                   // IdUfo = enObservasjon.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
-                   // NavnUfo = enObservasjon.UFO.NavnUfo
-                };                
+                    // IdUfo = enObservasjon.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
+                    // NavnUfo = enObservasjon.UFO.NavnUfo
+                };
                 return hentetObservasjon;
             }
             catch
@@ -127,11 +128,11 @@ namespace Ufo.Controllers
         }
 
         [HttpPost("editObservation")]
-        public async Task<bool> Endre (Observasjon endreObservasjon)                // Gi mulighet til aa endre alle linjer i en Observasjon
+        public async Task<bool> Endre(Observasjon endreObservasjon)                // Gi mulighet til aa endre alle linjer i en Observasjon
         {
             try
             {
-                Observasjon enObservasjon = await _db.Observasjoner.FindAsync(endreObservasjon.Id);
+                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(endreObservasjon.Id);
 
                 // Aa finne ut om navnUfo er endret: a person made a mistake, when he/she wrote data in the table (gave wrong identification of UFO)
                 // if (enObservasjon.UFO.NavnUfo != endreObservasjon.NavnUfo || enObservasjon.UFO.IdUfo != endreObservasjon.IdUfo);
@@ -160,9 +161,10 @@ namespace Ufo.Controllers
                     */
 
                 }
-                 
+
                 enObservasjon.Navn = endreObservasjon.Navn;
                 enObservasjon.Tid = endreObservasjon.Tid;
+                enObservasjon.Dato = endreObservasjon.Dato;
                 enObservasjon.Beskrivelse = endreObservasjon.Beskrivelse;
                 enObservasjon.Lokasjon = endreObservasjon.Lokasjon;
                 await _db.SaveChangesAsync();
@@ -174,13 +176,13 @@ namespace Ufo.Controllers
             }
         }
 
-        [HttpDelete("deleteObservation")]
-        public async Task <bool> Slett(int id)                                       // Slett en Observasjon paa ID
+        [HttpDelete("deleteObservation{id}")]
+        public async Task<bool> Slett(int id)                                       // Slett en Observasjon paa ID
         {
             try
             {
                 // Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                Observasjon enObservasjon = await _db.Observasjoner.FindAsync(id);
+                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
                 _db.Observasjoner.Remove(enObservasjon);
                 await _db.SaveChangesAsync();
                 return true;

@@ -22,7 +22,7 @@
             <td>{{ observation.tid }}</td>
             <td>{{ observation.lokasjon }}</td>
             <td>{{ observation.beskrivelse }}</td>
-            <td><a [routerLink]="['/editObservation']">view</a></td>
+            <td><a [routerLink]="['/editObservation', observation.id]">view</a></td>
         </tr>
     </tbody>
 </table>
