@@ -52,12 +52,14 @@ export class EditObservationComponent implements OnInit {
             );
     }
 
-    //deleteObservation(id: number) {
-    //    this.http.delete<Observation>("api/observation/deleteObservation" + id)
-    //        .subscribe( () => {
-    //            location.reload();
-    //        },
-    //            error => console.log(error)
-    //        );
-    //}
+
+    // gjør det den skal, men gir feilmeldinger pga ngOnInit som kaller fetch one
+    deleteObservation(id: number) {
+        this.http.delete<Observation>("api/observation/deleteObservation" + id)
+            .subscribe( () => {
+                this.router.navigate(['observation'])
+            },
+                error => console.log(error)
+            );
+    }
 }
