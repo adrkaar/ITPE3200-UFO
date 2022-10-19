@@ -45,7 +45,8 @@ export class EditObservationComponent implements OnInit {
 
     updateObservation() {
         this.http.post<Observation>("api/observation/editObservation", this.editObservation)
-            .subscribe( () => {
+            .subscribe(() => {
+                console.log(this.editObservation)
                 this.router.navigate(['observation'])
             },
                 error => console.log(error)
@@ -56,8 +57,10 @@ export class EditObservationComponent implements OnInit {
     // gjør det den skal, men gir feilmeldinger pga ngOnInit som kaller fetch one
     deleteObservation(id: number) {
         this.http.delete<Observation>("api/observation/deleteObservation" + id)
-            .subscribe( () => {
+            .subscribe(() => {
+                console.log(this.deleteObservation)
                 this.router.navigate(['observation'])
+                console.log(this.deleteObservation)
             },
                 error => console.log(error)
             );

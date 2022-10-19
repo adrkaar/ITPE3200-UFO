@@ -1,6 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System;
+using System.Collections.Generic; 
 
-namespace Ufo.Models                                        // In relasjonsdatabaser - det er som KundeContekst.cs
+namespace Ufo.DAL                                        // In relasjonsdatabaser - det er som KundeContekst.cs
 {
     public class Observasjoner
     {
@@ -10,6 +14,8 @@ namespace Ufo.Models                                        // In relasjonsdatab
         public string Tid { get; set; }
         public string Beskrivelse { get; set; }
         public string Lokasjon { get; set; }
+
+        
         // virtual public Ufoer UFO { get; set; }
 
         /*public static implicit operator Observasjoner(Observasjon v)

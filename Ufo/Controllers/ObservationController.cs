@@ -4,15 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Ufo.Models;
+using Ufo.DAL;
 
 namespace Ufo.Controllers
 {
-    [ApiController]
+    //[ApiController]
     [Route("api/[controller]")]
     public class ObservationController : ControllerBase
     {
-        private readonly ObservasjonContext _db;
-        public ObservationController(ObservasjonContext db)
+        private readonly InterfaceObservasjonRepository _db;
+
+        public ObservationController(InterfaceObservasjonRepository db)
         {
             _db = db;
         }
@@ -33,164 +35,35 @@ namespace Ufo.Controllers
         */
 
         [HttpPost("addObservation")]
-        public async Task<bool> Lagre(Observasjon innObservasjon)                         // To insert data from a small Observasjon-table into our huge Observasjoner-table      
+        public async Task<ActionResult> Lagre(Observasjon innObservasjon)
         {
-            try
-            {
-                var nyObservasjonRad = new Observasjoner();                                 // Aa lagre ny observasjon raad
-                nyObservasjonRad.Navn = innObservasjon.Navn;
-                nyObservasjonRad.Dato = innObservasjon.Dato;
-                nyObservasjonRad.Tid = innObservasjon.Tid;
-                nyObservasjonRad.Beskrivelse = innObservasjon.Beskrivelse;
-                nyObservasjonRad.Lokasjon = innObservasjon.Lokasjon;
-
-                // Aa sjekke om UFO eksistere i databasen:
-                /*
-                var sjekkUfoEn = await _db.Ufoer.FindAsync(innObservasjon.IdUfo);                                                 //    ^^ Search only by IdUfo? ^^ 
-                if (sjekkUfoEn == null)                                                               // UFO ikke finnes
-                {
-                    var nyUfoRad = new Ufoer();
-                    nyUfoRad.IdUfo = innObservasjon.IdUfo;                                      // To add IdUfo, NavnUfo to our table Observasjon. But typeUfo and beskrivelseUfo will be seen only in Ufo-table. 
-                    nyUfoRad.NavnUfo = innObservasjon.NavnUfo;
-
-                    /* If we want to see in the database Type and Beskrivelse too ---> to delete comments for the rows below (So, we'll add them to our table Observasjon):
-                    nyUfoRad.TypeUfo = innObservasjon.TypeUfo;
-                    nyUfoRad.BeskrivelseUfo = innObservasjon.BeskrivelseUfo;
-                    */
-                /*
-                nyObservasjonRad.UFO = nyUfoRad;                               // Aa lagre UFO i Observasjon
-            }
-            else
-            {
-                nyObservasjonRad.UFO = sjekkUfoEn;
-            }
-            */
-                _db.Observasjoner.Add(nyObservasjonRad);
-                await _db.SaveChangesAsync();
-                return true;
-            }
-            catch
-
-            {
-                return false;
-            }
+            return Ok(await _db.Lagre(innObservasjon));
         }
 
         [HttpGet("fetchAllObservations")]
-        public async Task<List<Observasjon>> HentAlle()
+        public async Task<ActionResult> HentAlle()
         {
-            try
-            {
-                List<Observasjon> alleObservasjoner = await _db.Observasjoner.Select(obs => new Observasjon
-                {
-                    Id = obs.Id,
-                    Dato = obs.Dato,
-                    Navn = obs.Navn,
-                    Tid = obs.Tid,
-                    Beskrivelse = obs.Beskrivelse,
-                    Lokasjon = obs.Lokasjon
-
-                    //  IdUfo = obs.IdUfo,                         // Data of 1 UFO are inserted in Observasjon-table
-                    //  NavnUfo = obs.NavnUfo                     //Tror Oleksandra prøvde å koble til models/ufo
-                }).ToListAsync();
-                return alleObservasjoner;
-            }
-            catch
-            {
-                return null;
-            }
+            List<Observasjon> alleObservasjoner = await _db.HentAlle();
+            return Ok(alleObservasjoner);
         }
 
         [HttpGet("fetchOneObservation{id}")]
-        public async Task<Observasjon> HentEn(int id)                                  // Hente en Observasjon paa ID
+        public async Task<ActionResult> HentEn(int id)                                  // Hente en Observasjon paa ID
         {
-            try
-            {
-                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                var hentetObservasjon = new Observasjon()
-                {
-                    Id = enObservasjon.Id,
-                    Navn = enObservasjon.Navn,
-                    Dato = enObservasjon.Dato,
-                    Tid = enObservasjon.Tid,
-                    Lokasjon = enObservasjon.Lokasjon,
-                    Beskrivelse = enObservasjon.Beskrivelse,
-
-                    // IdUfo = enObservasjon.UFO.IdUfo,                            // Data of 1 UFO are inserted in Observasjon-table
-                    // NavnUfo = enObservasjon.UFO.NavnUfo
-                };
-                return hentetObservasjon;
-            }
-            catch
-            {
-                return null;
-            }
+            Observasjon enObservasjon = await _db.HentEn(id);
+            return Ok(enObservasjon);
         }
 
         [HttpPost("editObservation")]
-        public async Task<bool> Endre(Observasjon endreObservasjon)                // Gi mulighet til aa endre alle linjer i en Observasjon
+        public async Task<ActionResult> Endre(Observasjon endreObservasjon)                // Gi mulighet til aa endre alle linjer i en Observasjon
         {
-            try
-            {
-                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(endreObservasjon.Id);
-
-                // Aa finne ut om navnUfo er endret: a person made a mistake, when he/she wrote data in the table (gave wrong identification of UFO)
-                // if (enObservasjon.UFO.NavnUfo != endreObservasjon.NavnUfo || enObservasjon.UFO.IdUfo != endreObservasjon.IdUfo);
-                {
-                    /* 
-                    var sjekkUfoEn = await _db.Ufoer.FindAsync(endreObservasjon.IdUfo);
-                    var sjekkUfoTo = await _db.Ufoer.FindAsync(endreObservasjon.NavnUfo);                 //Het sjeffUfoEn tidligere
-
-                    if (sjekkUfoEn == null)                                                               // UFO ikke finnes
-                    {
-                        var nyUfoRad = new Ufoer();
-                        // nyUfoRad.IdUfo = endreObservasjon.IdUfo;                                      // To add IdUfo, NavnUfo to our table Observasjon. But typeUfo and beskrivelseUfo will be seen only in Ufo-table. 
-                        // nyUfoRad.NavnUfo = endreObservasjon.NavnUfo;
-
-                        /* If we want to see in the database Type and Beskrivelse too ---> to delete comments for the rows below (So, we'll add them to our table Observasjon):
-                        nyUfoRad.TypeUfo = innObservasjon.TypeUfo;
-                        nyUfoRad.BeskrivelseUfo = innObservasjon.BeskrivelseUfo;
-                        */
-                    /*
-                        enObservasjon.UFO = nyUfoRad;                               // Aa lagre UFO i Observasjon
-                    }
-                    else
-                    {
-                        enObservasjon.UFO = sjekkUfoEn;
-                    }
-                    */
-
-                }
-
-                enObservasjon.Navn = endreObservasjon.Navn;
-                enObservasjon.Tid = endreObservasjon.Tid;
-                enObservasjon.Dato = endreObservasjon.Dato;
-                enObservasjon.Beskrivelse = endreObservasjon.Beskrivelse;
-                enObservasjon.Lokasjon = endreObservasjon.Lokasjon;
-                await _db.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return Ok(await _db.Endre(endreObservasjon));
         }
 
         [HttpDelete("deleteObservation{id}")]
-        public async Task<bool> Slett(int id)                                       // Slett en Observasjon paa ID
+        public async Task<ActionResult> Slett(int id)                                       // Slett en Observasjon paa ID
         {
-            try
-            {
-                // Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
-                _db.Observasjoner.Remove(enObservasjon);
-                await _db.SaveChangesAsync();
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return Ok(await _db.Slett(id));
         }
     }
 }

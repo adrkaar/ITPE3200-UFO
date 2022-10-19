@@ -23,7 +23,9 @@ export class AddObservationComponent {
     addObservation() {
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
             .subscribe(() => {
+                console.log(this.newObservation)
                 this.router.navigate(['observation'])
+                console.log(this.newObservation)
             },
                 error => console.log(error)
             );

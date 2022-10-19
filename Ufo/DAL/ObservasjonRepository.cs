@@ -1,64 +1,34 @@
 ﻿using Ufo.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Ufo.DAL;
+
 
 namespace Ufo.DAL
 {
 
-    public class ObservasjonRepository
+    public class ObservasjonRepository : InterfaceObservasjonRepository
     {
         private readonly ObservasjonContext _db;
-        public ObservationController(ObservasjonContext db)
+
+        public ObservasjonRepository(ObservasjonContext db)
         {
             _db = db;
         }
 
-        /*
-        public async Task<List<Observasjon>> HentAlle()                                                 // Med async +
+        public async Task<bool> Lagre(Observasjon innObservasjon)
         {
             try
             {
-                List<Observasjon> alleObservasjoner = await _db.Observasjoner.ToListAsync();            // Hente Tabellen "Observasjon"
-                return alleObservasjoner;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-        */
-
-        [HttpPost("addObservation")]
-        public async Task<bool> Lagre(Observasjon innObservasjon)                         // To insert data from a small Observasjon-table into our huge Observasjoner-table      
-        {
-            try
-            {
-                var nyObservasjonRad = new Observasjoner();                                 // Aa lagre ny observasjon raad
+                var nyObservasjonRad = new Observasjoner();
                 nyObservasjonRad.Navn = innObservasjon.Navn;
                 nyObservasjonRad.Dato = innObservasjon.Dato;
                 nyObservasjonRad.Tid = innObservasjon.Tid;
                 nyObservasjonRad.Beskrivelse = innObservasjon.Beskrivelse;
                 nyObservasjonRad.Lokasjon = innObservasjon.Lokasjon;
 
-                // Aa sjekke om UFO eksistere i databasen:
-                /*
-                var sjekkUfoEn = await _db.Ufoer.FindAsync(innObservasjon.IdUfo);                                                 //    ^^ Search only by IdUfo? ^^ 
-                if (sjekkUfoEn == null)                                                               // UFO ikke finnes
-                {
-                    var nyUfoRad = new Ufoer();
-                    nyUfoRad.IdUfo = innObservasjon.IdUfo;                                      // To add IdUfo, NavnUfo to our table Observasjon. But typeUfo and beskrivelseUfo will be seen only in Ufo-table. 
-                    nyUfoRad.NavnUfo = innObservasjon.NavnUfo;
-
-                    /* If we want to see in the database Type and Beskrivelse too ---> to delete comments for the rows below (So, we'll add them to our table Observasjon):
-                    nyUfoRad.TypeUfo = innObservasjon.TypeUfo;
-                    nyUfoRad.BeskrivelseUfo = innObservasjon.BeskrivelseUfo;
-                    */
-                /*
-                nyObservasjonRad.UFO = nyUfoRad;                               // Aa lagre UFO i Observasjon
-            }
-            else
-            {
-                nyObservasjonRad.UFO = sjekkUfoEn;
-            }
-            */
                 _db.Observasjoner.Add(nyObservasjonRad);
                 await _db.SaveChangesAsync();
                 return true;
@@ -70,7 +40,6 @@ namespace Ufo.DAL
             }
         }
 
-        [HttpGet("fetchAllObservations")]
         public async Task<List<Observasjon>> HentAlle()
         {
             try
@@ -78,12 +47,11 @@ namespace Ufo.DAL
                 List<Observasjon> alleObservasjoner = await _db.Observasjoner.Select(obs => new Observasjon
                 {
                     Id = obs.Id,
-                    Dato = obs.Dato,
                     Navn = obs.Navn,
+                    Dato = obs.Dato,
                     Tid = obs.Tid,
                     Beskrivelse = obs.Beskrivelse,
                     Lokasjon = obs.Lokasjon
-
                 }).ToListAsync();
                 return alleObservasjoner;
             }
@@ -93,7 +61,6 @@ namespace Ufo.DAL
             }
         }
 
-        [HttpGet("fetchOneObservation{id}")]
         public async Task<Observasjon> HentEn(int id)
         {
             try
@@ -116,28 +83,27 @@ namespace Ufo.DAL
             }
         }
 
-        [HttpPost("editObservation")]
         public async Task<bool> Endre(Observasjon endreObservasjon)
         {
+            var enObservasjon = await _db.Observasjoner.FindAsync(endreObservasjon.Id);
             try
             {
-                Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(endreObservasjon.Id);
-
+           
                 enObservasjon.Navn = endreObservasjon.Navn;
                 enObservasjon.Tid = endreObservasjon.Tid;
                 enObservasjon.Dato = endreObservasjon.Dato;
                 enObservasjon.Beskrivelse = endreObservasjon.Beskrivelse;
                 enObservasjon.Lokasjon = endreObservasjon.Lokasjon;
+
                 await _db.SaveChangesAsync();
-                return true;
             }
             catch
             {
                 return false;
             }
+            return true;
         }
 
-        [HttpDelete("deleteObservation{id}")]
         public async Task<bool> Slett(int id)
         {
             try
@@ -153,5 +119,4 @@ namespace Ufo.DAL
             }
         }
     }
-
 }

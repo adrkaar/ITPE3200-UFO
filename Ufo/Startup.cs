@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ufo.DAL;
 using Ufo.Models;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Ufo
 {
@@ -25,6 +27,7 @@ namespace Ufo
 
             services.AddControllers();
             services.AddDbContext<ObservasjonContext>(options => options.UseSqlite("Data source=Observasjon.db"));
+            services.AddScoped<InterfaceObservasjonRepository, ObservasjonRepository>();
             // services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -64,11 +67,12 @@ namespace Ufo
 
             app.UseEndpoints(endpoints =>
             {
-                //endpoints.MapControllers();
+               // endpoints.MapControllers();
 
+                
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}"); 
             });
 
             app.UseSpa(spa =>
