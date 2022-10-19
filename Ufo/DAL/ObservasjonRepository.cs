@@ -1,9 +1,8 @@
-﻿using Ufo.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ufo.DAL;
+using Ufo.Models;
 
 
 namespace Ufo.DAL
@@ -23,6 +22,7 @@ namespace Ufo.DAL
             try
             {
                 var nyObservasjonRad = new Observasjoner();
+
                 nyObservasjonRad.Navn = innObservasjon.Navn;
                 nyObservasjonRad.Dato = innObservasjon.Dato;
                 nyObservasjonRad.Tid = innObservasjon.Tid;
@@ -33,11 +33,7 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch
-
-            {
-                return false;
-            }
+            catch { return false; }
         }
 
         public async Task<List<Observasjon>> HentAlle()
@@ -55,10 +51,7 @@ namespace Ufo.DAL
                 }).ToListAsync();
                 return alleObservasjoner;
             }
-            catch
-            {
-                return null;
-            }
+            catch { return null; }
         }
 
         public async Task<Observasjon> HentEn(int id)
@@ -77,10 +70,7 @@ namespace Ufo.DAL
                 };
                 return hentetObservasjon;
             }
-            catch
-            {
-                return null;
-            }
+            catch { return null; }
         }
 
         public async Task<bool> Endre(Observasjon endreObservasjon)
@@ -88,7 +78,6 @@ namespace Ufo.DAL
             var enObservasjon = await _db.Observasjoner.FindAsync(endreObservasjon.Id);
             try
             {
-           
                 enObservasjon.Navn = endreObservasjon.Navn;
                 enObservasjon.Tid = endreObservasjon.Tid;
                 enObservasjon.Dato = endreObservasjon.Dato;
@@ -96,12 +85,9 @@ namespace Ufo.DAL
                 enObservasjon.Lokasjon = endreObservasjon.Lokasjon;
 
                 await _db.SaveChangesAsync();
+                return true;
             }
-            catch
-            {
-                return false;
-            }
-            return true;
+            catch { return false; }
         }
 
         public async Task<bool> Slett(int id)
@@ -113,10 +99,7 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch
-            {
-                return false;
-            }
+            catch { return false; }
         }
     }
 }

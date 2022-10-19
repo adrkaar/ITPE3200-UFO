@@ -8,17 +8,5 @@
         public string Tid { get; set; }
         public string Beskrivelse { get; set; }
         public string Lokasjon { get; set; }
-
-
-
-        /*
-        public string IdUfo { get; set; }                               // FK fra UFO: only IdUfo and NavnUfo will be shown in Observasjon-table
-        public string NavnUfo { get; set; }
-
-        
-        public string Gps {get; set;}                                   // FK lokasjon fra Observasjonslokasjon     
-        */
-        //public object UFO { get; internal set; }
-
     }
 }

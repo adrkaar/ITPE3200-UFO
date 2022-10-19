@@ -6,9 +6,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Ufo.DAL;
-using Ufo.Models;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace Ufo
 {
@@ -24,18 +21,16 @@ namespace Ufo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddDbContext<ObservasjonContext>(options => options.UseSqlite("Data source=Observasjon.db"));
             services.AddScoped<InterfaceObservasjonRepository, ObservasjonRepository>();
-            // services.AddControllersWithViews();
+
+            //services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,17 +39,8 @@ namespace Ufo
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                DBInit.Initialize(app); // denne må fjernes dersom vi vil beholde dataene i databasen og ikke initialisere 
+                DBInit.Initialize(app);
             }
-            /*
-            else           
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles(); */
 
             if (!env.IsDevelopment())
             {
@@ -67,19 +53,13 @@ namespace Ufo
 
             app.UseEndpoints(endpoints =>
             {
-               // endpoints.MapControllers();
-
-                
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}"); 
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())

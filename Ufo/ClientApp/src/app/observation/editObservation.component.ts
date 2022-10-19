@@ -21,23 +21,15 @@ export class EditObservationComponent implements OnInit {
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        console.log(this.editObservation);
-
-        // skal hente id via url, i observation html blir iden lagt med i rouring til edit
+        // henter id fra parameter i url
         this.route.paramMap.subscribe(param => {
-            console.log(param)
             const id = param.get('id');
-            console.log("id: ", id) // id er null, klarer ikke hente id
 
-            // skal bruke id for å hente objeket med iden
+            // skal bruke id for å hente riktig objekt
             if (id) {
-                console.log("HER")
                 this.http.get<Observation>("api/observation/fetchOneObservation" + id)
                     .subscribe(data => {
-                        console.log("HergER")
-                        console.log(data)
                         this.editObservation = data;
-                        console.log(this.editObservation)
                     })
             }
         })
@@ -46,21 +38,16 @@ export class EditObservationComponent implements OnInit {
     updateObservation() {
         this.http.post<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe(() => {
-                console.log(this.editObservation)
                 this.router.navigate(['observation'])
             },
                 error => console.log(error)
             );
     }
 
-
-    // gjør det den skal, men gir feilmeldinger pga ngOnInit som kaller fetch one
     deleteObservation(id: number) {
         this.http.delete<Observation>("api/observation/deleteObservation" + id)
             .subscribe(() => {
-                console.log(this.deleteObservation)
                 this.router.navigate(['observation'])
-                console.log(this.deleteObservation)
             },
                 error => console.log(error)
             );

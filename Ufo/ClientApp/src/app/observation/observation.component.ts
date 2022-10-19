@@ -15,13 +15,10 @@ export class ObservationComponent {
     ngOnInit() {
         this.fetchAllObservations();
     }
-
-
     
     fetchAllObservations() {
         this.http.get<Observation[]>('api/observation/fetchAllObservations')
             .subscribe(response => {
-                console.log(response)
                 this.allObservations = response;
             },
                 error => console.log(error)
