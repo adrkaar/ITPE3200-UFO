@@ -11,13 +11,14 @@ namespace Ufo.Controllers
     public class ObservationController : ControllerBase
     {
         private readonly InterfaceObservasjonRepository _db;
+        private readonly InterfaceCommentRepository _dbComment;
 
-        public ObservationController(InterfaceObservasjonRepository db)
+        public ObservationController(InterfaceObservasjonRepository db, InterfaceCommentRepository dbComments)
         {
             _db = db;
+            _dbComment = dbComments;
         }
 
-        /* Observation ******************************************************************/
         [HttpPost("addObservation")]
         public async Task<ActionResult> Lagre(Observasjon innObservasjon)
         {
@@ -54,20 +55,20 @@ namespace Ufo.Controllers
         [HttpGet("fetchAllComments")]
         public async Task<ActionResult> FetchAllComments()
         {
-            List<Comment> allComments = await _db.FetchAllComments();
+            List<Comment> allComments = await _dbComment.FetchAllComments();
             return Ok(allComments);
         }
 
         [HttpPost("addComment")]
         public async Task<ActionResult> AddComment(Comment inComment)
         {
-            return Ok(await _db.AddComment(inComment));
+            return Ok(await _dbComment.AddComment(inComment));
         }
 
         [HttpDelete("deleteComment{id}")]
         public async Task<ActionResult> DeleteComment(int id)
         {
-            return Ok(await _db.DeleteComment(id));
+            return Ok(await _dbComment.DeleteComment(id));
         }
     }
 }

@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ufo.Models;
-
-
-namespace Ufo.DAL
+﻿namespace Ufo.DAL
 {
 
     public class ObservasjonRepository : InterfaceObservasjonRepository
@@ -17,7 +10,6 @@ namespace Ufo.DAL
             _db = db;
         }
 
-        /* Observation ******************************************************************/
         public async Task<bool> Lagre(Observasjon innObservasjon)
         {
             try
@@ -110,7 +102,7 @@ namespace Ufo.DAL
             {
                 List<Comment> allComments = await _db.Comments.Select(c => new Comment
                 {
-                    //Id = c.Id,
+                    Id = c.Id,
                     Text = c.Text
                 }).ToListAsync();
 
@@ -125,10 +117,14 @@ namespace Ufo.DAL
             {
                 var newCommentRow = new Comments();
 
+                newCommentRow.Id = inComment.Id;
                 newCommentRow.Text = inComment.Text;
+                newCommentRow.Observation.Id = inComment.ObservationId;
+                // med denne ^ så må frontend observation model inneholde obsevasjonsid
 
-                var enObservasjon = await _db.Observasjoner.FindAsync(inComment.ObservationId);
-                newCommentRow.Observations = enObservasjon;
+                // må koble kommentar til objekt?
+                // den adder kunn id og tekst, må på en eller annen måte koble til observasjon
+                // skal koblingen skje i frontend?? må skje i frontend, eneste som kan vite hvilken observasjon kommentaren hører til?
 
                 _db.Comments.Add(newCommentRow);
                 await _db.SaveChangesAsync();
@@ -144,6 +140,10 @@ namespace Ufo.DAL
                 Comments comment = await _db.Comments.FindAsync(id);
                 _db.Comments.Remove(comment);
                 await _db.SaveChangesAsync();
+                return true;
+            }
+            catch { return false; }
+        }
                 return true;
             }
             catch { return false; }
