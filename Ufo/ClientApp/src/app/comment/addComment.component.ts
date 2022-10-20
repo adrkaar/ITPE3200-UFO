@@ -34,7 +34,7 @@ export class AddCommentComponent {
     }
 
     addComment() {
-        this.http.post<Comment>('api/observation/addComment', this.testComment) // må endre test til new
+        this.http.post<Comment>('api/observation/addComment', this.newComment) // må endre test til new
             .subscribe(response => {
                 console.log(response)
                 //this.router.navigate(['/comment'] + this.hei);

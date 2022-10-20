@@ -15,16 +15,25 @@ namespace Ufo.DAL
             _db = db;
         }
 
-        public async Task<List<Comment>> FetchAllComments()
+        public async Task<List<Comment>> FetchAllComments(int observationId)
         {
             try
             {
+                // må selecte where observationId = Observation.Id
                 List<Comment> allComments = await _db.Comments.Select(c => new Comment
                 {
                     Id = c.Id,
                     Text = c.Text,
                     ObservationId = c.Observations.Id
-                }).ToListAsync();
+                }).FromSql("SELECT Id from Observasjoner LEFT JOIN Comments on Observasjoner.Id = Comments.ObservationId", ).ToListAsync();
+                // context.Blogs.FromSql("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)
+                // var queryComments = from ObservationId in _db.Comments where observationId == Observasjoner.Id select Comments;
+
+                // ("SELECT Id from Observasjoner LEFT JOIN Comments on Observasjoner.Id = Comments.ObservationId"
+
+                _db.Comments.FromSqlRaw("SELECT Id from Observasjoner LEFT JOIN Comments on Observasjoner.Id = Comments.ObservationId");
+
+                //SELECT ObservationId from Comments LEFT JOIN Observasjoner ON Observasjoner.Id = Comments.ObservationId
 
                 return allComments;
             }

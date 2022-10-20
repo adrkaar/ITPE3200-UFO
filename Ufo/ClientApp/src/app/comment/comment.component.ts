@@ -11,15 +11,21 @@ import { Comment } from "../models/comment.model";
 
 export class CommentComponent {
     allcomments: Array<Comment>;
+    id: any;
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
     ngOnInit() {
-        this.fetchAllComments();
+        // henter id fra parameter i url
+        this.route.paramMap.subscribe(param => {
+            this.id = param.get('id');
+        })
+
+        this.fetchAllComments(this.id);
     }
 
-    fetchAllComments() {
-        this.http.get<Comment[]>('api/observation/fetchAllComments')
+    fetchAllComments(id: any) {
+        this.http.get<Comment[]>('api/observation/fetchAllComments' + id)
             .subscribe(response => {
                 console.log(response)
                 this.allcomments = response;

@@ -52,10 +52,10 @@ namespace Ufo.Controllers
         }
 
         /* Comment ******************************************************************/
-        [HttpGet("fetchAllComments")]
-        public async Task<ActionResult> FetchAllComments()
+        [HttpGet("fetchAllComments{id}")]
+        public async Task<ActionResult> FetchAllComments(int observationId)
         {
-            List<Comment> allComments = await _dbComment.FetchAllComments();
+            List<Comment> allComments = await _dbComment.FetchAllComments(observationId);
             return Ok(allComments);
         }
 
