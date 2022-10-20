@@ -6,7 +6,7 @@ using Ufo.Models;
 
 namespace Ufo.DAL
 {
-    public class CommentRepository: InterfaceCommentRepository
+    public class CommentRepository : InterfaceCommentRepository
     {
         private readonly ObservasjonContext _db;
 
@@ -22,7 +22,8 @@ namespace Ufo.DAL
                 List<Comment> allComments = await _db.Comments.Select(c => new Comment
                 {
                     Id = c.Id,
-                    Text = c.Text
+                    Text = c.Text,
+                    ObservationId = c.Observations.Id
                 }).ToListAsync();
 
                 return allComments;
@@ -35,21 +36,11 @@ namespace Ufo.DAL
             try
             {
                 var newCommentRow = new Comments();
-                // var objekt = _db.Comments.Join(_db.Observasjoner, ObservationId => Id); 
-                // var objekt = _db.Observasjoner.Join(_db.Comments, x => x.Id, y => y.Id, (x, y) => new { () }.ToList();
 
-                newCommentRow.Id = inComment.Id;
                 newCommentRow.Text = inComment.Text;
-                //newCommentRow.Observation.Id = inComment.ObservationId;
 
-                var enObservasjon = await _db.Observasjoner.FindAsync(inComment);
-                newCommentRow.Observation = enObservasjon;
-
-                // med denne ^ så må frontend observation model inneholde obsevasjonsid
-
-                // må koble kommentar til objekt?
-                // den adder kunn id og tekst, må på en eller annen måte koble til observasjon
-                // skal koblingen skje i frontend?? må skje i frontend, eneste som kan vite hvilken observasjon kommentaren hører til?
+                var enObservasjon = await _db.Observasjoner.FindAsync(inComment.ObservationId);
+                newCommentRow.Observations = enObservasjon;
 
                 _db.Comments.Add(newCommentRow);
                 await _db.SaveChangesAsync();
@@ -57,6 +48,7 @@ namespace Ufo.DAL
             }
             catch { return false; }
         }
+
 
         public async Task<bool> DeleteComment(int id)
         {
@@ -68,6 +60,6 @@ namespace Ufo.DAL
                 return true;
             }
             catch { return false; }
-        }        
+        }
     }
 }

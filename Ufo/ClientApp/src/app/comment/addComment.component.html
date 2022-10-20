@@ -3,7 +3,7 @@
 <form #form="ngForm" (ngSubmit)="addComment()">
     <div class="form-group">
         <label for="comment">Comment</label>
-        <input type="text" class="form-control" id="comment" name="comment" [(ngModel)]="newObservation.text">
+        <input type="text" class="form-control" id="comment" name="comment" [(ngModel)]="newComment.text">
     </div>
     <button type="submit" class="btn btn-primary">Comment</button>
 </form>

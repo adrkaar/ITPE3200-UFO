@@ -10,34 +10,29 @@ import { Comment } from "../models/comment.model";
 })
 
 export class CommentComponent {
+    allcomments: Array<Comment>;
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
-  
-
-    /*
-    allObservations: Array<Observation>;
-
-    constructor(private http: HttpClient) { }
-
     ngOnInit() {
-        this.fetchAllObservations();
+        this.fetchAllComments();
     }
 
-    fetchAllObservations() {
-        this.http.get<Observation[]>('api/observation/fetchAllObservations')
+    fetchAllComments() {
+        this.http.get<Comment[]>('api/observation/fetchAllComments')
             .subscribe(response => {
-                this.allObservations = response;
+                console.log(response)
+                this.allcomments = response;
             },
                 error => console.log(error)
             );
     }
-    */
 
-    deleteObservation(id: number) {
-        this.http.delete<Observation>("api/observation/deleteObservation" + id)
-            .subscribe(() => {
-                this.router.navigate(['observation'])
+    deleteComment(id: number) {
+        this.http.delete<Observation>("api/observation/deleteComment" + id)
+            .subscribe(response => {
+                console.log(response)
+                //this.router.navigate(['comment'])
             },
                 error => console.log(error)
             );

@@ -9,7 +9,7 @@ import { CommentComponent } from "./comment.component";
     templateUrl: 'addComment.component.html'
 })
 
-export class AddComment {
+export class AddCommentComponent {
     newComment: Comment = {
         id: 0,
         text: '',
@@ -35,8 +35,9 @@ export class AddComment {
 
     addComment() {
         this.http.post<Comment>('api/observation/addComment', this.testComment) // må endre test til new
-            .subscribe(() => {
-                this.router.navigate(['/comment'] + this.hei);
+            .subscribe(response => {
+                console.log(response)
+                //this.router.navigate(['/comment'] + this.hei);
             },
                 error => console.log(error)
             );

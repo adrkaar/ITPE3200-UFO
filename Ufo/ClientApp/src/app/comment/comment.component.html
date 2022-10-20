@@ -4,3 +4,20 @@
 
 ¨<!--Vise observationsen til kommentarene-->
 <!--kommentarene-->
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let comment of allcomments ">
+        <tr>
+            <td>{{ comment.id }}</td>
+            <td>{{ comment.text }}</td>
+            <!--<td><button class="btn btn-danger" (click)="deleteComment(comment.id)">Delete</button></td>-->
+        </tr>
+    </tbody>
+</table>
