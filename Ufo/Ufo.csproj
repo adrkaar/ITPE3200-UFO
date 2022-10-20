@@ -38,11 +38,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\models\observation.model.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\comment\addComment.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\models\comment.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\observation.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

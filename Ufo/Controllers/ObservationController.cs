@@ -17,6 +17,7 @@ namespace Ufo.Controllers
             _db = db;
         }
 
+        /* Observation ******************************************************************/
         [HttpPost("addObservation")]
         public async Task<ActionResult> Lagre(Observasjon innObservasjon)
         {
@@ -47,6 +48,26 @@ namespace Ufo.Controllers
         public async Task<ActionResult> Slett(int id)
         {
             return Ok(await _db.Slett(id));
+        }
+
+        /* Comment ******************************************************************/
+        [HttpGet("fetchAllComments")]
+        public async Task<ActionResult> FetchAllComments()
+        {
+            List<Comment> allComments = await _db.FetchAllComments();
+            return Ok(allComments);
+        }
+
+        [HttpPost("addComment")]
+        public async Task<ActionResult> AddComment(Comment inComment)
+        {
+            return Ok(await _db.AddComment(inComment));
+        }
+
+        [HttpDelete("deleteComment{id}")]
+        public async Task<ActionResult> DeleteComment(int id)
+        {
+            return Ok(await _db.DeleteComment(id));
         }
     }
 }

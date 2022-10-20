@@ -12,6 +12,7 @@
             <th>Location</th>
             <th>Description</th>
             <th> </th>
+            <th> </th>
         </tr>
     </thead>
     <tbody *ngFor="let observation of allObservations ">
@@ -23,6 +24,7 @@
             <td>{{ observation.lokasjon }}</td>
             <td>{{ observation.beskrivelse }}</td>
             <td><a [routerLink]="['/editObservation', observation.id]">view</a></td>
+            <td><a [routerLink]="['../comment', observation.id]">comment</a></td>
         </tr>
     </tbody>
 </table>
