@@ -13,6 +13,7 @@ import { AddObservationComponent } from './observation/addObservation.component'
 import { EditObservationComponent } from './observation/editObservation.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { CommentComponent } from './comment/comment.component';
+import { AddComment } from './comment/addComment.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { CommentComponent } from './comment/comment.component';
         AddObservationComponent,
         EditObservationComponent,
         /*Comment*/
-        CommentComponent
+        CommentComponent,
+        AddComment
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,6 +40,7 @@ import { CommentComponent } from './comment/comment.component';
             { path: 'editObservation/:id', component: EditObservationComponent },
             /*Comment*/
             { path: 'comment/:id', component: CommentComponent },
+            { path: 'addComment/:id', component: AddComment },
         ]),
         NoopAnimationsModule
     ],

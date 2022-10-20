@@ -25,7 +25,7 @@ export class EditObservationComponent implements OnInit {
         this.route.paramMap.subscribe(param => {
             const id = param.get('id');
 
-            // skal bruke id for å hente riktig objekt
+            // bruker id for å hente riktig objekt
             if (id) {
                 this.http.get<Observation>("api/observation/fetchOneObservation" + id)
                     .subscribe(data => {

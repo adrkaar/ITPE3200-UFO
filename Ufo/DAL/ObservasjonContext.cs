@@ -19,7 +19,7 @@ namespace Ufo.DAL
         [Key]
         public int Id { get; set; }
         public string Text { get; set; }
-        virtual public Observasjoner Observation { get; set; }
+        virtual public Observasjoner Observations { get; set; }
     }
 
     public class ObservasjonContext : DbContext

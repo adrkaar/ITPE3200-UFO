@@ -1,9 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Observation } from '../models/observation.model';
-import { HttpClient } from "@angular/common/http";
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Comment } from "../models/comment.model"; 
 
 @Component({
@@ -12,6 +10,11 @@ import { Comment } from "../models/comment.model";
 })
 
 export class CommentComponent {
+
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+
+  
+
     /*
     allObservations: Array<Observation>;
 
@@ -31,24 +34,10 @@ export class CommentComponent {
     }
     */
 
-    newComment: Comment = {
-        id: 0,
-        text: '',
-        observationId: 0 // vet ikke hvordan få den enda
-    }
-
-    constructor(private http: HttpClient, private router: Router) { }
-
-    testComment: Comment = {
-        id: 1,
-        text: 'sdfgb',
-        observationId: 1
-    }
-
-    addComment() {
-        this.http.post<Comment>('api/observation/addComment', this.testComment) // må endre test til new
+    deleteObservation(id: number) {
+        this.http.delete<Observation>("api/observation/deleteObservation" + id)
             .subscribe(() => {
-                this.router.navigate(['comment'])
+                this.router.navigate(['observation'])
             },
                 error => console.log(error)
             );

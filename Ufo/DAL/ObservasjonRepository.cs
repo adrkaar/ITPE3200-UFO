@@ -110,7 +110,7 @@ namespace Ufo.DAL
             {
                 List<Comment> allComments = await _db.Comments.Select(c => new Comment
                 {
-                    Id = c.Id,
+                    //Id = c.Id,
                     Text = c.Text
                 }).ToListAsync();
 
@@ -125,14 +125,10 @@ namespace Ufo.DAL
             {
                 var newCommentRow = new Comments();
 
-                newCommentRow.Id = inComment.Id;
                 newCommentRow.Text = inComment.Text;
-                newCommentRow.Observation.Id = inComment.ObservationId;
-                // med denne ^ så må frontend observation model inneholde obsevasjonsid
 
-                // må koble kommentar til objekt?
-                // den adder kunn id og tekst, må på en eller annen måte koble til observasjon
-                // skal koblingen skje i frontend?? må skje i frontend, eneste som kan vite hvilken observasjon kommentaren hører til?
+                var enObservasjon = await _db.Observasjoner.FindAsync(inComment.ObservationId);
+                newCommentRow.Observations = enObservasjon;
 
                 _db.Comments.Add(newCommentRow);
                 await _db.SaveChangesAsync();

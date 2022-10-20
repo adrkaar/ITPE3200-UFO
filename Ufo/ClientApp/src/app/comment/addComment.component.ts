@@ -1,7 +1,8 @@
 ﻿import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Comment } from "../models/comment.model"; 
+import { CommentComponent } from "./comment.component"; 
 
 @Component({
     selector: 'addComment',
@@ -12,10 +13,19 @@ export class AddComment {
     newComment: Comment = {
         id: 0,
         text: '',
-        observationId: 0 // vet ikke hvordan få den enda
+        observationId: 0
     }
+   
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+
+    hei: any;
+    ngOnInit(): void {
+        // henter id fra parameter i url
+        this.route.paramMap.subscribe(param => {
+            this.hei = param.get('id');
+        })
+    }
 
     testComment: Comment = {
         id: 1,
@@ -26,7 +36,7 @@ export class AddComment {
     addComment() {
         this.http.post<Comment>('api/observation/addComment', this.testComment) // må endre test til new
             .subscribe(() => {
-                this.router.navigate(['comment'])
+                this.router.navigate(['/comment'] + this.hei);
             },
                 error => console.log(error)
             );
