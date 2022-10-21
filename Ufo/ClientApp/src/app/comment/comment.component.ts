@@ -24,6 +24,10 @@ export class CommentComponent {
         this.fetchAllComments(this.id);
     }
 
+    refreshWebsite(): void {
+        window.location.reload()
+    }
+
     fetchAllComments(id: any) {
         this.http.get<Comment[]>('api/comment/fetchAllComments/' + id)
             .subscribe(response => {
@@ -37,7 +41,7 @@ export class CommentComponent {
     deleteComment(id: number) {
         this.http.delete<Observation>("api/comment/deleteComment/" + id)
             .subscribe(() => {
-                window.location.reload();
+                this.refreshWebsite();
             },
                 error => console.log(error)
             );

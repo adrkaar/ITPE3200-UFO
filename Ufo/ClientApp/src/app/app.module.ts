@@ -42,6 +42,7 @@ import { AddCommentComponent } from './comment/addComment.component';
             /*Comment*/
             { path: 'comment/:id', component: CommentComponent },
             { path: 'addComment/:id', component: AddCommentComponent },
+            /* loadChildren: () => import('./comment/addComment.component').then(m => m.AddCommentComponent) */
         ]),
         NoopAnimationsModule
     ],
