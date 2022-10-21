@@ -32,6 +32,7 @@ import { AddCommentComponent } from './comment/addComment.component';
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
         FormsModule,
+        /* Burde lages en lazy loading, mulig det går tregt fordi alle endpointsene laster samtidig */
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
             /*Observation*/
