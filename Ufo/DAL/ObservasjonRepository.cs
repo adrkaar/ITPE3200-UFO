@@ -92,6 +92,7 @@ namespace Ufo.DAL
         {
             try
             {
+                // må slette tilsvarende kommentarer først
                 Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
                 _db.Observasjoner.Remove(enObservasjon);
                 await _db.SaveChangesAsync();

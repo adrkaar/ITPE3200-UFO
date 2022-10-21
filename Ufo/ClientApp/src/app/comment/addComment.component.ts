@@ -29,7 +29,7 @@ export class AddCommentComponent {
         // setter observationId til riktig før objektet sendes
         this.newComment.observationId = this.obsId;
 
-        this.http.post<Comment>('api/observation/addComment', this.newComment)
+        this.http.post<Comment>('api/comment/addComment', this.newComment)
             .subscribe(response => {
                 console.log(response)
                 this.router.navigate(['/comment', this.obsId]);

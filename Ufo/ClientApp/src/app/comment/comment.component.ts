@@ -25,7 +25,7 @@ export class CommentComponent {
     }
 
     fetchAllComments(id: any) {
-        this.http.get<Comment[]>('api/observation/fetchAllComments/' + id)
+        this.http.get<Comment[]>('api/comment/fetchAllComments/' + id)
             .subscribe(response => {
                 this.allcomments = response;
             },
@@ -35,7 +35,7 @@ export class CommentComponent {
 
     // må refrese siden for å se endringene
     deleteComment(id: number) {
-        this.http.delete<Observation>("api/observation/deleteComment/" + id)
+        this.http.delete<Observation>("api/comment/deleteComment/" + id)
             .subscribe(() => {
                 window.location.reload();
             },
