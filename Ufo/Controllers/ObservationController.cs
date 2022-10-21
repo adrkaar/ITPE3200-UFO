@@ -32,7 +32,7 @@ namespace Ufo.Controllers
             return Ok(alleObservasjoner);
         }
 
-        [HttpGet("fetchOneObservation{id}")]
+        [HttpGet("fetchOneObservation/{id}")]
         public async Task<ActionResult> HentEn(int id)
         {
             Observasjon enObservasjon = await _db.HentEn(id);
@@ -45,17 +45,17 @@ namespace Ufo.Controllers
             return Ok(await _db.Endre(endreObservasjon));
         }
 
-        [HttpDelete("deleteObservation{id}")]
+        [HttpDelete("deleteObservation/{id}")]
         public async Task<ActionResult> Slett(int id)
         {
             return Ok(await _db.Slett(id));
         }
 
         /* Comment ******************************************************************/
-        [HttpGet("fetchAllComments{id}")]
-        public async Task<ActionResult> FetchAllComments(int observationId)
+        [HttpGet("fetchAllComments/{id}")]
+        public async Task<ActionResult> FetchAllComments(int id)
         {
-            List<Comment> allComments = await _dbComment.FetchAllComments(observationId);
+            List<Comment> allComments = await _dbComment.FetchAllComments(id);
             return Ok(allComments);
         }
 
@@ -65,7 +65,7 @@ namespace Ufo.Controllers
             return Ok(await _dbComment.AddComment(inComment));
         }
 
-        [HttpDelete("deleteComment{id}")]
+        [HttpDelete("deleteComment/{id}")]
         public async Task<ActionResult> DeleteComment(int id)
         {
             return Ok(await _dbComment.DeleteComment(id));

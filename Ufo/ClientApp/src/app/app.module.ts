@@ -40,7 +40,7 @@ import { AddCommentComponent } from './comment/addComment.component';
             { path: 'editObservation/:id', component: EditObservationComponent },
             /*Comment*/
             { path: 'comment/:id', component: CommentComponent },
-            { path: 'addComment', component: AddCommentComponent },
+            { path: 'addComment/:id', component: AddCommentComponent },
         ]),
         NoopAnimationsModule
     ],

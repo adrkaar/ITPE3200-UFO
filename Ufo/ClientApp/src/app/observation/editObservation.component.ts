@@ -27,7 +27,7 @@ export class EditObservationComponent implements OnInit {
 
             // bruker id for å hente riktig objekt
             if (id) {
-                this.http.get<Observation>("api/observation/fetchOneObservation" + id)
+                this.http.get<Observation>("api/observation/fetchOneObservation/" + id)
                     .subscribe(data => {
                         this.editObservation = data;
                     })
@@ -45,7 +45,7 @@ export class EditObservationComponent implements OnInit {
     }
 
     deleteObservation(id: number) {
-        this.http.delete<Observation>("api/observation/deleteObservation" + id)
+        this.http.delete<Observation>("api/observation/deleteObservation/" + id)
             .subscribe(() => {
                 this.router.navigate(['observation'])
             },

@@ -21,11 +21,13 @@ namespace Ufo.DAL
                 /* Comments */
                 var comment1 = new Comments { Text = "Cool1", Observations = observasjon1 };
                 var comment2 = new Comments { Text = "No my friend, ufos are not real", Observations = observasjon1 };
+                var comment3 = new Comments { Text = "Wow, such a cool thing", Observations = observasjon2 };
 
                 context.Observasjoner.Add(observasjon1);
                 context.Observasjoner.Add(observasjon2);
                 context.Comments.Add(comment1);
                 context.Comments.Add(comment2);
+                context.Comments.Add(comment3);
 
                 context.SaveChanges();
             }

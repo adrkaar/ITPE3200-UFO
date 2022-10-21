@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,21 +20,15 @@ namespace Ufo.DAL
         {
             try
             {
-                // må selecte where observationId = Observation.Id
-                List<Comment> allComments = await _db.Comments.Select(c => new Comment
-                {
-                    Id = c.Id,
-                    Text = c.Text,
-                    ObservationId = c.Observations.Id
-                }).FromSql("SELECT Id from Observasjoner LEFT JOIN Comments on Observasjoner.Id = Comments.ObservationId", ).ToListAsync();
-                // context.Blogs.FromSql("SELECT * FROM [dbo].[SearchBlogs]({0})", userSuppliedSearchTerm)
-                // var queryComments = from ObservationId in _db.Comments where observationId == Observasjoner.Id select Comments;
+                //må selecte where observationId = Observation.Id
 
-                // ("SELECT Id from Observasjoner LEFT JOIN Comments on Observasjoner.Id = Comments.ObservationId"
-
-                _db.Comments.FromSqlRaw("SELECT Id from Observasjoner LEFT JOIN Comments on Observasjoner.Id = Comments.ObservationId");
-
-                //SELECT ObservationId from Comments LEFT JOIN Observasjoner ON Observasjoner.Id = Comments.ObservationId
+                List<Comment> allComments = await _db.Comments.Where(c => c.Observations.Id == observationId)
+                    .Select(c => new Comment
+                    {
+                        Id = c.Id,
+                        Text = c.Text,
+                        ObservationId = c.Observations.Id
+                    }).ToListAsync();
 
                 return allComments;
             }
@@ -44,11 +39,14 @@ namespace Ufo.DAL
         {
             try
             {
+                // laget objektet
                 var newCommentRow = new Comments();
-
+                // setter teksten
                 newCommentRow.Text = inComment.Text;
 
                 var enObservasjon = await _db.Observasjoner.FindAsync(inComment.ObservationId);
+                Console.WriteLine(enObservasjon);
+
                 newCommentRow.Observations = enObservasjon;
 
                 _db.Comments.Add(newCommentRow);

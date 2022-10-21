@@ -2,7 +2,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Comment } from "../models/comment.model"; 
-import { CommentComponent } from "./comment.component"; 
 
 @Component({
     selector: 'addComment',
@@ -15,29 +14,25 @@ export class AddCommentComponent {
         text: '',
         observationId: 0
     }
-   
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
-    hei: any;
+    obsId: number;
     ngOnInit(): void {
         // henter id fra parameter i url
         this.route.paramMap.subscribe(param => {
-            this.hei = param.get('id');
+            this.obsId = Number(param.get('id'));
         })
     }
 
-    testComment: Comment = {
-        id: 1,
-        text: 'sdfgb',
-        observationId: 1
-    }
-
     addComment() {
-        this.http.post<Comment>('api/observation/addComment', this.newComment) // må endre test til new
+        // setter observationId til riktig før objektet sendes
+        this.newComment.observationId = this.obsId;
+
+        this.http.post<Comment>('api/observation/addComment', this.newComment)
             .subscribe(response => {
                 console.log(response)
-                //this.router.navigate(['/comment'] + this.hei);
+                this.router.navigate(['/comment', this.obsId]);
             },
                 error => console.log(error)
             );
