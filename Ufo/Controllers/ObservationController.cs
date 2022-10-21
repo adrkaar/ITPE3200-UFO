@@ -12,7 +12,7 @@ namespace Ufo.Controllers
     {
         private readonly InterfaceObservasjonRepository _db;
 
-        public ObservationController(InterfaceObservasjonRepository db)
+        public ObservationController(InterfaceObservasjonRepository db, InterfaceCommentRepository dbComments)
         {
             _db = db;
         }
@@ -30,7 +30,7 @@ namespace Ufo.Controllers
             return Ok(alleObservasjoner);
         }
 
-        [HttpGet("fetchOneObservation{id}")]
+        [HttpGet("fetchOneObservation/{id}")]
         public async Task<ActionResult> HentEn(int id)
         {
             Observasjon enObservasjon = await _db.HentEn(id);
@@ -43,7 +43,7 @@ namespace Ufo.Controllers
             return Ok(await _db.Endre(endreObservasjon));
         }
 
-        [HttpDelete("deleteObservation{id}")]
+        [HttpDelete("deleteObservation/{id}")]
         public async Task<ActionResult> Slett(int id)
         {
             return Ok(await _db.Slett(id));

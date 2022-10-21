@@ -1,7 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Ufo.Models;
-using System.Collections.Generic;
-using System;
 
 namespace Ufo.DAL
 {

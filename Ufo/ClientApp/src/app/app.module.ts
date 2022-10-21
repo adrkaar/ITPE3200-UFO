@@ -12,15 +12,21 @@ import { ObservationComponent } from './observation/observation.component'
 import { AddObservationComponent } from './observation/addObservation.component'
 import { EditObservationComponent } from './observation/editObservation.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { CommentComponent } from './comment/comment.component';
+import { AddCommentComponent } from './comment/addComment.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
         HomeComponent,
+        /*Oversation*/
         ObservationComponent,
         AddObservationComponent,
-        EditObservationComponent
+        EditObservationComponent,
+        /*Comment*/
+        CommentComponent,
+        AddCommentComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,9 +34,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
         FormsModule,
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },
+            /*Observation*/
             { path: 'observation', component: ObservationComponent },
             { path: 'addObservation', component: AddObservationComponent },
             { path: 'editObservation/:id', component: EditObservationComponent },
+            /*Comment*/
+            { path: 'comment/:id', component: CommentComponent },
+            { path: 'addComment/:id', component: AddCommentComponent },
         ]),
         NoopAnimationsModule
     ],
