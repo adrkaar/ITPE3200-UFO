@@ -20,9 +20,9 @@ namespace Ufo.DAL
         {
             try
             {
-                //må selecte where observationId = Observation.Id
-
-                List<Comment> allComments = await _db.Comments.Where(c => c.Observations.Id == observationId)
+                // henter ut kommentarene som hører til observasjonen
+                List<Comment> allComments = await _db.Comments
+                    .Where(c => c.Observations.Id == observationId)
                     .Select(c => new Comment
                     {
                         Id = c.Id,
@@ -63,6 +63,12 @@ namespace Ufo.DAL
             {
                 Comments comment = await _db.Comments.FindAsync(id);
                 _db.Comments.Remove(comment);
+
+                //if (employeeToDelete == null)
+                //{
+                //    return NotFound($"Employee with Id = {id} not found");
+                //}
+
                 await _db.SaveChangesAsync();
                 return true;
             }

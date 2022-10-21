@@ -92,8 +92,17 @@ namespace Ufo.DAL
         {
             try
             {
-                // må slette tilsvarende kommentarer først
                 Observasjoner enObservasjon = await _db.Observasjoner.FindAsync(id);
+
+                CommentRepository cRepo = new CommentRepository(_db);
+                var comments = cRepo.FetchAllComments(id);
+
+                // går igjennom comments og sletter hver kommentar som hører til observasjonen
+                foreach (Comment comment in comments.Result.ToList())
+                {
+                    cRepo.DeleteComment(comment.Id);
+                }
+
                 _db.Observasjoner.Remove(enObservasjon);
                 await _db.SaveChangesAsync();
                 return true;
