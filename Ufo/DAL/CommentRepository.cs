@@ -44,10 +44,10 @@ namespace Ufo.DAL
                 // setter teksten
                 newCommentRow.Text = inComment.Text;
 
-                var enObservasjon = await _db.Observasjoner.FindAsync(inComment.ObservationId);
-                Console.WriteLine(enObservasjon);
+                var oneObservation = await _db.Observations.FindAsync(inComment.ObservationId);
+                Console.WriteLine(oneObservation);
 
-                newCommentRow.Observations = enObservasjon;
+                newCommentRow.Observations = oneObservation;
 
                 _db.Comments.Add(newCommentRow);
                 await _db.SaveChangesAsync();
