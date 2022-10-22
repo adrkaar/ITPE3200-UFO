@@ -35,5 +35,17 @@ namespace Ufo.Controllers
         {
             return Ok(await _db.DeleteComment(id));
         }
+
+        [HttpGet("upVote/{id}")]
+        public async Task<ActionResult> UpVote(int id)
+        {
+            return Ok(await _db.UpVote(id));
+        }
+
+        [HttpGet("downVote/{id}")]
+        public async Task<ActionResult> DownVote(int id)
+        {
+            return Ok(await _db.DownVote(id));
+        }
     }
 }

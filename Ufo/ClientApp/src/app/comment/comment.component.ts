@@ -39,7 +39,25 @@ export class CommentComponent {
 
     // må refrese siden for å se endringene
     deleteComment(id: number) {
-        this.http.delete<Observation>("api/comment/deleteComment/" + id)
+        this.http.delete<Comment>("api/comment/deleteComment/" + id)
+            .subscribe(() => {
+                this.refreshWebsite();
+            },
+                error => console.log(error)
+            );
+    }
+
+    upVote(id: number) {
+        this.http.get<Comment>("api/comment/upVote/" + id)
+            .subscribe(() => {
+                this.refreshWebsite();
+            },
+                error => console.log(error)
+            );
+    }
+
+    downVote(id: number) {
+        this.http.get<Comment>("api/comment/downVote/" + id)
             .subscribe(() => {
                 this.refreshWebsite();
             },

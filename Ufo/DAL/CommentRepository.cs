@@ -27,7 +27,9 @@ namespace Ufo.DAL
                     {
                         Id = c.Id,
                         Text = c.Text,
-                        ObservationId = c.Observations.Id
+                        ObservationId = c.Observations.Id,
+                        UpVote = c.UpVote,
+                        DownVote = c.Downvote
                     }).ToListAsync();
 
                 return allComments;
@@ -70,6 +72,30 @@ namespace Ufo.DAL
             catch { return false; }
         }
 
+        public async Task<bool> UpVote(int id)
+        {
+            try
+            {
+                Comments comment = await _db.Comments.FindAsync(id);
+                comment.UpVote += 1;
 
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch { return false; }
+        }
+
+        public async Task<bool> DownVote(int id)
+        {
+            try
+            {
+                Comments comment = await _db.Comments.FindAsync(id);
+                comment.Downvote += 1;
+
+                await _db.SaveChangesAsync();
+                return true;
+            }
+            catch { return false; }
+        }
     }
 }

@@ -12,7 +12,9 @@ export class AddCommentComponent {
     newComment: Comment = {
         id: 0,
         text: '',
-        observationId: 0
+        observationId: 0,
+        upVote: 0,
+        downVote: 0
     }
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }

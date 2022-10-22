@@ -1,4 +1,4 @@
-﻿<script>
+﻿<!--<script>
     id: any;
     ngOnInit() {
         // henter id fra parameter i url
@@ -6,7 +6,7 @@
             this.id = param.get('id');
         })
     }
-</script>
+</script>-->
 
 <h1>Comments</h1>
 <!--Hente parameter fra url her?-->
@@ -29,6 +29,8 @@
             <td>{{ comment.id }}</td>
             <td>{{ comment.text }}</td>
             <td>{{ comment.observationId }}</td>
+            <td><button (click)="upVote(comment.id)">{{ comment.upVote }}</button></td>
+            <td><button (click)="downVote(comment.id)">{{ comment.downVote }}</button></td>
             <td><button class="btn btn-danger" (click)="deleteComment(comment.id)">Delete</button></td>
         </tr>
     </tbody>

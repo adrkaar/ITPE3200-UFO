@@ -9,5 +9,7 @@ namespace Ufo.DAL
         Task<List<Comment>> FetchAllComments(int observationId);
         Task<bool> AddComment(Comment inComment);
         Task<bool> DeleteComment(int id);
+        Task<bool> UpVote(int id);
+        Task<bool> DownVote(int id);
     }
 }
