@@ -14,9 +14,15 @@ namespace Ufo.DAL
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
 
+                /* Ufo types */
+                var type1 = new UfoTypes { Type = "Round" };
+                var type2 = new UfoTypes { Type = "Flat" };
+                var type3 = new UfoTypes { Type = "Big" };
+                var type4 = new UfoTypes { Type = "Invisible" };
+
                 /* Observations */
-                var observation1 = new Observations { Date = "22.22.01", Name = "er", Time = "22.22", Description = "Jeg gikk ut pub og så en stor egg i skyen.", Location = "Her" };
-                var observation2 = new Observations { Date = "30.01.01", Name = "er", Time = "00.09", Description = "Bla-bla-bla.", Location = "Der" };
+                var observation1 = new Observations { Date = "22.22.01", Time = "22.22", Description = "Jeg gikk ut pub og så en stor egg i skyen.", Location = "Her", UfoTypes = type1 };
+                var observation2 = new Observations { Date = "30.01.01", Time = "00.09", Description = "Bla-bla-bla.", Location = "Der", UfoTypes = type3 };
 
                 /* Comments */
                 var comment1 = new Comments { Text = "Cool!", Observations = observation1, UpVote = 2, Downvote = 1 };

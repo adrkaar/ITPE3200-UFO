@@ -21,11 +21,19 @@ namespace Ufo.DAL
             {
                 var newObservationRow = new Observations();
 
-                newObservationRow.Name = inObservation.Name;
+                //newObservationRow.Name = inObservation.UfoType;
                 newObservationRow.Date = inObservation.Date;
                 newObservationRow.Time = inObservation.Time;
                 newObservationRow.Description = inObservation.Description;
                 newObservationRow.Location = inObservation.Location;
+
+                // for at bruker skal kunne legge til nye typer:
+                // må sjekke om de har lagt til en ny type i inObservation
+                // hvis ny: -> legge til ny i en AddNewType(type string), så legge til typen i newRow
+                // hvis ikke ny: -> linjen under
+
+                // setter den nye raden sin ufo tyupe til typen som er sendt med
+                newObservationRow.UfoTypes.Type = inObservation.UfoType;
 
                 _db.Observations.Add(newObservationRow);
                 await _db.SaveChangesAsync();
@@ -41,11 +49,11 @@ namespace Ufo.DAL
                 List<Observation> allObservations = await _db.Observations.Select(obs => new Observation
                 {
                     Id = obs.Id,
-                    Name = obs.Name,
                     Date = obs.Date,
                     Time = obs.Time,
                     Description = obs.Description,
-                    Location = obs.Location
+                    Location = obs.Location,
+                    UfoType = obs.UfoTypes.Type
                 }).ToListAsync();
                 return allObservations;
             }
@@ -60,7 +68,7 @@ namespace Ufo.DAL
                 var fetchedObservation = new Observation()
                 {
                     Id = oneObservation.Id,
-                    Name = oneObservation.Name,
+                    UfoType = oneObservation.UfoTypes.Type,
                     Date = oneObservation.Date,
                     Time = oneObservation.Time,
                     Location = oneObservation.Location,
@@ -76,11 +84,13 @@ namespace Ufo.DAL
             var oneObservation = await _db.Observations.FindAsync(changeObservation.Id);
             try
             {
-                oneObservation.Name = changeObservation.Name;
+                oneObservation.UfoTypes.Type = changeObservation.UfoType; // her kan man da ikke legge til ny type
                 oneObservation.Time = changeObservation.Time;
                 oneObservation.Date = changeObservation.Date;
                 oneObservation.Description = changeObservation.Description;
                 oneObservation.Location = changeObservation.Location;
+
+                // skal man kunne legge til ny type i change?
 
                 await _db.SaveChangesAsync();
                 return true;
@@ -95,9 +105,10 @@ namespace Ufo.DAL
                 Observations oneObservation = await _db.Observations.FindAsync(id);
 
                 CommentRepository cRepo = new CommentRepository(_db);
+                // henter kommentarene til observasjonen
                 var comments = cRepo.FetchAllComments(id);
 
-                // går igjennom comments og sletter hver kommentar som hører til observasjonen
+                // går igjennom kommentarene og sletter dem
                 foreach (Comment comment in comments.Result.ToList())
                 {
                     await cRepo.DeleteComment(comment.Id);
