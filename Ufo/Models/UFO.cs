@@ -8,8 +8,8 @@ namespace Ufo.Models
     public class UFO
     {
         public int IdUfo  { get; set; }                
-        public string NavnUfo { get; set; }              
+        public string NameUfo { get; set; }              
         public string TypeUfo { get; set; }
-        public string BeskrivelseUfo { get; set; }
+        public string DescriptionUfo { get; set; }
     }
 }

@@ -10,43 +10,43 @@ namespace Ufo.Controllers
     [Route("api/[controller]")]
     public class ObservationController : ControllerBase
     {
-        private readonly InterfaceObservasjonRepository _db;
+        private readonly InterfaceObservationRepository _db;
 
-        public ObservationController(InterfaceObservasjonRepository db, InterfaceCommentRepository dbComments)
+        public ObservationController(InterfaceObservationRepository db, InterfaceCommentRepository dbComments)
         {
             _db = db;
         }
 
         [HttpPost("addObservation")]
-        public async Task<ActionResult> Lagre(Observasjon innObservasjon)
+        public async Task<ActionResult> Lagre(Observation innObservasjon)
         {
-            return Ok(await _db.Lagre(innObservasjon));
+            return Ok(await _db.SaveObservation(innObservasjon));
         }
 
         [HttpGet("fetchAllObservations")]
         public async Task<ActionResult> HentAlle()
         {
-            List<Observasjon> alleObservasjoner = await _db.HentAlle();
+            List<Observation> alleObservasjoner = await _db.FetchAllObservations();
             return Ok(alleObservasjoner);
         }
 
         [HttpGet("fetchOneObservation/{id}")]
         public async Task<ActionResult> HentEn(int id)
         {
-            Observasjon enObservasjon = await _db.HentEn(id);
+            Observation enObservasjon = await _db.GetOneObservation(id);
             return Ok(enObservasjon);
         }
 
         [HttpPost("editObservation")]
-        public async Task<ActionResult> Endre(Observasjon endreObservasjon)
+        public async Task<ActionResult> Endre(Observation endreObservasjon)
         {
-            return Ok(await _db.Endre(endreObservasjon));
+            return Ok(await _db.ChangeObservation(endreObservasjon));
         }
 
         [HttpDelete("deleteObservation/{id}")]
         public async Task<ActionResult> Slett(int id)
         {
-            return Ok(await _db.Slett(id));
+            return Ok(await _db.DeleteObservation(id));
         }
     }
 }

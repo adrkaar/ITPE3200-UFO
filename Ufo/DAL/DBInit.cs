@@ -15,16 +15,16 @@ namespace Ufo.DAL
                 context.Database.EnsureCreated();
 
                 /* Observations */
-                var observasjon1 = new Observasjoner { Dato = "22.22.01", Navn = "er", Tid = "22.22", Beskrivelse = "Jeg gikk ut pub og så en stor egg i skyen.", Lokasjon = "Her" };
-                var observasjon2 = new Observasjoner { Dato = "30.01.01", Navn = "er", Tid = "00.09", Beskrivelse = "Bla-bla-bla.", Lokasjon = "Der" };
+                var observasjon1 = new Observations { Date = "22.22.01", Name = "er", Time = "22.22", Description = "Jeg gikk ut pub og så en stor egg i skyen.", Location = "Her" };
+                var observasjon2 = new Observations { Date = "30.01.01", Name = "er", Time = "00.09", Description = "Bla-bla-bla.", Location = "Der" };
 
                 /* Comments */
                 var comment1 = new Comments { Text = "Cool1", Observations = observasjon1 };
                 var comment2 = new Comments { Text = "No my friend, ufos are not real", Observations = observasjon1 };
                 var comment3 = new Comments { Text = "Wow, such a cool thing", Observations = observasjon2 };
 
-                context.Observasjoner.Add(observasjon1);
-                context.Observasjoner.Add(observasjon2);
+                context.Observations.Add(observasjon1);
+                context.Observations.Add(observasjon2);
                 context.Comments.Add(comment1);
                 context.Comments.Add(comment2);
                 context.Comments.Add(comment3);
