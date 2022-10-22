@@ -20,6 +20,9 @@ namespace Ufo.DAL
         public int Id { get; set; }
         public string Text { get; set; }
         virtual public Observations Observations { get; set; }
+        public string UpVote { get; set; }
+        public string Downvote { get; set; }
+
     }
 
     public class ObservasjonContext : DbContext

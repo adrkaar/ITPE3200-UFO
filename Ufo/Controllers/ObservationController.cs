@@ -18,33 +18,33 @@ namespace Ufo.Controllers
         }
 
         [HttpPost("addObservation")]
-        public async Task<ActionResult> Lagre(Observation innObservasjon)
+        public async Task<ActionResult> SaveObservation(Observation inObservation)
         {
-            return Ok(await _db.SaveObservation(innObservasjon));
+            return Ok(await _db.SaveObservation(inObservation));
         }
 
         [HttpGet("fetchAllObservations")]
-        public async Task<ActionResult> HentAlle()
+        public async Task<ActionResult> FetchAllObservations()
         {
-            List<Observation> alleObservasjoner = await _db.FetchAllObservations();
-            return Ok(alleObservasjoner);
+            List<Observation> allObservatoins = await _db.FetchAllObservations();
+            return Ok(allObservatoins);
         }
 
         [HttpGet("fetchOneObservation/{id}")]
-        public async Task<ActionResult> HentEn(int id)
+        public async Task<ActionResult> GetOneObservation(int id)
         {
-            Observation enObservasjon = await _db.GetOneObservation(id);
-            return Ok(enObservasjon);
+            Observation oneObservation = await _db.GetOneObservation(id);
+            return Ok(oneObservation);
         }
 
         [HttpPost("editObservation")]
-        public async Task<ActionResult> Endre(Observation endreObservasjon)
+        public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
-            return Ok(await _db.ChangeObservation(endreObservasjon));
+            return Ok(await _db.ChangeObservation(changeObservation));
         }
 
         [HttpDelete("deleteObservation/{id}")]
-        public async Task<ActionResult> Slett(int id)
+        public async Task<ActionResult> DeleteObservation(int id)
         {
             return Ok(await _db.DeleteObservation(id));
         }

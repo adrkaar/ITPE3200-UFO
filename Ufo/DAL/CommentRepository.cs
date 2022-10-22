@@ -44,10 +44,10 @@ namespace Ufo.DAL
                 // setter teksten
                 newCommentRow.Text = inComment.Text;
 
-                var oneObservation = await _db.Observations.FindAsync(inComment.ObservationId);
-                Console.WriteLine(oneObservation);
+                var enObservasjon = await _db.Observations.FindAsync(inComment.ObservationId);
+                Console.WriteLine(enObservasjon);
 
-                newCommentRow.Observations = oneObservation;
+                newCommentRow.Observations = enObservasjon;
 
                 _db.Comments.Add(newCommentRow);
                 await _db.SaveChangesAsync();
@@ -64,15 +64,12 @@ namespace Ufo.DAL
                 Comments comment = await _db.Comments.FindAsync(id);
                 _db.Comments.Remove(comment);
 
-                //if (employeeToDelete == null)
-                //{
-                //    return NotFound($"Employee with Id = {id} not found");
-                //}
-
                 await _db.SaveChangesAsync();
                 return true;
             }
             catch { return false; }
         }
+
+
     }
 }
