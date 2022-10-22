@@ -12,6 +12,8 @@ namespace Ufo.DAL
         public string Time { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
+        virtual public UfoTypes UfoTypes { get; set; }
+
     }
 
     public class Comments
@@ -22,7 +24,12 @@ namespace Ufo.DAL
         virtual public Observations Observations { get; set; }
         public int UpVote { get; set; }
         public int Downvote { get; set; }
+    }
 
+    public class UfoTypes
+    {
+        public int Id { get; set; }
+        public string TypeUfo { get; set; }
     }
 
     public class ObservasjonContext : DbContext
@@ -34,6 +41,7 @@ namespace Ufo.DAL
 
         public DbSet<Observations> Observations { get; set; }
         public DbSet<Comments> Comments { get; set; }
+        public DbSet<UfoTypes> UfoTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
