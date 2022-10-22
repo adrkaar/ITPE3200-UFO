@@ -120,5 +120,18 @@ namespace Ufo.DAL
             }
             catch { return false; }
         }
+
+        public async Task<List<UfoType>> FetchUfoTypes()
+        {
+            try
+            {
+                List<UfoType> ufoTypes = await _db.UfoTypes.Select(type => new UfoType
+                {
+                    Type = type.Type
+                }).ToListAsync();
+                return ufoTypes;
+            }
+            catch { return null; }
+        }
     }
 }

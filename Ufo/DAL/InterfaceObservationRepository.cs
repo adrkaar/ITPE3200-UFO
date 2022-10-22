@@ -11,5 +11,6 @@ namespace Ufo.DAL
         Task<Observation> GetOneObservation(int id);
         Task<bool> ChangeObservation(Observation changeObservation);
         Task<List<Observation>> FetchAllObservations();
+        Task<List<UfoType>> FetchUfoTypes();
     }
 }
