@@ -22,7 +22,7 @@ namespace Ufo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ObservasjonContext>(options => options.UseSqlite("Data source=Observasjon.db"));
+            services.AddDbContext<ObservationContext>(options => options.UseSqlite("Data source=Observasjon.db"));
             services.AddScoped<InterfaceObservationRepository, ObservationRepository>();
             services.AddScoped<InterfaceCommentRepository, CommentRepository>();
 

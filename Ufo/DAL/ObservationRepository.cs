@@ -8,9 +8,9 @@ namespace Ufo.DAL
 {
     public class ObservationRepository : InterfaceObservationRepository
     {
-        private readonly ObservasjonContext _db;
+        private readonly ObservationContext _db;
 
-        public ObservationRepository(ObservasjonContext db)
+        public ObservationRepository(ObservationContext db)
         {
             _db = db;
         }
