@@ -32,8 +32,11 @@ namespace Ufo.DAL
                 // hvis ny: -> legge til ny i en AddNewType(type string), så legge til typen i newRow
                 // hvis ikke ny: -> linjen under
 
-                // setter den nye raden sin ufo tyupe til typen som er sendt med
-                newObservationRow.UfoTypes.Type = inObservation.UfoType;
+                // henter ufo objekt fra ufo tabell 
+                var ufo = _db.UfoTypes.Where(u => u.Type == inObservation.UfoType).FirstOrDefault();
+
+                // setter den nye raden sin ufo til hentet ufo
+                newObservationRow.UfoTypes = ufo;
 
                 _db.Observations.Add(newObservationRow);
                 await _db.SaveChangesAsync();
