@@ -28,6 +28,7 @@ export class CommentComponent {
         window.location.reload()
     }
 
+    // føler ikke egt frontend brude sende med id, føler det er riktigere å gjøre det i backend??
     fetchAllComments(id: any) {
         this.http.get<Comment[]>('api/comment/fetchAllComments/' + id)
             .subscribe(response => {
@@ -41,7 +42,7 @@ export class CommentComponent {
     deleteComment(id: number) {
         this.http.delete<Comment>("api/comment/deleteComment/" + id)
             .subscribe(() => {
-                this.refreshWebsite();
+                this.fetchAllComments(this.id);
             },
                 error => console.log(error)
             );
@@ -50,7 +51,7 @@ export class CommentComponent {
     upVote(id: number) {
         this.http.get<Comment>("api/comment/upVote/" + id)
             .subscribe(() => {
-                this.refreshWebsite();
+                this.fetchAllComments(this.id);
             },
                 error => console.log(error)
             );
@@ -59,7 +60,7 @@ export class CommentComponent {
     downVote(id: number) {
         this.http.get<Comment>("api/comment/downVote/" + id)
             .subscribe(() => {
-                this.refreshWebsite();
+                this.fetchAllComments(this.id);
             },
                 error => console.log(error)
             );

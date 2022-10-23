@@ -19,6 +19,7 @@ export class EditObservationComponent implements OnInit {
         description: ' ',
         ufoType: ''
     }
+
     types: Array<UfoType>;
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
@@ -40,7 +41,6 @@ export class EditObservationComponent implements OnInit {
         // henter ufo typer
         this.fetchUfoTypes();
     }
-
 
     chosenType: string;
 
@@ -67,6 +67,7 @@ export class EditObservationComponent implements OnInit {
             );
     }
 
+    // har hent ufotype i både edit og add...
     fetchUfoTypes() {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {
