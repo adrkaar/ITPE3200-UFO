@@ -43,7 +43,7 @@ namespace Ufo.DAL
                 var newCommentRow = new Comments();
                 newCommentRow.Text = inComment.Text;
 
-                // henter obsrevasjonen som kommentaren skal knyttes til
+                // henter observasjonen som kommentaren skal knyttes til
                 var enObservasjon = await _db.Observations.FindAsync(inComment.ObservationId);
 
                 // knytter kommentaren og observasjonen sammen
@@ -55,8 +55,6 @@ namespace Ufo.DAL
             }
             catch { return false; }
         }
-
-
         public async Task<bool> DeleteComment(int id)
         {
             try

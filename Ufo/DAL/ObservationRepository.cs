@@ -21,19 +21,20 @@ namespace Ufo.DAL
             {
                 var newObservationRow = new Observations();
 
-                //newObservationRow.Name = inObservation.UfoType;
                 newObservationRow.Date = inObservation.Date;
                 newObservationRow.Time = inObservation.Time;
                 newObservationRow.Description = inObservation.Description;
                 newObservationRow.Location = inObservation.Location;
 
-                // for at bruker skal kunne legge til nye typer:
-                // må sjekke om de har lagt til en ny type i inObservation
-                // hvis ny: -> legge til ny i en AddNewType(type string), så legge til typen i newRow
-                // hvis ikke ny: -> linjen under
-
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
+
+                // hvis ufo ikke finnes i databasen blir den lagt til
+                if (ufo != null)
+                {
+                    string ufoType = inObservation.UfoType;
+                    ufo = AddUfoType(ufoType); // add er ikke async
+                }
 
                 // setter den nye raden sin ufo til hentet ufo
                 newObservationRow.UfoTypes = ufo;
@@ -87,13 +88,23 @@ namespace Ufo.DAL
             var oneObservation = await _db.Observations.FindAsync(changeObservation.Id);
             try
             {
-                var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
-
-                oneObservation.UfoTypes = ufo;
                 oneObservation.Time = changeObservation.Time;
                 oneObservation.Date = changeObservation.Date;
                 oneObservation.Description = changeObservation.Description;
                 oneObservation.Location = changeObservation.Location;
+
+                // henter ufo objekt fra ufo tabell 
+                var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
+
+                // hvis ufo ikke finnes i databasen blir den lagt til
+                if (ufo != null)
+                {
+                    string ufoType = changeObservation.UfoType;
+                    ufo = AddUfoType(ufoType); // add er ikke async
+                }
+
+                // setter den nye raden sin ufo til hentet ufo
+                oneObservation.UfoTypes = ufo;
 
                 // skal man kunne legge til ny type i change?
 
@@ -110,7 +121,8 @@ namespace Ufo.DAL
                 Observations oneObservation = await _db.Observations.FindAsync(id);
 
                 CommentRepository cRepo = new CommentRepository(_db);
-                // henter kommentarene til observasjonen
+
+                // henter kommentarene til observasjonen, slik at de kan bli slettet først
                 var comments = cRepo.FetchAllComments(id);
 
                 // går igjennom kommentarene og sletter dem
@@ -135,6 +147,21 @@ namespace Ufo.DAL
                     Type = type.Type
                 }).ToListAsync();
                 return ufoTypes;
+            }
+            catch { return null; }
+        }
+
+        // er ikke async
+        public UfoTypes AddUfoType(string newUfoType)
+        {
+            try
+            {
+                var ufoType = new UfoTypes();
+                ufoType.Type = newUfoType;
+
+                _db.UfoTypes.Add(ufoType);
+                _db.SaveChangesAsync();
+                return ufoType;
             }
             catch { return null; }
         }
