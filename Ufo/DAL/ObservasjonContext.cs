@@ -25,9 +25,9 @@ namespace Ufo.DAL
 
     }
 
-    public class ObservasjonContext : DbContext
+    public class ObservationContext : DbContext
     {
-        public ObservasjonContext(DbContextOptions<ObservasjonContext> options) : base(options)
+        public ObservationContext(DbContextOptions<ObservationContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

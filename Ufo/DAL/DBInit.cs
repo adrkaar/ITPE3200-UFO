@@ -9,7 +9,7 @@ namespace Ufo.DAL
         {
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<ObservasjonContext>();
+                var context = serviceScope.ServiceProvider.GetService<ObservationContext>();
 
                 context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();

@@ -9,9 +9,9 @@ namespace Ufo.DAL
 {
     public class CommentRepository : InterfaceCommentRepository
     {
-        private readonly ObservasjonContext _db;
+        private readonly ObservationContext _db;
 
-        public CommentRepository(ObservasjonContext db)
+        public CommentRepository(ObservationContext db)
         {
             _db = db;
         }
