@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,14 +40,13 @@ namespace Ufo.DAL
         {
             try
             {
-                // laget objektet
                 var newCommentRow = new Comments();
-                // setter teksten
                 newCommentRow.Text = inComment.Text;
 
+                // henter obsrevasjonen som kommentaren skal knyttes til
                 var enObservasjon = await _db.Observations.FindAsync(inComment.ObservationId);
-                Console.WriteLine(enObservasjon);
 
+                // knytter kommentaren og observasjonen sammen
                 newCommentRow.Observations = enObservasjon;
 
                 _db.Comments.Add(newCommentRow);

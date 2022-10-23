@@ -24,5 +24,4 @@ export class ObservationComponent {
                 error => console.log(error)
             );
     }
-    
 }

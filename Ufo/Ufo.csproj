@@ -40,6 +40,7 @@
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\app\comment\addComment.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\models\comment.model.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\models\ufoType.model.ts" />
   </ItemGroup>
 
   <ItemGroup>

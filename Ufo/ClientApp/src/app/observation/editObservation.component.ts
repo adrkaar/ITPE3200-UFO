@@ -2,7 +2,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Observation } from '../models/observation.model';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { AddObservationComponent } from './addObservation.component';
+import { UfoType } from '../models/ufoType.model';
 
 @Component({
     selector: 'editObservation',
@@ -12,12 +13,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class EditObservationComponent implements OnInit {
     editObservation: Observation = {
         id: 0,
-        name: ' ',
         date: ' ',
         time: ' ',
         location: ' ',
-        description: ' '
+        description: ' ',
+        ufoType: ''
     }
+
+    types: Array<UfoType>;
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -34,9 +37,19 @@ export class EditObservationComponent implements OnInit {
                     })
             }
         })
+
+        // henter ufo typer
+        this.fetchUfoTypes();
+    }
+
+    chosenType: string;
+
+    selectedOption(type: string) {
+        this.chosenType = type;
     }
 
     updateObservation() {
+        this.editObservation.ufoType = this.chosenType;
         this.http.post<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe(() => {
                 this.router.navigate(['observation'])
@@ -49,6 +62,16 @@ export class EditObservationComponent implements OnInit {
         this.http.delete<Observation>("api/observation/deleteObservation/" + id)
             .subscribe(() => {
                 this.router.navigate(['observation'])
+            },
+                error => console.log(error)
+            );
+    }
+
+    // har hent ufotype i både edit og add...
+    fetchUfoTypes() {
+        this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
+            .subscribe(response => {
+                this.types = response; // typs blir undefined
             },
                 error => console.log(error)
             );

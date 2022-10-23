@@ -6,7 +6,7 @@
     <thead>
         <tr>
             <th>Id</th>
-            <th>Name</th>
+            <th>Type</th>
             <th>Date</th>
             <th>Time</th>
             <th>Location</th>
@@ -18,11 +18,11 @@
     <tbody *ngFor="let observation of allObservations ">
         <tr>
             <td>{{ observation.id }}</td>
-            <td>{{ observation.name }}</td>
+            <td>{{ observation.ufoType }}</td>
             <td>{{ observation.date }}</td>
             <td>{{ observation.time }}</td>
-            <td>{{ observation.location }}</td>
             <td>{{ observation.description }}</td>
+            <td>{{ observation.location }}</td>
             <td><a [routerLink]="['/editObservation', observation.id]">view</a></td>
             <td><a [routerLink]="['../comment', observation.id]">comment</a></td>
         </tr>
