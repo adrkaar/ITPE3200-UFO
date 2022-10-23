@@ -33,7 +33,7 @@ namespace Ufo.DAL
                 // hvis ikke ny: -> linjen under
 
                 // henter ufo objekt fra ufo tabell 
-                var ufo = _db.UfoTypes.Where(u => u.Type == inObservation.UfoType).FirstOrDefault();
+                var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
 
                 // setter den nye raden sin ufo til hentet ufo
                 newObservationRow.UfoTypes = ufo;
@@ -87,7 +87,9 @@ namespace Ufo.DAL
             var oneObservation = await _db.Observations.FindAsync(changeObservation.Id);
             try
             {
-                oneObservation.UfoTypes.Type = changeObservation.UfoType; // her kan man da ikke legge til ny type
+                var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
+
+                oneObservation.UfoTypes = ufo;
                 oneObservation.Time = changeObservation.Time;
                 oneObservation.Date = changeObservation.Date;
                 oneObservation.Description = changeObservation.Description;

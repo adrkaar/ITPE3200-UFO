@@ -70,7 +70,7 @@ export class EditObservationComponent implements OnInit {
     fetchUfoTypes() {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {
-                this.types = response;
+                this.types = response; // typs blir undefined
             },
                 error => console.log(error)
             );
