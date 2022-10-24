@@ -41,10 +41,15 @@
     <TypeScriptCompile Remove="ClientApp\src\app\comment\addComment.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\models\comment.model.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\models\ufoType.model.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\pipe.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\models\observation.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\components\datepicker\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

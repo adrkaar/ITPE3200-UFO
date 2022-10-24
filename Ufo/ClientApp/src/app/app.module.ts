@@ -15,6 +15,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations'
 import { CommentComponent } from './comment/comment.component';
 import { AddCommentComponent } from './comment/addComment.component';
 
+import { MatDatepickerModule } from '@angular/material/datepicker'
+import { MatInputModule } from '@angular/material/input'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatNativeDateModule } from '@angular/material/core'
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+//import { SafePipe } from './pipe'
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -26,12 +34,18 @@ import { AddCommentComponent } from './comment/addComment.component';
         EditObservationComponent,
         /*Comment*/
         CommentComponent,
-        AddCommentComponent
+        AddCommentComponent,
+        //SafePipe
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
         FormsModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatNativeDateModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
         /* Burde lages en lazy loading, mulig det går tregt fordi alle endpointsene laster samtidig */
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },

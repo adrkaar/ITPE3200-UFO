@@ -30,7 +30,7 @@ namespace Ufo.DAL
                 var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
 
                 // hvis ufo ikke finnes i databasen blir den lagt til
-                if (ufo != null)
+                if (ufo == null)
                 {
                     string ufoType = inObservation.UfoType;
                     ufo = AddUfoType(ufoType); // add er ikke async
@@ -97,7 +97,7 @@ namespace Ufo.DAL
                 var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
 
                 // hvis ufo ikke finnes i databasen blir den lagt til
-                if (ufo != null)
+                if (ufo == null)
                 {
                     string ufoType = changeObservation.UfoType;
                     ufo = AddUfoType(ufoType); // add er ikke async
