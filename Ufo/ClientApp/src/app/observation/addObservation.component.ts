@@ -33,7 +33,7 @@ export class AddObservationComponent {
     selectedOption(type: string) {
         this.chosenType = type;
         if (this.chosenType === 'Add new type') {
-            this.addNewType = '<label for="newType">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType"/> ';
+            this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/> ';
         }
     }
 
