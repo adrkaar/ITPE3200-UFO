@@ -11,7 +11,8 @@ import { UfoType } from '../models/ufoType.model';
 
 export class AddObservationComponent {
     chosenType: string;
-    newType: string = '';
+    types: Array<UfoType>;
+    addNewType: string;
 
     newObservation: Observation = {
         id: 0,
@@ -22,35 +23,27 @@ export class AddObservationComponent {
         ufoType: ' '
     }
 
-    types: Array<UfoType>;
-
     ngOnInit() {
         this.fetchUfoTypes();
     }
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    addNewType: string;
-
+    // hvis brukeren velger "add new type" kommer det opp et inputfelt hvor de kan legge til typen
     selectedOption(type: string) {
         this.chosenType = type;
-        if (this.chosenType === "Add new type") {
+        if (this.chosenType === 'Add new type') {
             this.addNewType = '<label for="newType">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType"/> ';
         }
     }
 
     addObservation() {
-
-        // hvis chosen type == "Add new type"
-           // må hente nye type fra input felt
-
-        if (this.chosenType === "Add new type") {
-            this.newType = (<HTMLInputElement>document.getElementById("newType")).value;
-            this.newObservation.ufoType = this.newType;
+        // sjekker om brukeren vil legge til ny type
+        if (this.chosenType === 'Add new type') {
+            // henter verdien til ny type
+            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
         }
-        else {
-            this.newObservation.ufoType = this.chosenType;
-        }
+        this.newObservation.ufoType = this.chosenType;
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
             .subscribe(() => {
                 this.router.navigate(['observation'])
@@ -64,16 +57,6 @@ export class AddObservationComponent {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {
                 this.types = response;
-            },
-                error => console.log(error)
-            );
-    }
-
-    addUfoType() {
-        this.newObservation.ufoType = this.chosenType;
-        this.http.post<Observation>('api/observation/addObservation', this.newObservation)
-            .subscribe(() => {
-                this.router.navigate(['observation'])
             },
                 error => console.log(error)
             );

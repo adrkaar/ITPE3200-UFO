@@ -33,7 +33,7 @@ namespace Ufo.DAL
                 if (ufo == null)
                 {
                     string ufoType = inObservation.UfoType;
-                    ufo = AddUfoType(ufoType); // add er ikke async
+                    ufo = await AddUfoType(ufoType);
                 }
 
                 // setter den nye raden sin ufo til hentet ufo
@@ -100,13 +100,11 @@ namespace Ufo.DAL
                 if (ufo == null)
                 {
                     string ufoType = changeObservation.UfoType;
-                    ufo = AddUfoType(ufoType); // add er ikke async
+                    ufo = await AddUfoType(ufoType);
                 }
 
                 // setter den nye raden sin ufo til hentet ufo
                 oneObservation.UfoTypes = ufo;
-
-                // skal man kunne legge til ny type i change?
 
                 await _db.SaveChangesAsync();
                 return true;
@@ -151,8 +149,7 @@ namespace Ufo.DAL
             catch { return null; }
         }
 
-        // er ikke async
-        public UfoTypes AddUfoType(string newUfoType)
+        public async Task<UfoTypes> AddUfoType(string newUfoType)
         {
             try
             {

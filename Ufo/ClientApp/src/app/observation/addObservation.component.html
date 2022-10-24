@@ -1,8 +1,6 @@
 ﻿<h1>Register New UFO Observation</h1>
 
 <form #form="ngForm" (ngSubmit)="addObservation()">
-
-    <!--https://material.angular.io/components/datepicker/overview-->
     <mat-form-field appearance="fill">
         <mat-label for="date">Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" type="text" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date">
