@@ -38,7 +38,6 @@ export class CommentComponent {
             );
     }
 
-    // må refrese siden for å se endringene
     deleteComment(id: number) {
         this.http.delete<Comment>("api/comment/deleteComment/" + id)
             .subscribe(() => {

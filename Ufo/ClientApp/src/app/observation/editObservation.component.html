@@ -7,7 +7,6 @@
         <input type="text" class="form-control" id="id" name="id" [(ngModel)]="editObservation.id" readonly>
     </div>
 
-    <!--https://material.angular.io/components/datepicker/overview-->
     <mat-form-field appearance="fill">
         <mat-label for="date">Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" type="text" class="form-control" id="date" name="date" [(ngModel)]="editObservation.date">
@@ -30,6 +29,7 @@
     </div>
 
     <select class="form-control" (change)="selectedOption($event.target.value)">
+        <!--øverste option skal være den som var fra før-->
         <option disabled>Select Type</option>
         <option *ngFor="let type of types">{{ type.type }}</option>
     </select>
