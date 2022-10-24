@@ -1,10 +1,16 @@
 ﻿<h1>Register New UFO Observation</h1>
 
 <form #form="ngForm" (ngSubmit)="addObservation()">
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input type="text" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date">
-    </div>
+
+    <!--https://material.angular.io/components/datepicker/overview-->
+    <mat-form-field appearance="fill">
+        <mat-label for="date">Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" type="text" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
     <div class="form-group">
         <label for="time">Time</label>
         <input type="text" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
@@ -29,14 +35,6 @@
     <!--<div class="form-group" [innerHtml]="addNewType | keepHtml"></div>-->
 
 
-    <!--https://material.angular.io/components/datepicker/overview-->
-    <mat-form-field appearance="fill">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
 
 
     <button type="submit" class="btn btn-primary">Save</button>
