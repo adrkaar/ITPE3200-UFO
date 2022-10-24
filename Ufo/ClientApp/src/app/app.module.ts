@@ -21,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatNativeDateModule } from '@angular/material/core'
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-//import { SafePipe } from './pipe'
+import { SafeHtml } from './pipe'
 
 @NgModule({
     declarations: [
@@ -35,7 +35,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
         /*Comment*/
         CommentComponent,
         AddCommentComponent,
-        //SafePipe
+        SafeHtml
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

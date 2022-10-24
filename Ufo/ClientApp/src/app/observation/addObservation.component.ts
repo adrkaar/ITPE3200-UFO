@@ -33,10 +33,10 @@ export class AddObservationComponent {
 
     selectedOption(type: string) {
         this.chosenType = type;
-        //if (this.chosenType === "Add new type") {
-        //    console.log("!!!!!!!!!!!!!!!!") // funker
-        //    this.addNewType = '<label for="newType">Add new type</label> <input type="text" class="form-control" id="newType" name="newType"/> '; // vil ikke input pga sikkerhet
-        //}
+        if (this.chosenType === "Add new type") {
+            console.log("!!!!!!!!!!!!!!!!") // funker
+            this.addNewType = '<label for="newType">Add new type</label> <input type="text" class="form-control" id="newType" name="newType"/> '; // vil ikke input pga sikkerhet
+        }
     }
 
     addObservation() {
