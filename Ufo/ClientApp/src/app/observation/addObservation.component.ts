@@ -11,6 +11,7 @@ import { UfoType } from '../models/ufoType.model';
 
 export class AddObservationComponent {
     chosenType: string;
+    newType: string = '';
 
     newObservation: Observation = {
         id: 0,
@@ -34,13 +35,22 @@ export class AddObservationComponent {
     selectedOption(type: string) {
         this.chosenType = type;
         if (this.chosenType === "Add new type") {
-            console.log("!!!!!!!!!!!!!!!!") // funker
-            this.addNewType = '<label for="newType">Add new type</label> <input type="text" class="form-control" id="newType" name="newType"/> '; // vil ikke input pga sikkerhet
+            this.addNewType = '<label for="newType">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType"/> ';
         }
     }
 
     addObservation() {
-        this.newObservation.ufoType = this.chosenType;
+
+        // hvis chosen type == "Add new type"
+           // må hente nye type fra input felt
+
+        if (this.chosenType === "Add new type") {
+            this.newType = (<HTMLInputElement>document.getElementById("newType")).value;
+            this.newObservation.ufoType = this.newType;
+        }
+        else {
+            this.newObservation.ufoType = this.chosenType;
+        }
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
             .subscribe(() => {
                 this.router.navigate(['observation'])
@@ -54,6 +64,16 @@ export class AddObservationComponent {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {
                 this.types = response;
+            },
+                error => console.log(error)
+            );
+    }
+
+    addUfoType() {
+        this.newObservation.ufoType = this.chosenType;
+        this.http.post<Observation>('api/observation/addObservation', this.newObservation)
+            .subscribe(() => {
+                this.router.navigate(['observation'])
             },
                 error => console.log(error)
             );
