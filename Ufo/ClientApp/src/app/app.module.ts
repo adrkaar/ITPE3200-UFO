@@ -33,17 +33,17 @@ import { AddCommentComponent } from './comment/addComment.component';
         HttpClientModule,
         FormsModule,
         /* Burde lages en lazy loading, mulig det går tregt fordi alle endpointsene laster samtidig */
-        RouterModule.forRoot([
-            { path: '', component: HomeComponent, pathMatch: 'full' },
-            /*Observation*/
-            { path: 'observation', component: ObservationComponent },
-            { path: 'addObservation', component: AddObservationComponent },
-            { path: 'editObservation/:id', component: EditObservationComponent },
-            /*Comment*/
-            { path: 'comment/:id', component: CommentComponent },
-            { path: 'addComment/:id', component: AddCommentComponent },
-            /* loadChildren: () => import('./comment/addComment.component').then(m => m.AddCommentComponent) */
-        ]),
+        Ro/* Burde lages en lazy loading, mulig det gï¿½r tregt fordi alle endpointsene laster samtidig */
+RouterModule.forRoot([
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    /*Observation*/
+    { path: 'observation', component: ObservationComponent },
+    { path: 'addObservation', component: AddObservationComponent },
+    { path: 'editObservation/:id', component: EditObservationComponent },
+    /*Comment*/
+    { path: 'comment/:id', component: CommentComponent },
+    { path: 'addComment/:id', component: AddCommentComponent },
+], { relativeLinkResolution: 'legacy' })
         NoopAnimationsModule
     ],
     providers: [],
