@@ -34,7 +34,7 @@ namespace Ufo.DAL
 
                 /* Comments */
                 var comment1 = new Comments { Text = "Cool!", Observations = observation1, UpVote = 2, Downvote = 1 };
-                var comment2 = new Comments { Text = "No my friend, ufos are not real", Observations = observation1 };
+                var comment2 = new Comments { Text = "No my friend, ufos are not real", Observations = observation1, Downvote = 9 };
                 var comment3 = new Comments { Text = "Wow, such a cool thing", Observations = observation2 };
 
                 context.Comments.Add(comment1);

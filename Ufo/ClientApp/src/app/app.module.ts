@@ -21,6 +21,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
+import { MatIconModule } from '@angular/material/icon';
+
+
 import { SafeHtml } from './pipe';
 
 @NgModule({
@@ -35,7 +38,7 @@ import { SafeHtml } from './pipe';
         /*Comment*/
         CommentComponent,
         AddCommentComponent,
-        SafeHtml
+        SafeHtml,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +49,7 @@ import { SafeHtml } from './pipe';
         MatNativeDateModule,
         BrowserAnimationsModule,
         MatFormFieldModule,
+        MatIconModule,
         /* Burde lages en lazy loading, mulig det går tregt fordi alle endpointsene laster samtidig */
         RouterModule.forRoot([
             { path: '', component: HomeComponent, pathMatch: 'full' },

@@ -2,7 +2,6 @@
 <a [routerLink]="['/addComment', id]">Add comment</a>
 
 <!--Vise observationsen til kommentarene-->
-
 <!--kommentarene-->
 <table class="table table-bordered table-striped">
     <thead>
@@ -17,8 +16,8 @@
             <td>{{ comment.id }}</td>
             <td>{{ comment.text }}</td>
             <td>{{ comment.observationId }}</td>
-            <td><button (click)="upVote(comment.id)">{{ comment.upVote }}</button></td>
-            <td><button (click)="downVote(comment.id)">{{ comment.downVote }}</button></td>
+            <td><button (click)="upVote(comment.id)">{{ comment.upVote }}<mat-icon>thumb_up</mat-icon></button></td>
+            <td><button (click)="downVote(comment.id)">{{ comment.downVote }}<mat-icon>thumb_down</mat-icon></button></td>
             <td><button class="btn btn-danger" (click)="deleteComment(comment.id)">Delete</button></td>
         </tr>
     </tbody>
