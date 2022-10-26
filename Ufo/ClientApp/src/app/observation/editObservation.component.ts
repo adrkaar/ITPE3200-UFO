@@ -20,7 +20,7 @@ export class EditObservationComponent implements OnInit {
     }
     types: Array<UfoType>;
     chosenType: string;
-
+    date;
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -39,6 +39,9 @@ export class EditObservationComponent implements OnInit {
         })
         // henter ufo typer
         this.fetchUfoTypes();
+
+        // gjør slik at man ikke kan velge dato fram i tid
+        this.date = new Date().toISOString().slice(0, 10);
     }
 
     selectedOption(type: string) {

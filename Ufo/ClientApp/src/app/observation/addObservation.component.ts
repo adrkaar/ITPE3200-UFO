@@ -23,7 +23,12 @@ export class AddObservationComponent {
         ufoType: ' '
     }
 
+    date;
+
     ngOnInit() {
+        // gjør slik at man ikke kan velge dato fram i tid
+        this.date = new Date().toISOString().slice(0, 10);
+
         this.fetchUfoTypes();
     }
 

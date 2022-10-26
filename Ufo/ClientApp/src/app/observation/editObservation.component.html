@@ -17,7 +17,7 @@
 
     <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="editObservation.date" />
+        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="editObservation.date" max="{{date}}">
     </div>
     <div class="form-group">
         <label for="time">Time</label>
