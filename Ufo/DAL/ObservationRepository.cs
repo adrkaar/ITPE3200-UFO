@@ -157,7 +157,7 @@ namespace Ufo.DAL
                 ufoType.Type = newUfoType;
 
                 _db.UfoTypes.Add(ufoType);
-                _db.SaveChangesAsync();
+                await _db.SaveChangesAsync();
                 return ufoType;
             }
             catch { return null; }
