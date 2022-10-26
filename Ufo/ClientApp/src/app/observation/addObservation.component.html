@@ -1,17 +1,24 @@
 ﻿<h1>Register New UFO Observation</h1>
 
 <form #form="ngForm" (ngSubmit)="addObservation()">
-    <mat-form-field appearance="fill">
+
+
+    <!--<mat-form-field appearance="fill">
         <mat-label for="date">Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" type="text" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date">
+        <input matInput [matDatepicker]="picker" type="text" class="form-control" id="date" name="date"  [(ngModel)]="newObservation.date">
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
+    </mat-form-field>-->
+    <!--evt bytte til denne-->
 
     <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" />
+    </div>
+    <div class="form-group">
         <label for="time">Time</label>
-        <input type="text" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
+        <input type="time" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
     </div>
     <div class="form-group">
         <label for="location">Location</label>

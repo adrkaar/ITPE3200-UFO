@@ -12,6 +12,5 @@ namespace Ufo.DAL
         Task<bool> DeleteObservation(int id);
         Task<bool> ChangeObservation(Observation changeObservation);
         Task<List<UfoType>> FetchUfoTypes();
-        //Task<UfoType> AddUfoType(string ufoType);
     }
 }
