@@ -27,7 +27,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { SafeHtml } from './pipe';
 
 
-// må  gåes igjennom hca som faktisk brukes og er på riktig sted typ trenger alle de decalrations?
+// mï¿½  gï¿½es igjennom hca som faktisk brukes og er pï¿½ riktig sted typ trenger alle de decalrations?
 @NgModule({
     declarations: [
         AppComponent,
@@ -44,27 +44,19 @@ import { SafeHtml } from './pipe';
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-        HttpClientModule,
-        FormsModule,
-        MatDatepickerModule,
-        MatInputModule,
-        MatNativeDateModule,
-        BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatIconModule,
-        /* Burde lages en lazy loading, mulig det går tregt fordi alle endpointsene laster samtidig */
+        HttpClentModule,
+        FormsModule
         RouterModule.forRoot([
-            { path: '', component: HomeComponent, pathMatch: 'full' },
-            /*Observation*/
-            { path: 'observation', component: ObservationComponent },
-            { path: 'addObservation', component: AddObservationComponent },
-            { path: 'editObservation/:id', component: EditObservationComponent },
-            /*Comment*/
-            { path: 'comment/:id', component: CommentComponent },
-            { path: 'addComment/:id', component: AddCommentComponent },
-            /* loadChildren: () => import('./comment/addComment.component').then(m => m.AddCommentComponent) */
-        ]),
-        NoopAnimationsModule
+    { path: '', component: HomeComponent, pathMatch: 'full' },
+    /*Observation*/
+    { path: 'observation', component: ObservationComponent },
+    { path: 'addObservation', component: AddObservationComponent },
+    { path: 'editObservation/:id', component: EditObservationComponent },
+    /*Comment*/
+    { path: 'comment/:id', component: CommentComponent },
+    { path: 'addComment/:id', component: AddCommentComponent },
+], { relativeLinkResolution: 'legacy' })
+        // NoopAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
