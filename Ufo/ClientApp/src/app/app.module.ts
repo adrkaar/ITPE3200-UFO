@@ -44,8 +44,8 @@ import { SafeHtml } from './pipe';
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-        HttpClentModule,
-        FormsModule
+        HttpClientModule,
+        FormsModule,
         RouterModule.forRoot([
     { path: '', component: HomeComponent, pathMatch: 'full' },
     /*Observation*/
