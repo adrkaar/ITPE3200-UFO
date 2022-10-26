@@ -31,6 +31,7 @@ export class AddObservationComponent {
 
     // hvis brukeren velger "add new type" dukker det opp et inputfelt hvor de kan legge til typen
     selectedOption(type: string) {
+        this.chosenType = type;
         if (type === 'Add new type') {
             this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/>';
         }

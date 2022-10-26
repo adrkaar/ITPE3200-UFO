@@ -42,7 +42,7 @@ export class EditObservationComponent implements OnInit {
     }
 
     selectedOption(type: string) {
-        type = type;
+        this.chosenType = type;
     }
 
     updateObservation() {
