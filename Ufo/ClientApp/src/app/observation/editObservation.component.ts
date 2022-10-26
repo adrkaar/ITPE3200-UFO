@@ -2,7 +2,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Observation } from '../models/observation.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AddObservationComponent } from './addObservation.component';
 import { UfoType } from '../models/ufoType.model';
 
 @Component({
@@ -19,8 +18,9 @@ export class EditObservationComponent implements OnInit {
         description: ' ',
         ufoType: ''
     }
-
     types: Array<UfoType>;
+    chosenType: string;
+
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -37,15 +37,12 @@ export class EditObservationComponent implements OnInit {
                     })
             }
         })
-
         // henter ufo typer
         this.fetchUfoTypes();
     }
 
-    chosenType: string;
-
     selectedOption(type: string) {
-        this.chosenType = type;
+        type = type;
     }
 
     updateObservation() {
@@ -71,7 +68,7 @@ export class EditObservationComponent implements OnInit {
     fetchUfoTypes() {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {
-                this.types = response; // typs blir undefined
+                this.types = response;
             },
                 error => console.log(error)
             );

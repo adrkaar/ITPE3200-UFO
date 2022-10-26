@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observation } from '../models/observation.model';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Comment } from "../models/comment.model"; 
 
 @Component({
@@ -13,7 +12,7 @@ export class CommentComponent {
     allcomments: Array<Comment>;
     observationId: any;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+    constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
     ngOnInit() {
         // henter id fra parameter i url

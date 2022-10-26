@@ -29,11 +29,10 @@ export class AddObservationComponent {
 
     constructor(private http: HttpClient, private router: Router) { }
 
-    // hvis brukeren velger "add new type" kommer det opp et inputfelt hvor de kan legge til typen
+    // hvis brukeren velger "add new type" dukker det opp et inputfelt hvor de kan legge til typen
     selectedOption(type: string) {
-        this.chosenType = type;
-        if (this.chosenType === 'Add new type') {
-            this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/> ';
+        if (type === 'Add new type') {
+            this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/>';
         }
         else {
             this.addNewType = " ";
