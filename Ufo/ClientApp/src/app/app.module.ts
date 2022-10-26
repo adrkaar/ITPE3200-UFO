@@ -8,20 +8,20 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
-import { ObservationComponent } from './observation/observation.component'
-import { AddObservationComponent } from './observation/addObservation.component'
+import { ObservationComponent } from './observation/observation.component';
+import { AddObservationComponent } from './observation/addObservation.component';
 import { EditObservationComponent } from './observation/editObservation.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations'
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommentComponent } from './comment/comment.component';
 import { AddCommentComponent } from './comment/addComment.component';
 
-import { MatDatepickerModule } from '@angular/material/datepicker'
-import { MatInputModule } from '@angular/material/input'
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatNativeDateModule } from '@angular/material/core'
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-import { SafeHtml } from './pipe'
+import { SafeHtml } from './pipe';
 
 @NgModule({
     declarations: [

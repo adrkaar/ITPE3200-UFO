@@ -30,9 +30,8 @@
             <option>Add new type</option>
         </select>
     </div>
-    <!--Burde løses bedre enn style til hvit-->
-    <div [innerHtml]="addNewType | safeHtml" style="color: white"> </div>
 
+    <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
