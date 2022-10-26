@@ -11,6 +11,8 @@ import { UfoType } from '../models/ufoType.model';
 
 export class AddObservationComponent {
     chosenType: string;
+    types: Array<UfoType>;
+    addNewType: string;
 
     newObservation: Observation = {
         id: 0,
@@ -21,19 +23,34 @@ export class AddObservationComponent {
         ufoType: ' '
     }
 
-    types: Array<UfoType>;
+    date;
 
     ngOnInit() {
+        // gjør slik at man ikke kan velge dato fram i tid
+        this.date = new Date().toISOString().slice(0, 10);
+
         this.fetchUfoTypes();
     }
 
     constructor(private http: HttpClient, private router: Router) { }
 
+    // hvis brukeren velger "add new type" dukker det opp et inputfelt hvor de kan legge til typen
     selectedOption(type: string) {
         this.chosenType = type;
+        if (type === 'Add new type') {
+            this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/>';
+        }
+        else {
+            this.addNewType = " ";
+        }
     }
 
     addObservation() {
+        // sjekker om brukeren vil legge til ny type
+        if (this.chosenType === 'Add new type') {
+            // henter verdien til ny type
+            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
+        }
         this.newObservation.ufoType = this.chosenType;
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
             .subscribe(() => {

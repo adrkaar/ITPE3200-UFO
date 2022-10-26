@@ -28,7 +28,7 @@ export class AddCommentComponent {
     }
 
     addComment() {
-        // setter observationId til riktig før objektet sendes
+        // setter riktig observationId før objektet sendes
         this.newComment.observationId = this.obsId;
 
         this.http.post<Comment>('api/comment/addComment', this.newComment)

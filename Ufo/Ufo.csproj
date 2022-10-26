@@ -41,6 +41,7 @@
     <TypeScriptCompile Remove="ClientApp\src\app\comment\addComment.component.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\models\comment.model.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\models\ufoType.model.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\pipe.ts" />
   </ItemGroup>
 
   <ItemGroup>

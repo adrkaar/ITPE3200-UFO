@@ -1,23 +1,23 @@
 ﻿<h1>UFO Observations</h1>
 
-<a [routerLink]="['/addObservation']">Register a new UFO observation</a>
+<a [routerLink]="['/addObservation']">Register new UFO observation</a>
 
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Id</th>
+            <th>Id</th> <!--ikke nødvendig for sisteutkast-->
             <th>Type</th>
             <th>Date</th>
             <th>Time</th>
-            <th>Location</th>
             <th>Description</th>
+            <th>Location</th>
             <th> </th>
             <th> </th>
         </tr>
     </thead>
     <tbody *ngFor="let observation of allObservations ">
         <tr>
-            <td>{{ observation.id }}</td>
+            <td>{{ observation.id }}</td> <!--ikke nødvendig for sisteutkast-->
             <td>{{ observation.ufoType }}</td>
             <td>{{ observation.date }}</td>
             <td>{{ observation.time }}</td>

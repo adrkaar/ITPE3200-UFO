@@ -1,7 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observation } from '../models/observation.model';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Comment } from "../models/comment.model"; 
 
 @Component({
@@ -11,17 +10,17 @@ import { Comment } from "../models/comment.model";
 
 export class CommentComponent {
     allcomments: Array<Comment>;
-    id: any;
+    observationId: any;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+    constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
     ngOnInit() {
         // henter id fra parameter i url
         this.route.paramMap.subscribe(param => {
-            this.id = param.get('id');
+            this.observationId = param.get('id');
         })
 
-        this.fetchAllComments(this.id);
+        this.fetchAllComments(this.observationId);
     }
 
     refreshWebsite(): void {
@@ -38,11 +37,10 @@ export class CommentComponent {
             );
     }
 
-    // må refrese siden for å se endringene
     deleteComment(id: number) {
         this.http.delete<Comment>("api/comment/deleteComment/" + id)
             .subscribe(() => {
-                this.fetchAllComments(this.id);
+                this.fetchAllComments(this.observationId);
             },
                 error => console.log(error)
             );
@@ -51,7 +49,7 @@ export class CommentComponent {
     upVote(id: number) {
         this.http.get<Comment>("api/comment/upVote/" + id)
             .subscribe(() => {
-                this.fetchAllComments(this.id);
+                this.fetchAllComments(this.observationId);
             },
                 error => console.log(error)
             );
@@ -60,7 +58,7 @@ export class CommentComponent {
     downVote(id: number) {
         this.http.get<Comment>("api/comment/downVote/" + id)
             .subscribe(() => {
-                this.fetchAllComments(this.id);
+                this.fetchAllComments(this.observationId);
             },
                 error => console.log(error)
             );

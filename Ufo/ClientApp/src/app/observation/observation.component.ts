@@ -1,5 +1,5 @@
-﻿import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+﻿import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observation } from '../models/observation.model';
 
 @Component({
