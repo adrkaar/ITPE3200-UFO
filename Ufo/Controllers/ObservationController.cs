@@ -12,7 +12,7 @@ namespace Ufo.Controllers
     {
         private readonly InterfaceObservationRepository _db;
 
-        public ObservationController(InterfaceObservationRepository db, InterfaceCommentRepository dbComments)
+        public ObservationController(InterfaceObservationRepository db)
         {
             _db = db;
         }
