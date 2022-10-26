@@ -34,7 +34,7 @@
 
     <select class="form-control" (change)="selectedOption($event.target.value)">
         <!--øverste option skal være den som var fra før-->
-        <option disabled>Select Type</option>
+        <option disabled>Select Type</option> <!--trenger ikke select type-->
         <option *ngFor="let type of types">{{ type.type }}</option>
     </select>
 

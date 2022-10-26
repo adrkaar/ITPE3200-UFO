@@ -26,6 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { SafeHtml } from './pipe';
 
+
+// må  gåes igjennom hca som faktisk brukes og er på riktig sted typ trenger alle de decalrations?
 @NgModule({
     declarations: [
         AppComponent,
