@@ -96,7 +96,7 @@ namespace Ufo.DAL
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
 
-                // hvis ufo ikke finnes i databasen blir den lagt til
+                // hvis ufo ikke finnes i tabellen blir den lagt til
                 if (ufo == null)
                 {
                     string ufoType = changeObservation.UfoType;
@@ -123,7 +123,7 @@ namespace Ufo.DAL
                 // henter kommentarene til observasjonen, slik at de kan bli slettet først
                 var comments = cRepo.FetchAllComments(id);
 
-                // går igjennom kommentarene og sletter dem
+                // går igjennom og sletter kommentarene
                 foreach (Comment comment in comments.Result.ToList())
                 {
                     await cRepo.DeleteComment(comment.Id);

@@ -37,7 +37,10 @@
         <!--øverste option skal være den som var fra før-->
         <option disabled>Select Type</option> <!--trenger ikke select type-->
         <option *ngFor="let type of types">{{ type.type }}</option>
+        <option>Add new type</option>
     </select>
+
+    <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
     <button type="submit" class="btn btn-primary" (click)="updateObservation()">Save</button>
 

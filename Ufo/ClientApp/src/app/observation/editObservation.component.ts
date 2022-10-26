@@ -21,6 +21,7 @@ export class EditObservationComponent implements OnInit {
     types: Array<UfoType>;
     chosenType: string;
     date;
+    addNewType: string;
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -44,11 +45,24 @@ export class EditObservationComponent implements OnInit {
         this.date = new Date().toISOString().slice(0, 10);
     }
 
+
+    // hvis brukeren velger "add new type" dukker det opp et inputfelt hvor de kan legge til typen
     selectedOption(type: string) {
         this.chosenType = type;
+        if (type === 'Add new type') {
+            this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/>';
+        }
+        else {
+            this.addNewType = " ";
+        }
     }
 
     updateObservation() {
+        // sjekker om brukeren vil legge til ny type
+        if (this.chosenType === 'Add new type') {
+            // henter verdien til ny type
+            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
+        }
         this.editObservation.ufoType = this.chosenType;
         this.http.post<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe(() => {
