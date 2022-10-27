@@ -32,8 +32,7 @@ export class AddCommentComponent {
         this.newComment.observationId = this.obsId;
 
         this.http.post<Comment>('api/comment/addComment', this.newComment)
-            .subscribe(response => {
-                console.log(response)
+            .subscribe(() => {
                 this.router.navigate(['/comment', this.obsId]);
             },
                 error => console.log(error)
