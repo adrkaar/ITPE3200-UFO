@@ -29,7 +29,6 @@ code {
 .mat-form-field-ripple {
     /*change color of underline when focused*/
     background-color: black !important;
-    ;
 }
 
 .mat-form-field-label {

@@ -1,9 +1,9 @@
 ﻿<h1>Add comment</h1>
 
 <form #form="ngForm" (ngSubmit)="addComment()">
-    <div class="form-group">
-        <label for="comment">Comment</label>
-        <input type="text" class="form-control" id="comment" name="comment" [(ngModel)]="newComment.text">
-    </div>
+    <mat-form-field class="form-group">
+        <mat-label for="comment">Comment</mat-label>
+        <input matInput type="text" class="form-control" id="comment" name="comment" [(ngModel)]="newComment.text">
+    </mat-form-field>
     <button type="submit" class="btn btn-primary">Comment</button>
 </form>

@@ -1,1 +1,12 @@
 <h1>UFO Observations</h1>
+
+<google-map [zoom]="zoom"
+            [center]="center"
+            (mapClick)="addMarker($event)"
+            style="height: 300em">
+
+    <map-marker *ngFor="let markerPosition of markerPositions"
+            [position]="markerPosition"
+            [options]="markerOptions">
+    </map-marker>
+</google-map>

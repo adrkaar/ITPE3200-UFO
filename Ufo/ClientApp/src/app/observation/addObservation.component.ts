@@ -13,6 +13,7 @@ export class AddObservationComponent {
     chosenType: string;
     types: Array<UfoType>;
     addNewType: string;
+    date;
 
     newObservation: Observation = {
         id: 0,
@@ -23,7 +24,6 @@ export class AddObservationComponent {
         ufoType: ' '
     }
 
-    date;
 
     ngOnInit() {
         // gjør slik at man ikke kan velge dato fram i tid

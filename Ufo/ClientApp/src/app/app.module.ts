@@ -17,14 +17,19 @@ import { AddCommentComponent } from './comment/addComment.component';
 
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
-
+/*Pipe*/
 import { SafeHtml } from './pipe';
+
+/*Maps*/
+//import { AgmCoreModule } from '@agm/core';
+import { GoogleMapsModule } from '@angular/google-maps'
 
 
 // m�  g�es igjennom hca som faktisk brukes og er p� riktig sted typ trenger alle de decalrations?
@@ -47,16 +52,23 @@ import { SafeHtml } from './pipe';
         HttpClientModule,
         FormsModule,
         MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        GoogleMapsModule,
         RouterModule.forRoot([
-    { path: '', component: HomeComponent, pathMatch: 'full' },
-    /*Observation*/
-    { path: 'observation', component: ObservationComponent },
-    { path: 'addObservation', component: AddObservationComponent },
-    { path: 'editObservation/:id', component: EditObservationComponent },
-    /*Comment*/
-    { path: 'comment/:id', component: CommentComponent },
-    { path: 'addComment/:id', component: AddCommentComponent },
-], { relativeLinkResolution: 'legacy' })
+            { path: '', component: HomeComponent, pathMatch: 'full' },
+            /*Observation*/
+            { path: 'observation', component: ObservationComponent },
+            { path: 'addObservation', component: AddObservationComponent },
+            { path: 'editObservation/:id', component: EditObservationComponent },
+            /*Comment*/
+            { path: 'comment/:id', component: CommentComponent },
+            { path: 'addComment/:id', component: AddCommentComponent },
+        ], { relativeLinkResolution: 'legacy' }),
+        //AgmCoreModule.forRoot({
+        //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
+        //})
         // NoopAnimationsModule
     ],
     providers: [],
