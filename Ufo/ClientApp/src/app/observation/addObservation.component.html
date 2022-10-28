@@ -31,7 +31,7 @@
     <div class="form-group">
         <label for="type">Type</label>
         <select class="form-control" id="type" (change)="selectedOption($event.target.value)">
-            <option disabled>Select Type</option>
+            <option disabled selected>Select Type</option>
             <option *ngFor="let type of types">{{ type.type }}</option>
             <option>Add new type</option>
         </select>
