@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 // Pipe for å kunne sende input tag fra ts til html
 // Dette vil da kunne føre med sikkerhetshull
+/* Hentet fra https://stackoverflow.com/questions/37076867/in-rc-1-some-styles-cant-be-added-using-binding-syntax/37076868#37076868 */
 @Pipe({ name: 'safeHtml' })
 export class SafeHtml implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }

@@ -58,7 +58,7 @@ namespace Ufo.DAL
                     Description = obs.Description,
                     Location = obs.Location,
                     UfoType = obs.UfoTypes.Type
-                }).ToListAsync();
+                }).OrderBy(Date => Date.Date).ToListAsync();
                 return allObservations;
             }
             catch { return null; }
