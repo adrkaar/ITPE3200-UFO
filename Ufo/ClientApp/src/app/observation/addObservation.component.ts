@@ -19,7 +19,8 @@ export class AddObservationComponent {
         id: 0,
         date: ' ',
         time: ' ',
-        location: ' ',
+        latitude: ' ',
+        longitude: ' ',
         description: ' ',
         ufoType: ' '
     }

@@ -2,7 +2,8 @@
     id: number;
     date: string;
     time: string;
-    location: string;
+    latitude: string;
+    longitude: string;
     description: string;
     ufoType: string;
 }
