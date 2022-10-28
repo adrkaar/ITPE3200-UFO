@@ -1,7 +1,7 @@
 # Identified Ufo
 
 ## Prerequisite
-* Node 14.17.6
+- [Node 14.17.6](https://nodejs.org/en/download/)
 * Angular CLI 14.2.0
 * .Net Core 3.1 
 
