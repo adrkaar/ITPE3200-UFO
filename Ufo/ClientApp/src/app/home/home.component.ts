@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit(): void {
-        
+        // hente liste med lokasjoner
     }
 
     markerOptions: google.maps.MarkerOptions = {
