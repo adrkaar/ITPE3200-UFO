@@ -171,7 +171,7 @@ namespace Ufo.DAL
         {
             try
             {
-                // hente alt, sette kun lat og long, resten er null
+                // henter alle observasjoner, og setter kun latitude og longitude
                 List<Observation> allLocations = await _db.Observations.Select(obs => new Observation
                 {
                     Latitude = obs.Latitude,

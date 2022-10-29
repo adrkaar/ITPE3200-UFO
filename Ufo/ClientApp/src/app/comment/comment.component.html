@@ -18,8 +18,8 @@
             <td>{{ comment.id }}</td> <!--ikke nødvendig for sisteutkast-->
             <td>{{ comment.text }}</td>
             <td>{{ comment.observationId }}</td> <!--ikke nødvendig for sisteutkast-->
-            <td><mat-stroked-button  color="warn" (click)="upVote(comment.id)">{{ comment.upVote }}<mat-icon color="primary">thumb_up</mat-icon></mat-stroked-button></td>
-            <td><button (click)="downVote(comment.id)">{{ comment.downVote }}<mat-icon color="primary">thumb_down</mat-icon></button></td>
+            <td><mat-button (click)="upVote(comment.id)">{{ comment.upVote }}<mat-icon color="primary">thumb_up</mat-icon></mat-button></td>
+            <td><mat-button (click)="downVote(comment.id)">{{ comment.downVote }}<mat-icon color="primary">thumb_down</mat-icon></mat-button></td>
             <td><button class="btn btn-danger" (click)="deleteComment(comment.id)">Delete</button></td>
         </tr>
     </tbody>

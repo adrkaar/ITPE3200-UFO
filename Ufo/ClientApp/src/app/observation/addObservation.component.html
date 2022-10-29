@@ -26,13 +26,6 @@
         <label for="longitude">Longitude</label>
         <input type="text" class="form-control" id="longitude" name="longitude" [(ngModel)]="newObservation.longitude">
     </div>
-
-    <google-map [zoom]="zoom"
-                [center]="center"
-                (mapClick)="addMarker($event)">
-        <map-marker [position]="{{ markerPosition }}"></map-marker>
-    </google-map>
-
     <div class="form-group">
         <label for="description">Description</label>
         <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newObservation.description">
