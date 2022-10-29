@@ -14,7 +14,8 @@ export class EditObservationComponent implements OnInit {
         id: 0,
         date: ' ',
         time: ' ',
-        location: ' ',
+        latitude: ' ',
+        longitude: ' ',
         description: ' ',
         ufoType: ''
     }
@@ -44,7 +45,6 @@ export class EditObservationComponent implements OnInit {
         // gjør slik at man ikke kan velge dato fram i tid
         this.date = new Date().toISOString().slice(0, 10);
     }
-
 
     // hvis brukeren velger "add new type" dukker det opp et inputfelt hvor de kan legge til typen
     selectedOption(type: string) {

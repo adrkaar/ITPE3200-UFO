@@ -26,8 +26,8 @@ namespace Ufo.DAL
                 context.UfoTypes.Add(type4);
 
                 /* Observations */
-                var observation1 = new Observations { Date = "2022-09-21", Time = "22:22", Description = "Jeg gikk ut pub og så en stor egg i skyen.", Location = "Her", UfoTypes = type1 };
-                var observation2 = new Observations { Date = "2022-10-01", Time = "00:09", Description = "Bla-bla-bla.", Location = "Der", UfoTypes = type3 };
+                var observation1 = new Observations { Date = "2022-09-21", Time = "22:22", Description = "Jeg gikk ut pub og så en stor egg i skyen.", Latitude = "56.660151627670686", Longitude = "14.07792153985528", UfoTypes = type1 };
+                var observation2 = new Observations { Date = "2022-10-01", Time = "00:09", Description = "Bla-bla-bla.", Latitude = "48.647983479154824", Longitude = "9.865054057063944", UfoTypes = type3 };
 
                 context.Observations.Add(observation1);
                 context.Observations.Add(observation2);

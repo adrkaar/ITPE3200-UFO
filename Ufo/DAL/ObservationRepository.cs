@@ -24,7 +24,8 @@ namespace Ufo.DAL
                 newObservationRow.Date = inObservation.Date;
                 newObservationRow.Time = inObservation.Time;
                 newObservationRow.Description = inObservation.Description;
-                newObservationRow.Location = inObservation.Location;
+                newObservationRow.Latitude = inObservation.Latitude;
+                newObservationRow.Longitude = inObservation.Longitude;
 
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
@@ -56,7 +57,8 @@ namespace Ufo.DAL
                     Date = obs.Date,
                     Time = obs.Time,
                     Description = obs.Description,
-                    Location = obs.Location,
+                    Latitude = obs.Latitude,
+                    Longitude = obs.Longitude,
                     UfoType = obs.UfoTypes.Type
                 }).OrderBy(Date => Date.Date).ToListAsync();
                 return allObservations;
@@ -75,7 +77,8 @@ namespace Ufo.DAL
                     UfoType = oneObservation.UfoTypes.Type,
                     Date = oneObservation.Date,
                     Time = oneObservation.Time,
-                    Location = oneObservation.Location,
+                    Latitude = oneObservation.Latitude,
+                    Longitude = oneObservation.Longitude,
                     Description = oneObservation.Description,
                 };
                 return fetchedObservation;
@@ -91,7 +94,8 @@ namespace Ufo.DAL
                 oneObservation.Time = changeObservation.Time;
                 oneObservation.Date = changeObservation.Date;
                 oneObservation.Description = changeObservation.Description;
-                oneObservation.Location = changeObservation.Location;
+                oneObservation.Latitude = changeObservation.Latitude;
+                oneObservation.Longitude = changeObservation.Longitude;
 
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
@@ -159,6 +163,22 @@ namespace Ufo.DAL
                 _db.UfoTypes.Add(ufoType);
                 await _db.SaveChangesAsync();
                 return ufoType;
+            }
+            catch { return null; }
+        }
+
+        public async Task<List<Observation>> FetchAllLocations()
+        {
+            try
+            {
+                // hente alt, sette kun lat og long, resten er null
+                List<Observation> allLocations = await _db.Observations.Select(obs => new Observation
+                {
+                    Latitude = obs.Latitude,
+                    Longitude = obs.Longitude,
+                }).ToListAsync();
+
+                return allLocations;
             }
             catch { return null; }
         }

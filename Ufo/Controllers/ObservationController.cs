@@ -55,5 +55,12 @@ namespace Ufo.Controllers
             List<UfoType> ufotypes = await _db.FetchUfoTypes();
             return Ok(ufotypes);
         }
+
+        [HttpGet("fetchAllLocations")]
+        public async Task<ActionResult> FetchAllLocations()
+        {
+            List<Observation> allLocations = await _db.FetchAllLocations();
+            return Ok(allLocations);
+        }
     }
 }

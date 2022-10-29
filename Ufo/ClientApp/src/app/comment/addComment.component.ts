@@ -16,10 +16,10 @@ export class AddCommentComponent {
         upVote: 0,
         downVote: 0
     }
+    obsId: number;
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
-    obsId: number;
     ngOnInit(): void {
         // henter id fra parameter i url
         this.route.paramMap.subscribe(param => {

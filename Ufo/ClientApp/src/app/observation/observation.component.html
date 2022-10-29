@@ -10,7 +10,8 @@
             <th>Date</th>
             <th>Time</th>
             <th>Description</th>
-            <th>Location</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
             <th> </th>
             <th> </th>
         </tr>
@@ -22,7 +23,8 @@
             <td>{{ observation.date }}</td>
             <td>{{ observation.time }}</td>
             <td>{{ observation.description }}</td>
-            <td>{{ observation.location }}</td>
+            <td>{{ observation.latitude }}</td>
+            <td>{{ observation.longitude }}</td>
             <td><a [routerLink]="['/editObservation', observation.id]">view</a></td>
             <td><a [routerLink]="['../comment', observation.id]">comment</a></td>
         </tr>

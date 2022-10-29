@@ -13,17 +13,20 @@ export class AddObservationComponent {
     chosenType: string;
     types: Array<UfoType>;
     addNewType: string;
-
+    date;
+    zoom: number = 3;
+    center: google.maps.LatLngLiteral = { lat: 48.647983479154824, lng: 9.865054057063944 }
+    markerPositions: google.maps.LatLngLiteral;
     newObservation: Observation = {
         id: 0,
         date: ' ',
         time: ' ',
-        location: ' ',
+        latitude: ' ',
+        longitude: ' ',
         description: ' ',
         ufoType: ' '
     }
 
-    date;
 
     ngOnInit() {
         // gjør slik at man ikke kan velge dato fram i tid
@@ -68,5 +71,10 @@ export class AddObservationComponent {
             },
                 error => console.log(error)
             );
+    }
+
+    addMarker(event: google.maps.MapMouseEvent) {
+        console.log(event.latLng.toJSON());
+        this.markerPositions = (event.latLng.toJSON());
     }
 }
