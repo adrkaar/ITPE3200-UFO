@@ -1,12 +1,10 @@
 <h1>UFO Observations</h1>
 
+<!--https://www.c-sharpcorner.com/article/how-to-integrate-google-maps-in-angular-14-app/-->
 <google-map [zoom]="zoom"
-            [center]="center"
-            (mapClick)="addMarker($event)"
-            style="height: 300em">
-
+            [center]="center">
     <map-marker *ngFor="let markerPosition of markerPositions"
-            [position]="markerPosition"
-            [options]="markerOptions">
+                [position]="markerPosition"
+                [options]="markerOptions">
     </map-marker>
 </google-map>
