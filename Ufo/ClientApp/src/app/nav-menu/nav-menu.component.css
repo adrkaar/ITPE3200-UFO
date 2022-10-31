@@ -16,3 +16,14 @@ html {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+.navbar-container {
+  background-color: #00695F;
+  width: 200px;
+  border-radius: 10px;
+  height: 700px;
+}
+
+.nav-link {
+  color: white;
+}
