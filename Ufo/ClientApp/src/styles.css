@@ -65,12 +65,11 @@ code {
 
 
 
-
 .icon-primary {
   color: #009688;
 }
 
-.icon-primary :hover {
+.icon-primary:hover {
   color: #00bfad;
 }
 

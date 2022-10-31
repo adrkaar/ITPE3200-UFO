@@ -25,8 +25,8 @@
             <td>{{ observation.description }}</td>
             <td>{{ observation.latitude }}</td>
             <td>{{ observation.longitude }}</td>
-            <td><a [routerLink]="['/editObservation', observation.id]">view</a></td>
-            <td><a [routerLink]="['../comment', observation.id]">comment</a></td>
+            <td><button class="btn btn-secondary" [routerLink]="['/editObservation', observation.id]">View</button></td>
+            <td><button class="btn btn-secondary"  [routerLink]="['../comment', observation.id]">Comments</button></td>
         </tr>
     </tbody>
 </table>
