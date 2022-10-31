@@ -1,7 +1,7 @@
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-header">
         <div class="container">
-            <a class="navbar-brand" [routerLink]="['/']">Ufo</a>
+            <a class="navbar-brand" [routerLink]="['/']">Identified UFO</a>
             <button class="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
@@ -14,13 +14,13 @@
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
                  [ngClass]="{ show: isExpanded }">
                 <ul class="navbar-nav flex-grow">
-                    <li class="nav-item"
+                    <li class="nav-item btn-primary mr-3"
                         [routerLinkActive]="['link-active']"
                         [routerLinkActiveOptions]="{ exact: true }">
-                        <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+                        <a class="nav-link text-white" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
                     </li>
-                    <li class="nav-item" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-dark" [routerLink]="['/observation']">UFO Observations</a>
+                    <li class="nav-item btn-primary col" [routerLinkActive]="['link-active']">
+                        <a class="nav-link text-white" [routerLink]="['/observation']"><mat-icon>map</mat-icon>UFO Observations</a>
                     </li>
                 </ul>
             </div>

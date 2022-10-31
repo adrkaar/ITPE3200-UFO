@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Provide sufficient contrast against white background */
-@import '~@fortawesome/fontawesome-free/css/all.css'; /* importing fontawesome */ 
+@import '~@fortawesome/fontawesome-free/css/all.css'; /* importing fontawesome */
+
+body {
+    background-color: #B7D6D3;
+    font-family: 'Roboto';
+}
+
 a {
   color: #0366d6;
 }
@@ -10,33 +16,111 @@ code {
   color: #e01a76;
 }
 
+/*---------------------- KNAPPER ------------------------ */
+
 .btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
+  color: #E3E3E3;
+  background-color: #009688;
+  border-color: #292D32;
+  border-radius: 10px;
+  font-family: 'Roboto', bold;
 }
 
-.mat-focused .mat-form-field-label {
-    /*change color of label*/
-    color: black !important;
+.btn-primary:hover {
+  color: black;
+  background-color: #00bfad;
+  border-color: #145d9f;
 }
 
-.mat-form-field-underline {
-    /*change color of underline*/
-    background-color: black !important;
+.btn-secondary {
+  color: #E3E3E3;
+  background-color: #292D32;
+  border-color: #292D32;
+  border-radius: 10px;
+  font-family: 'Roboto', bold;
 }
 
-.mat-form-field-ripple {
-    /*change color of underline when focused*/
-    background-color: black !important;
+.btn-danger {
+  border-radius: 10px;
+  font-family: 'Roboto', bold;
 }
 
-.mat-form-field-label {
-    /*change color of label*/
-    color: black !important;
+/* -------------------------------------------------------- */
+
+
+/*---------------------- NAVBAR ------------------------ */
+
+.bg-header {
+  background-color: #00695F;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+}
+
+/* -------------------------------------------------------- */
+
+
+
+
+
+
+.icon-primary {
+  color: #009688;
+}
+
+.icon-primary :hover {
+  color: #00bfad;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+body {
+  background-color: #B7D6D3;
+  font-family: 'Roboto';
 }
 
 
-mat-datepicker-toggle {
-    color: black !important;
+/*-----------  Table ------------------*/
+table td,
+table th {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+thead th {
+  color: black;
+}
+
+thead {
+  top: 0;
+  position: sticky;
+}
+
+
+/*-----------  Form  ------------------*/
+/* https://codepen.io/ainalem/pen/GRqPwoz?editors=1100 */
+.form {
+    background-color: #009688;
+    border-radius: 20px;
+    box-sizing: border-box;
+    width: 45em;
+    padding: 2% 5%;
+    align-content: center;
+}
+
+.input {
+    background-color: #303245;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    font-size: 18px;
+    height: 100%;
+    outline: 0;
+    padding: 4px 20px 0;
+    width: 100%;
 }
