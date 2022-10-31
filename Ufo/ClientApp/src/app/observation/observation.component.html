@@ -1,9 +1,9 @@
 ﻿<h1>UFO Observations</h1>
 
-<a [routerLink]="['/addObservation']">Register new UFO observation</a>
+<button class="btn btn-secondary" [routerLink]="['/addObservation']" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
 
 <table class="table table-bordered table-striped">
-    <thead>
+    <thead style="background-color: #009688;">
         <tr>
             <th>Id</th> <!--ikke nødvendig for sisteutkast-->
             <th>Type</th>
