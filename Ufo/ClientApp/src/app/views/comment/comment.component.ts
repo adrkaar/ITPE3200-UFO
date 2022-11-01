@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from "@angular/router";
-import { Comment } from "../models/comment.model"; 
+import { Comment } from "../../models/comment.model"; 
 
 @Component({
     selector: 'comment',

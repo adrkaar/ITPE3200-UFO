@@ -1,6 +1,6 @@
 ﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observation } from '../models/observation.model';
+import { Observation } from '../../models/observation.model';
 
 @Component({
     selector: 'observation',

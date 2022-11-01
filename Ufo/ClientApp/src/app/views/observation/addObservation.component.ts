@@ -1,8 +1,8 @@
 ﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
-import { Observation } from '../models/observation.model';
-import { UfoType } from '../models/ufoType.model';
+import { Observation } from '../../models/observation.model';
+import { UfoType } from '../../models/ufoType.model';
 
 @Component({
     selector: 'addObservation',

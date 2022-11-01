@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observation } from '../models/observation.model';
+import { Observation } from '../../models/observation.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UfoType } from '../models/ufoType.model';
+import { UfoType } from '../../models/ufoType.model';
 
 @Component({
     selector: 'editObservation',

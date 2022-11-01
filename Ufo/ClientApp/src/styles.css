@@ -66,10 +66,6 @@ code {
 
 /* -------------------------------------------------------- */
 
-
-
-
-
 .icon-primary {
   color: #009688;
 }
@@ -80,6 +76,11 @@ code {
 
 .mat-icon {
   vertical-align: middle;
+}
+
+.icon-display-large {
+  transform: scale(2.5);
+  color: white;
 }
 
 body {

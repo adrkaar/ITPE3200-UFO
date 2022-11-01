@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { Observation } from '../models/observation.model';
+import { Observation } from '../../models/observation.model';
 
 @Component({
   selector: 'app-home',
@@ -24,21 +24,21 @@ export class HomeComponent implements OnInit {
         this.http.get<Observation[]>('api/observation/fetchAllLocations')
             .subscribe(response => {
 
-                // legger til lokasjonene på kartet
+                // legger til lokasjonene pï¿½ kartet
                 this.addToMap(response);
             },
                 error => console.log(error)
             );
     }
 
-    // legger til lokasjonene på kartet
+    // legger til lokasjonene pï¿½ kartet
     addToMap(observations: Observation[]) {
         for (let i = 0; i <= observations.length; i++) {
             // henter ut lengde og breddegrad fra objektet
             let latitude = observations[i].latitude;
             let longitude = observations[i].longitude;
 
-            // legger til lengde og bredde grad i arrray med markører
+            // legger til lengde og bredde grad i arrray med markï¿½rer
             this.markerPositions.push(this.latLng = { lat: Number(latitude), lng: Number(longitude) });
         }
     }
