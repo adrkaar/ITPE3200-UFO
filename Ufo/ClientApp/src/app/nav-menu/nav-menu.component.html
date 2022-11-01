@@ -1,5 +1,14 @@
 <div class="container_nav">
     <a class="navbar-brand" [routerLink]="['/']">Identified UFO</a>
+    <div class="user-box">
+        <div>
+            <mat-icon class="icon-display-large">account_circle</mat-icon>       
+        </div>
+        <div>
+        </div>
+        
+        
+    </div>
     <div>
                 <ul class="navbar-nav flex-grow">
                     <li class="nav-item btn-primary"
@@ -8,7 +17,11 @@
                         <a class="nav-link" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
                     </li>
                     <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
-                        <a class="nav-link" [routerLink]="['/observation']"><mat-icon>map</mat-icon>UFO Observations</a>
+                        <a class="nav-link" [routerLink]="['/observation']"><mat-icon>map</mat-icon>Observations</a>
+                    </li>
+
+                    <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
+                        <a class="nav-link" [routerLink]="['/addObservation']"><mat-icon>add_location</mat-icon>Add</a>
                     </li>
                 </ul>
     </div>
