@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,7 @@ import { AddObservationComponent } from './views/observation/addObservation.comp
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
 
+/*Material*/
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,12 +24,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SafeHtml } from './pipe';
 
 /*Maps*/
-//import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 
-
-// m�  g�es igjennom hca som faktisk brukes og er p� riktig sted typ trenger alle de decalrations?
 @NgModule({
     declarations: [
         AppComponent,
@@ -46,17 +44,12 @@ import { RouterModule } from '@angular/router';
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
-        FormsModule,
+        FormsModule, ReactiveFormsModule,
         MatIconModule,
         MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
+        MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
         AppRoutingModule,
-        //AgmCoreModule.forRoot({
-        //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
-        //})
-        // NoopAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

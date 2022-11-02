@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
 
     // legger til lokasjonene p� kartet
     addToMap(observations: Observation[]) {
-        for (let i = 0; i <= observations.length; i++) {
+        for (let i = 0; i < observations.length; i++) {
             // henter ut lengde og breddegrad fra objektet
             let latitude = observations[i].latitude;
             let longitude = observations[i].longitude;
