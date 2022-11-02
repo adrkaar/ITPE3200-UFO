@@ -27,7 +27,6 @@ import { SafeHtml } from './pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 // m�  g�es igjennom hca som faktisk brukes og er p� riktig sted typ trenger alle de decalrations?
@@ -57,8 +56,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         MatInputModule,
         GoogleMapsModule,
         AppRoutingModule,
-        ReactiveFormsModule,
-        NgbModule
+        ReactiveFormsModule
         //AgmCoreModule.forRoot({
         //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
         //})

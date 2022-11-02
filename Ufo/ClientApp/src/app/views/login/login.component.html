@@ -1,0 +1,39 @@
+<div>
+    <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+        <table>
+            <tr>
+                <td>
+                    <label>Username:</label>
+                </td>
+                <td>
+                    <input type="text" formControlName="username">
+                </td>
+                <td *ngIf="this.Form.controls.username.status=='INVALID'">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password:</label>
+                </td>
+                <td>
+                    <input type="password" formControlName="password">
+                </td>
+                <td *ngIf="this.Form.controls.passord.status=='INVALID'">
+                    Create a strong password
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <button type="submit" [disabled]="!Form.valid">Login</button>
+                    <button type="submit" [disabled]="!Form.valid">Register</button>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+
