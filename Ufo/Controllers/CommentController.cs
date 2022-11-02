@@ -27,7 +27,14 @@ namespace Ufo.Controllers
         [HttpPost("addComment")]
         public async Task<ActionResult> AddComment(Comment inComment)
         {
-            return Ok(await _db.AddComment(inComment));
+            if (ModelState.IsValid)
+            {
+                return Ok(await _db.AddComment(inComment));
+            }
+            else
+            {
+                return BadRequest("Feil i inputvalidering");
+            }
         }
 
         [HttpDelete("deleteComment/{id}")]
