@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -53,6 +53,7 @@ import { RouterModule } from '@angular/router';
         MatInputModule,
         GoogleMapsModule,
         AppRoutingModule,
+        ReactiveFormsModule
         //AgmCoreModule.forRoot({
         //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
         //})
