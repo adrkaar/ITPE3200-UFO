@@ -23,7 +23,7 @@ export class AddObservationComponent {
         time: ' ',
         latitude: '',
         longitude: '',
-        description: ' ',
+        description: '',
         ufoType: ' '
     }
 
@@ -61,7 +61,7 @@ export class AddObservationComponent {
             null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("^[a-zA-Z .,-?!]{1,160}$")
+                Validators.pattern("^[a-zA-Z .,-?!]{1,200}$")
             ])
         ],
         UfoType: [""]

@@ -25,7 +25,7 @@ export class AddCommentComponent {
             null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("^[a-zA-Z .,?!]{1,160}$")
+                Validators.pattern("^[a-zA-Z .,?!]{1,200}$")
             ])
         ],
     }
