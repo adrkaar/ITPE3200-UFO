@@ -27,24 +27,52 @@ export class AddObservationComponent {
         ufoType: ' '
     }
 
+    validation = {
+        id: [""],
+        /* https://www.regextester.com/99555 */
+        // funker ikke
+        // date: ["", Validators.pattern("^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])")],
+        /* https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format */
+        time: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("([0-1]?[0-9]|2[0-3]):[0-5][0-9]")
+            ])
+        ],
+        latitude: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[0-9.]{1,10}$")
+            ])
+        ],
+        longitude: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[0-9.]{1,10}$")
+            ])
+        ],
+        description: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z .,?!]{2,160}$")
+            ])
+        ],
+        UfoType: [""]
+    }
+
+    constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) {
+        this.AddObservationForm = formBuilder.group(this.validation);
+    }
+
     ngOnInit() {
         // gjør slik at man ikke kan velge dato fram i tid
         this.maxDate = new Date().toISOString().slice(0, 10);
 
         this.fetchUfoTypes();
-    }
-
-    constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder) {
-        this.AddObservationForm = formBuilder.group({
-            /* https://www.regextester.com/99555 */
-            // funker ikke
-            // date: ["", Validators.pattern("^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])")],
-            /* https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format */
-            time: ["", Validators.pattern("([0-1]?[0-9]|2[0-3]):[0-5][0-9]")],
-            latitude: ["", Validators.pattern("^[0-9.]{1,10}$")],
-            longitude: ["", Validators.pattern("^[0-9.]{1,10}$")],
-            description: ["", Validators.pattern("^[a-zA-Z .,?!]{1,160}$")],
-        });
     }
 
     // hvis brukeren velger "add new type" dukker det opp et inputfelt hvor de kan legge til typen
