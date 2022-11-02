@@ -47,21 +47,21 @@ export class AddObservationComponent {
             null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("^[0-9.]{1,10}$")
+                Validators.pattern("^[0-9.-]{1,10}$")
             ])
         ],
         longitude: [
             null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("^[0-9.]{1,10}$")
+                Validators.pattern("^[0-9.-]{1,10}$")
             ])
         ],
         description: [
             null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("^[a-zA-Z .,?!]{1,160}$")
+                Validators.pattern("^[a-zA-Z .,-?!]{1,160}$")
             ])
         ],
         UfoType: [""]

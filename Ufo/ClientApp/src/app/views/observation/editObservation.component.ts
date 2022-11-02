@@ -3,12 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observation } from '../../models/observation.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UfoType } from '../../models/ufoType.model';
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
     templateUrl: 'editObservation.component.html'
 })
 
 export class EditObservationComponent implements OnInit {
+    EditObservationForm: FormGroup;
     editObservation: Observation = {
         id: 0,
         date: ' ',
@@ -23,7 +25,47 @@ export class EditObservationComponent implements OnInit {
     date;
     addNewType: string;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+    validation = {
+        id: [""],
+        /* https://www.regextester.com/99555 */
+        // funker ikke
+        // date: ["", Validators.pattern("^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])")],
+        date: [""],
+        /* https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format */
+        time: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("([0-1]?[0-9]|2[0-3]):[0-5][0-9]")
+            ])
+        ],
+        latitude: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[0-9.-]{1,10}$")
+            ])
+        ],
+        longitude: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[0-9.-]{1,10}$")
+            ])
+        ],
+        description: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z .,-?!]{1,160}$")
+            ])
+        ],
+        UfoType: [""]
+    }
+
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+        this.EditObservationForm = formBuilder.group(this.validation);
+    }
 
     ngOnInit(): void {
         // henter id fra parameter i url
