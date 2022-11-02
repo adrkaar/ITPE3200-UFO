@@ -20,7 +20,14 @@ namespace Ufo.Controllers
         [HttpPost("addObservation")]
         public async Task<ActionResult> SaveObservation(Observation inObservation)
         {
-            return Ok(await _db.SaveObservation(inObservation));
+            if (ModelState.IsValid)
+            {
+                return Ok(await _db.SaveObservation(inObservation));
+            }
+            else
+            {
+                return BadRequest("Feil i inputvalidering");
+            }
         }
 
         [HttpGet("fetchAllObservations")]
@@ -40,7 +47,14 @@ namespace Ufo.Controllers
         [HttpPost("editObservation")]
         public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
-            return Ok(await _db.ChangeObservation(changeObservation));
+            if (ModelState.IsValid)
+            {
+                return Ok(await _db.ChangeObservation(changeObservation));
+            }
+            else
+            {
+                return BadRequest("Feil i inputvalidering");
+            }
         }
 
         [HttpDelete("deleteObservation/{id}")]
