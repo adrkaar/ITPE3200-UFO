@@ -4,7 +4,7 @@
     <div class="form-group">
         <label for="comment">Comment</label>
         <input type="text" formControlName="comment" class="form-control" id="comment" name="comment" [(ngModel)]="newComment.text">
-        <p *ngIf="this.AddObservationForm.controls.comment.status=='INVALID'">Comment cannot be empty, max 160 characters</p>
+        <p *ngIf="this.CommentForm.controls.comment.status=='INVALID'">Comment cannot be empty, max 160 characters</p>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="!CommentForm.valid">Comment</button>
 </form>
