@@ -29,9 +29,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes,
     {relativeLinkResolution: 'legacy'}),
-        //AgmCoreModule.forRoot({
-        //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
-        //})
         // NoopAnimationsModule
   ],
   exports: [
