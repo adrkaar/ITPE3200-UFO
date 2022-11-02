@@ -6,7 +6,6 @@ import { Observation } from '../../models/observation.model';
 import { UfoType } from '../../models/ufoType.model';
 
 @Component({
-    selector: 'addObservation',
     templateUrl: 'addObservation.component.html'
 })
 
@@ -60,6 +59,7 @@ export class AddObservationComponent {
     }
 
     addObservation() {
+        console.log(this.newObservation.date);
         // sjekker om brukeren vil legge til ny type
         if (this.chosenType === 'Add new type') {
             // henter verdien til ny type

@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UfoType } from '../../models/ufoType.model';
 
 @Component({
-    selector: 'editObservation',
     templateUrl: 'editObservation.component.html'
 })
 

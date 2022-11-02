@@ -3,8 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observation } from '../../models/observation.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+    templateUrl: './home.component.html',
 })
 
 export class HomeComponent implements OnInit {
