@@ -63,6 +63,16 @@ namespace Ufo.DAL
                 context.Comments.Add(comment3);
                 context.Comments.Add(comment4);
 
+
+                /* User */
+                var user = new Users();
+                user.Username = "Admin";
+                var password = "Supersecret";
+                byte[] salt = UserRepository.CreateSalt();
+                byte[] hash = UserRepository.CreateHash(password, salt);
+                user.Password = hash;
+                context.Users.Add(user);
+
                 context.SaveChanges();
             }
         }
