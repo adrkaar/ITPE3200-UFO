@@ -26,6 +26,8 @@ import { SafeHtml } from './pipe';
 //import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './views/login/login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 // m�  g�es igjennom hca som faktisk brukes og er p� riktig sted typ trenger alle de decalrations?
@@ -42,6 +44,8 @@ import { RouterModule } from '@angular/router';
         CommentComponent,
         AddCommentComponent,
         SafeHtml,
+      /* Login */
+        LoginComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,7 +57,8 @@ import { RouterModule } from '@angular/router';
         MatInputModule,
         GoogleMapsModule,
         AppRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbModule
         //AgmCoreModule.forRoot({
         //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
         //})
