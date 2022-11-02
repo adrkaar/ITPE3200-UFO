@@ -80,7 +80,6 @@ export class EditObservationComponent implements OnInit {
             );
     }
 
-    // har hent ufotype i både edit og add...
     fetchUfoTypes() {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {
