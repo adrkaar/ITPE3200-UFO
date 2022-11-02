@@ -8,9 +8,8 @@ import { HomeComponent } from './views/home/home.component';
 import { AddObservationComponent } from './views/observation/addObservation.component';
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
-import { AppComponent } from './app.component';
-import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
-import { SafeHtml } from './pipe';
+
+import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -21,6 +20,7 @@ const routes: Routes = [
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
       { path: 'addComment/:id', component: AddCommentComponent },
+      { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
