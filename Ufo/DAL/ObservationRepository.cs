@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Ufo.Controllers;
 using Ufo.Models;
 
 namespace Ufo.DAL
@@ -11,12 +9,10 @@ namespace Ufo.DAL
     public class ObservationRepository : InterfaceObservationRepository
     {
         private readonly ObservationContext _db;
-        private ILogger<ObservationController> _log;
 
-        public ObservationRepository(ObservationContext db, ILogger<ObservationController> log)
+        public ObservationRepository(ObservationContext db)
         {
             _db = db;
-            _log = log;
         }
 
         public async Task<bool> SaveObservation(Observation inObservation)

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using SQLitePCL;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ufo.DAL;
@@ -11,16 +13,22 @@ namespace Ufo.Controllers
     public class ObservationController : ControllerBase
     {
         private readonly InterfaceObservationRepository _db;
+        private ILogger<ObservationController> _log;
 
-        public ObservationController(InterfaceObservationRepository db)
+        public ObservationController(InterfaceObservationRepository db, ILogger<ObservationController> log)
         {
             _db = db;
+            _log = log;
         }
 
         [HttpPost("addObservation")]
         public async Task<ActionResult> SaveObservation(Observation inObservation)
         {
-            return Ok(await _db.SaveObservation(inObservation));
+            bool returnOk = await _db.SaveObservation(inObservation);
+            if (!returnOk)
+            {
+                delegate_log.
+            }
         }
 
         [HttpGet("fetchAllObservations")]

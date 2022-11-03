@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ufo.DAL;
@@ -11,10 +12,12 @@ namespace Ufo.Controllers
     public class CommentController : ControllerBase
     {
         private readonly InterfaceCommentRepository _db;
+        private ILogger<CommentController> _log;
 
-        public CommentController(InterfaceCommentRepository db)
+        public CommentController(InterfaceCommentRepository db, ILogger<CommentController> log)
         {
             _db = db;
+            _log = log;
         }
 
         [HttpGet("fetchAllComments/{id}")]
