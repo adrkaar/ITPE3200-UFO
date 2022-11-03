@@ -60,7 +60,7 @@ namespace Ufo.Controllers
         public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
             bool returnOk = await _db.ChangeObservation(changeObservation);
-            if (returnOk == null)
+            if (!returnOk)
             {
                 _log.LogInformation("Observation could not be changed");
                 return BadRequest("Observation could not be changed");
