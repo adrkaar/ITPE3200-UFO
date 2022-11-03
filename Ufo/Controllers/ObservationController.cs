@@ -77,7 +77,7 @@ namespace Ufo.Controllers
                 _log.LogInformation("Observation could not be deleted");
                 return BadRequest("Observation could not be deleted");
             }
-            return Ok("Observation was deleted");
+            return Ok(deleteOk);
         }
 
         [HttpGet("fetchUfoTypes")]
