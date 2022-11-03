@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Ufo.Controllers;
 using Ufo.Models;
 
 namespace Ufo.DAL
@@ -9,10 +11,12 @@ namespace Ufo.DAL
     public class CommentRepository : InterfaceCommentRepository
     {
         private readonly ObservationContext _db;
+        private ILogger<CommentController> _log;
 
-        public CommentRepository(ObservationContext db)
+        public CommentRepository(ObservationContext db, ILogger<CommentController> log)
         {
             _db = db;
+            _log = log;
         }
 
         public async Task<List<Comment>> FetchAllComments(int observationId)
