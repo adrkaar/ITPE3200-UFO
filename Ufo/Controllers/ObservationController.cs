@@ -56,7 +56,7 @@ namespace Ufo.Controllers
             return Ok(oneObservation);
         }
 
-        [HttpPost("editObservation")]
+        [HttpPut("editObservation")]
         public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
             bool returnOk = await _db.ChangeObservation(changeObservation);

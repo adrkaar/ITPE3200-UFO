@@ -64,7 +64,7 @@ export class EditObservationComponent implements OnInit {
             this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
         }
         this.editObservation.ufoType = this.chosenType;
-        this.http.post<Observation>("api/observation/editObservation", this.editObservation)
+        this.http.put<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe(() => {
                 this.router.navigate(['observation'])
             },
