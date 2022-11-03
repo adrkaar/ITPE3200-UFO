@@ -42,7 +42,6 @@ namespace Ufo
             {
                 app.UseDeveloperExceptionPage();
                 loggerFactory.AddFile("log/observationLog.txt");
-                loggerFactory.AddFile("log/commentLog.txt");
                 DBInit.Initialize(app);
             }
 
