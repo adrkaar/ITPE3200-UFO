@@ -29,7 +29,7 @@ namespace Ufo.Controllers
                 _log.LogInformation("Observation was not saved");
                 return BadRequest("Observation was not saved");
             }
-            return Ok("Observation was saved");
+            return Ok(returnOk);
         }
 
         [HttpGet("fetchAllObservations")]
@@ -59,7 +59,13 @@ namespace Ufo.Controllers
         [HttpPost("editObservation")]
         public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
-            return Ok(await _db.ChangeObservation(changeObservation));
+            bool returnOk = await _db.ChangeObservation(changeObservation);
+            if (returnOk == null)
+            {
+                _log.LogInformation("Observation could not be changed");
+                return BadRequest("Observation could not be changed");
+            }
+            return Ok(returnOk);
         }
 
         [HttpDelete("deleteObservation/{id}")]
@@ -68,8 +74,8 @@ namespace Ufo.Controllers
             bool deleteOk = await _db.DeleteObservation(id);
             if (!deleteOk)
             {
-                _log.LogInformation("Observation was not deleted");
-                return BadRequest("Observation was not deleted");
+                _log.LogInformation("Observation could not be deleted");
+                return BadRequest("Observation could not be deleted");
             }
             return Ok("Observation was deleted");
         }
@@ -78,6 +84,11 @@ namespace Ufo.Controllers
         public async Task<ActionResult> FetchUfoTypes()
         {
             List<UfoType> ufotypes = await _db.FetchUfoTypes();
+            if (ufotypes == null)
+            {
+                _log.LogInformation("Table in database is empty");
+                return BadRequest("Table in database is empty");
+            }
             return Ok(ufotypes);
         }
 
@@ -85,6 +96,11 @@ namespace Ufo.Controllers
         public async Task<ActionResult> FetchAllLocations()
         {
             List<Observation> allLocations = await _db.FetchAllLocations();
+            if (allLocations == null)
+            {
+                _log.LogInformation("Table in database is empty");
+                return BadRequest("Table in database is empty");
+            }
             return Ok(allLocations);
         }
     }
