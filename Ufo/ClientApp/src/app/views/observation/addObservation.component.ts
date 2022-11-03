@@ -54,7 +54,6 @@ export class AddObservationComponent {
         this.newObservation.ufoType = this.chosenType;
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
             .subscribe(() => {
-                // den router ikke nå...
                 this.router.navigate(['observation'])
             },
                 error => console.log(error)
