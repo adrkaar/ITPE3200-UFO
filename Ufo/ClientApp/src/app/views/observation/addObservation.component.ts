@@ -27,15 +27,10 @@ export class AddObservationComponent {
         ufoType: ' '
     }
 
-    // feilmeldingene kommer opp før brukeren har trykket på feltet
-        // vil ha at feilmelding først kommer opp etter brukeren har trykket inn så ut av feltet
     validation = {
         id: [""],
-        /* https://www.regextester.com/99555 */
-        // funker ikke
-        // date: ["", Validators.pattern("^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])")],
-        date: [""],
-        /* https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format */
+        date: ["", Validators.pattern("\\d{4}-\\d{2}-\\d{2}")],
+    /*     https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format */
         time: [
             null,
             Validators.compose([
@@ -90,7 +85,6 @@ export class AddObservationComponent {
     }
 
     addObservation() {
-        console.log(this.newObservation.date);
         // sjekker om brukeren vil legge til ny type
         if (this.chosenType === 'Add new type') {
             // henter verdien til ny type

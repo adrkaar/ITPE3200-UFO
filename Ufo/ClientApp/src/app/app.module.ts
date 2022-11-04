@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
 import { AddCommentComponent } from './views/comment/addComment.component';
 import { CommentComponent } from './views/comment/comment.component';
 import { HomeComponent } from './views/home/home.component';
@@ -50,6 +51,7 @@ import { RouterModule } from '@angular/router';
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
         AppRoutingModule,
+        NgbModule
     ],
     providers: [],
     bootstrap: [AppComponent]

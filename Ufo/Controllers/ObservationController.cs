@@ -1,4 +1,11 @@
-﻿namespace Ufo.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Ufo.DAL;
+using Ufo.Models;
+
+namespace Ufo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
