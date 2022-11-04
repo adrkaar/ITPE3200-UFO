@@ -27,11 +27,13 @@ export class EditObservationComponent implements OnInit {
 
     validation = {
         id: [""],
-        /* https://www.regextester.com/99555 */
-        // funker ikke
-        // date: ["", Validators.pattern("^\d{4}(-)(((0)[0-9])|((1)[0-2]))(-)([0-2][0-9]|(3)[0-1])")],
-        date: [""],
-        /* https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format */
+        date: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("\\d{4}-\\d{2}-\\d{2}")
+            ])
+        ],
         time: [
             null,
             Validators.compose([

@@ -29,8 +29,13 @@ export class AddObservationComponent {
 
     validation = {
         id: [""],
-        date: ["", Validators.pattern("\\d{4}-\\d{2}-\\d{2}")],
-    /*     https://stackoverflow.com/questions/7536755/regular-expression-for-matching-hhmm-time-format */
+        date: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("\\d{4}-\\d{2}-\\d{2}")
+            ])
+        ],
         time: [
             null,
             Validators.compose([
