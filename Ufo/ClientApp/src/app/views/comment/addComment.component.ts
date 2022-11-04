@@ -2,13 +2,14 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Comment } from "../../models/comment.model"; 
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
-    selector: 'addComment',
     templateUrl: 'addComment.component.html'
 })
 
 export class AddCommentComponent {
+    CommentForm: FormGroup;
     newComment: Comment = {
         id: 0,
         text: '',
@@ -18,7 +19,20 @@ export class AddCommentComponent {
     }
     obsId: number;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+    validation = {
+        id: [""],
+        comment: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z .,?!]{1,200}$")
+            ])
+        ],
+    }
+
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+        this.CommentForm = formBuilder.group(this.validation);
+    }
 
     ngOnInit(): void {
         // henter id fra parameter i url

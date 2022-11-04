@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observation } from '../../models/observation.model';
 
 @Component({
-    selector: 'observation',
     templateUrl: 'observation.component.html'
 })
 

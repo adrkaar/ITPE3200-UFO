@@ -29,7 +29,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes,
     {relativeLinkResolution: 'legacy'}),
-        // NoopAnimationsModule
   ],
   exports: [
     RouterModule
