@@ -62,8 +62,13 @@ export class EditObservationComponent implements OnInit {
                 Validators.pattern("^[a-zA-Z .,-?!]{1,200}$")
             ])
         ],
-        UfoType: [""]
-    }
+        UfoType: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z ]{1,20}$")
+            ])
+        ]    }
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
         this.EditObservationForm = formBuilder.group(this.validation);
