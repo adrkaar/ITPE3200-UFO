@@ -31,7 +31,7 @@ namespace Ufo.Controllers
                     _log.LogInformation("Observation was not saved");
                     return BadRequest("Observation was not saved");
                 }
-                return Ok("Observation was saved");
+                return Ok(returnOk);
             }
             else
             {
