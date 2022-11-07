@@ -15,8 +15,8 @@ namespace UfoUnitTest
         private readonly Mock<InterfaceObservationRepository> mockRepo = new Mock<InterfaceObservationRepository>();
         private readonly Mock<ILogger<ObservationController>> mockLog = new Mock<ILogger<ObservationController>>();
 
-        /* Save observation */
-        // gjøres om til SaveObservationsLogInnOk
+        /********** Save observation **********/
+        // SaveObservationLogInnOk
         [Fact]
         public async Task SaveObservationOk()
         {
@@ -31,29 +31,17 @@ namespace UfoUnitTest
             Assert.True((bool)result.Value);
         }
 
-        // må lage SaveObservationNotLoggedInn
         //[Fact]
         //public async Task SaveObservationNotLoggedInn()
         //{
         //    // Arrange
-        //    //mockRep.Setup(k => k.Lagre(It.IsAny<Kunde>())).ReturnsAsync(true);
-
-        //    //var kundeController = new KundeController(mockRep.Object, mockLog.Object);
-
-        //    //mockSession[_loggetInn] = _ikkeLoggetInn;
-        //    //mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-        //    //kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
 
         //    //// Act
-        //    //var resultat = await kundeController.Lagre(It.IsAny<Kunde>()) as UnauthorizedObjectResult;
 
         //    //// Assert 
-        //    //Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
-        //    //Assert.Equal("Ikke logget inn", resultat.Value);
-        //    throw new NotImplementedException();
         //}
 
-        // skal bli SaveObservationLogInnOkCanNotSave
+        // SaveObservationLogInnOkCanNotSave
         [Fact]
         public async Task SaveObservationCanNotSave()
         {
@@ -68,7 +56,7 @@ namespace UfoUnitTest
             Assert.Equal("Observation was not saved", result.Value);
         }
 
-        // skal bli SaveObservationLogInnOkModelStateInvalid
+        // SaveObservationLogInnOkModelStateInvalid
         [Fact]
         public async Task SaveObservationModelStateInvalid()
         {
@@ -87,7 +75,7 @@ namespace UfoUnitTest
             Assert.Equal("Error in input validation", result.Value);
         }
 
-        /* Fetch all observations */
+        /********** Fetch all observations **********/
         // FetchAllObservationsLogInnOk
         [Fact]
         public async Task FetchAllObservationsOk()
@@ -127,29 +115,17 @@ namespace UfoUnitTest
             Assert.Null(result);
         }
 
-        // FetchAllObservationsNotLoggedInn
         //[Fact]
         //public async Task FetchAllObservationsNotLoggedInn()
         //{
         //    // Arrange
-        //    //mockRep.Setup(k => k.HentAlle()).ReturnsAsync(It.IsAny<List<Kunde>>());
-
-        //    //var kundeController = new KundeController(mockRep.Object, mockLog.Object);
-
-        //    //mockSession[_loggetInn] = _ikkeLoggetInn;
-        //    //mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-        //    //kundeController.ControllerContext.HttpContext = mockHttpContext.Object;
 
         //    //// Act
-        //    //var resultat = await kundeController.HentAlle() as UnauthorizedObjectResult;
 
         //    //// Assert 
-        //    //Assert.Equal((int)HttpStatusCode.Unauthorized, resultat.StatusCode);
-        //    //Assert.Equal("Ikke logget inn", resultat.Value);
-        //    throw new NotImplementedException();
         //}
 
-        /* Fetch all ufotypes */
+        /********** Fetch all ufotypes **********/
         // FetchAllUfotypesLogInnOk
         [Fact]
         public async Task FetchUfotypesOk()
@@ -189,7 +165,6 @@ namespace UfoUnitTest
             Assert.Null(result);
         }
 
-        // FetchAllUfotypesNotLoggedInn
         //[Fact]
         //public async Task FetchUfotypesNotLoggedInn()
         //{
@@ -198,10 +173,9 @@ namespace UfoUnitTest
         //    // Act
 
         //    //Assert
-        //    throw new NotImplementedException();
         //}
 
-        /* Fetch all locations */
+        /********** Fetch all locations **********/
         // FetchAllLocationsLogInnOk
         [Fact]
         public async Task FetchAllLocationsOk()
@@ -242,7 +216,6 @@ namespace UfoUnitTest
             Assert.Null(result);
         }
 
-        // FetchAllLocationsNotLoggedInn
         //[Fact]
         //public async Task FetchAllLocationsNotLoggedInn()
         //{
@@ -251,10 +224,9 @@ namespace UfoUnitTest
         //    // Act
 
         //    //Assert
-        //    throw new NotImplementedException();
         //}
 
-        /* Fetch one Observation */
+        /********** Fetch one Observation **********/
         // FetchOneObservationLogInOk
         [Fact]
         public async Task FetchOneObservationOk()
@@ -272,7 +244,6 @@ namespace UfoUnitTest
             Assert.Equal(observation, (Observation)result.Value);
         }
 
-        // FetchOneObservationNotLoggedInn
         //[Fact]
         //public async Task FetchOneObservationOk()
         //{
@@ -298,7 +269,7 @@ namespace UfoUnitTest
             Assert.Equal("Observation was not found", result.Value);
         }
 
-        /* change observation */
+        /********** change observation **********/
         // ChangeObservationLogInnOk
         [Fact]
         public async Task ChangeObservationOk()
@@ -314,7 +285,15 @@ namespace UfoUnitTest
             Assert.True((bool)result.Value);
         }
 
-        // changeObservationNotLoggedInn
+        //[Fact]
+        //public async Task changeObservationNotLoggedInn()
+        //{
+        //    // Arrange
+
+        //    // Act
+
+        //    // Assert
+        //}
 
         // ChangeObservationLogInnCouldNotChange
         [Fact]
@@ -350,7 +329,7 @@ namespace UfoUnitTest
             Assert.Equal("Error in input validation", result.Value);
         }
 
-        /* delete observation */
+        /********** delete observation **********/
         // DeleteObservationLogInnOk
         [Fact]
         public async Task DeleteObservationOk()
