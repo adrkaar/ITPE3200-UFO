@@ -47,7 +47,7 @@ namespace Ufo.Controllers
             }
             else
             {
-                return BadRequest("Feil i inputvalidering");
+                return BadRequest("Error in input validation");
             }
         }
 
