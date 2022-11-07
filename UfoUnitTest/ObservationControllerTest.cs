@@ -94,7 +94,7 @@ namespace UfoUnitTest
             var result = await observationController.FetchAllObservations() as OkObjectResult;
 
             //Assert
-            Assert.Equal((List<Observation>)result.Value, observationList);
+            Assert.Equal(observationList, (List<Observation>)result.Value);
         }
 
         // FetchAllObservationsLogInnOkDbError
@@ -144,7 +144,7 @@ namespace UfoUnitTest
             var result = await observationController.FetchUfoTypes() as OkObjectResult;
 
             //Assert
-            Assert.Equal((List<UfoType>)result.Value, ufoList);
+            Assert.Equal(ufoList, (List<UfoType>)result.Value);
         }
 
         // FetchAllUfotypesLogInnOkDbError
@@ -195,7 +195,7 @@ namespace UfoUnitTest
             var result = await observationController.FetchAllLocations() as OkObjectResult;
 
             //Assert
-            Assert.Equal((List<Observation>)result.Value, locationList);
+            Assert.Equal(locationList, (List<Observation>)result.Value);
         }
 
         // FetchAllLocationsLogInnOkDbError
