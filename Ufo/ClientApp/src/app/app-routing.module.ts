@@ -20,7 +20,7 @@ const routes: Routes = [
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
       { path: 'addComment/:id', component: AddCommentComponent },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
 ];
 
 @NgModule({
