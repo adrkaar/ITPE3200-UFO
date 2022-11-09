@@ -160,3 +160,8 @@ thead {
   padding: 10px;
 
 }
+
+/*-----------  Map  ------------------*/
+#map:not(:empty) {
+    height: 20em;
+}

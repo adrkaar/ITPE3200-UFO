@@ -8,7 +8,7 @@ import { Observation } from '../../models/observation.model';
 
 export class HomeComponent implements OnInit {
     zoom: number = 3;
-    center: google.maps.LatLngLiteral = { lat: 48.647983479154824, lng: 9.865054057063944 }
+    center: google.maps.LatLngLiteral = { lat: 48.647983479154824, lng: 9.865054057063944 };
     markerPositions: google.maps.LatLngLiteral[] = [];
     latLng: google.maps.LatLngLiteral;
 
@@ -22,11 +22,9 @@ export class HomeComponent implements OnInit {
     fetchAllLocations() {
         this.http.get<Observation[]>('api/observation/fetchAllLocations')
             .subscribe(response => {
-
                 // legger til lokasjonene p� kartet
                 this.addToMap(response);
-            },
-                error => console.log(error)
+            }, error => console.log(error)
             );
     }
 
