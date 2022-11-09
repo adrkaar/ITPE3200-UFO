@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalLogin } from 'src/app/components/modal/modalLogin.component';
-import { navbarData } from './nav-data';
 
 @Component({
   selector: 'app-nav-menu',
