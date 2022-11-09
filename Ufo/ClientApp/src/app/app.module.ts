@@ -27,6 +27,7 @@ import { SafeHtml } from './pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
+import { ModalLogin } from './components/modal/modalLogin.component';
 
 
 // m�  g�es igjennom hca som faktisk brukes og er p� riktig sted typ trenger alle de decalrations?
@@ -45,6 +46,7 @@ import { LoginComponent } from './views/login/login.component';
         SafeHtml,
       /* Login */
         LoginComponent,
+        ModalLogin
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -63,6 +65,7 @@ import { LoginComponent } from './views/login/login.component';
         // NoopAnimationsModule
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [ModalLogin]
 })
 export class AppModule { }

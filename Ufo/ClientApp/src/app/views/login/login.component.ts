@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalLogin } from 'src/app/components/modal/modalLogin.component';
 
 @Component({
@@ -16,13 +16,13 @@ export class LoginComponent {
     // submitted = false;
 
 
-
     constructor(
         private formBuilder: FormBuilder,
         private modalService: NgbModal,
         // private route: ActivatedRoute,
         // private router: Router,
         // private accountService: AccountService,
+        public modal: NgbActiveModal
     ) { 
         this.Form = this.formBuilder.group({
             username: ['', Validators.required],

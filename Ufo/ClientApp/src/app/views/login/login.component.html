@@ -1,3 +1,52 @@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Login</h4>
+    </div>
+    <div class="modal-body">
+        <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+            <table>
+                <tr>
+                    <td>
+                        <label>Username:</label>
+                    </td>
+                    <td>
+                        <input type="text" formControlName="username">
+                    </td>
+                    <td *ngIf="this.Form.controls.username.status=='INVALID'">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Password:</label>
+                    </td>
+                    <td>
+                        <input type="password" formControlName="password">
+                    </td>
+                    <td *ngIf="this.Form.controls.passord.status=='INVALID'">
+                        Create a strong password
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <button type="submit" [disabled]="!Form.valid">Login</button>
+                        <button type="submit" [disabled]="!Form.valid">Register</button>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <!--den første knappen vil bli "default" dvs. kjøres når "enter" trykkes -->
+        <button type="button" class="btn btn-default" (click)="modal.close('Login')">Login</button>
+        <button type="button" class="btn btn-danger" (click)="modal.close('Cancel')">Cancel</button>
+    </div>
+</div>
+<!-- 
 <div>
     <form [formGroup]="Form" (ngSubmit)="onSubmit()">
         <table>
@@ -35,5 +84,5 @@
         </table>
     </form>
 </div>
-
+-->
 

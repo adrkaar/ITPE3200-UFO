@@ -7,5 +7,4 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ModalLogin {
   constructor(public modal: NgbActiveModal) { }
-
 }
