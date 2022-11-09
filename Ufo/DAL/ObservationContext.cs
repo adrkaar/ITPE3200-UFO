@@ -25,6 +25,14 @@ namespace Ufo.DAL
         public int Downvote { get; set; }
     }
 
+    public class Users
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public byte[] Password { get; set; }
+        public byte[] Salt { get; set; }
+    }
+
     public class UfoTypes
     {
         public int Id { get; set; }
@@ -41,6 +49,7 @@ namespace Ufo.DAL
         public DbSet<Observations> Observations { get; set; }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<UfoTypes> UfoTypes { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

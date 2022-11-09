@@ -27,6 +27,7 @@ import { SafeHtml } from './pipe';
 /*Maps*/
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
+import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
     declarations: [
@@ -41,6 +42,8 @@ import { RouterModule } from '@angular/router';
         CommentComponent,
         AddCommentComponent,
         SafeHtml,
+      /* Login */
+        LoginComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -51,7 +54,10 @@ import { RouterModule } from '@angular/router';
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
         AppRoutingModule,
-        NgbModule
+        //AgmCoreModule.forRoot({
+        //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
+        //})
+        // NoopAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
