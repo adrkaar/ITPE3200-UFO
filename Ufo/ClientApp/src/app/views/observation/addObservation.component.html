@@ -14,7 +14,7 @@
     <div class="form-group">
         <label for="latitude">Latitude</label>
         <input type="text" formControlName="latitude" class="form-control" id="latitude" name="latitude" [(ngModel)]="newObservation.latitude">
-        <p *ngIf="this.AddObservationForm.controls.latitude.status=='INVALID'">Latidute needs to be a number, max 10 characters</p>
+        <p *ngIf="this.AddObservationForm.controls.latitude.status=='INVALID'">Latitude needs to be a number, max 10 characters</p>
     </div>
     <div class="form-group">
         <label for="longitude">Longitude</label>
@@ -40,3 +40,5 @@
 
     <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>
 </form>
+
+<button (click)="fetchMyCoords()">Fetch My Coords Please</button>

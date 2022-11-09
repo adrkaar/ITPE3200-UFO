@@ -12,6 +12,7 @@ import { UfoType } from '../../models/ufoType.model';
 export class AddObservationComponent {
     AddObservationForm: FormGroup;
 
+    latitude: number;
     chosenType: string;
     types: Array<UfoType>;
     addNewType: string;
@@ -111,5 +112,18 @@ export class AddObservationComponent {
             },
                 error => console.log(error)
             );
+    }
+
+    // https://www.youtube.com/watch?v=orjkt0VHt1c
+    fetchMyCoords() {
+        if (!navigator.geolocation) {
+            console.log("geolocations not supported")
+        }
+        // henter brukeres geo locasjon og fyller ut det for dem med max 10 tegn
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.newObservation.latitude = String(position.coords.latitude).substring(0,10);
+            this.newObservation.longitude = String(position.coords.longitude).substring(0, 10);
+        }, error => console.log(error)
+        );
     }
 }
