@@ -106,6 +106,18 @@ thead {
 }
 
 
+/*-----------  Modal ------------------*/
+.modal-content {
+  z-index: 1020!important;
+}
+
+.ngb-modal-backdrop {
+  z-index: -1;
+}
+
+.modal-backdrop.in { z-index: auto;}
+
+
 /*-----------  Form  ------------------*/
 /* https://codepen.io/ainalem/pen/GRqPwoz?editors=1100 */
 .form {
@@ -139,23 +151,18 @@ thead {
 }
 
 .left-side {
-  margin-top: 1%;
-  margin-left: 1%;
-  margin-right: 1%;
-  border-radius: 15px;
+  border-radius: 0px;
   width: 300px;
-  height: 900px;
+  height: calc(100vh);
   display: flex;
   background-color: #00695F;
   justify-content: center;
+  box-shadow: 5px 0 20px 0 #00695F;
 }
 
 .right-side {
-  background-color: #00695F;
   width: 100%;
-  height: auto;
-  margin-top: 1%;
-  margin-right: 1%;
+  height: calc(100vh);
   border-radius: 15px;
   padding: 10px;
 
