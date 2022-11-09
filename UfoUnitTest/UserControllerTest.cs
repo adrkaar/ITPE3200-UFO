@@ -83,7 +83,7 @@ namespace UfoUnitTest
             Assert.Equal("Error in input validation", resultat.Value);
         }
 
-        /*[Fact]
+        [Fact]
         public void LoggUt()
         {
             var userController = new UserController(mockRepo.Object, mockLog.Object);
@@ -97,6 +97,6 @@ namespace UfoUnitTest
 
             // Assert
             Assert.Equal(_notLoggedIn, mockSession[_loggedIn]);
-        }*/
+        }
     }
 }
