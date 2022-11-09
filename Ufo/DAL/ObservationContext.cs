@@ -55,6 +55,5 @@ namespace Ufo.DAL
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-
     }
 }
