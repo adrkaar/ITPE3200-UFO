@@ -26,7 +26,6 @@ export class CommentComponent {
         window.location.reload()
     }
 
-    // føler ikke egt frontend brude sende med id, føler det er riktigere å gjøre det i backend??
     fetchAllComments(id: any) {
         this.http.get<Comment[]>('api/comment/fetchAllComments/' + id)
             .subscribe(response => {

@@ -12,10 +12,9 @@
         <p *ngIf="this.AddObservationForm.controls.time.status=='INVALID'">Time needs to be in the format HH:MM</p>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="fetchMyCoords()">Fetch my geolocation</button>
+    <button type="button" class="btn btn-primary" (click)="fetchMyCoords()">Fetch my location</button>
     <button type="button" class="btn btn-primary" (click)="addMap()">Add position via map</button>
     <div id="map"></div>
-    <!--<button type="button" *ngIf="map" class="btn btn-primary" (click)="closeMap()">Close map</button>-->
 
     <div class="form-group">
         <label for="latitude">Latitude</label>

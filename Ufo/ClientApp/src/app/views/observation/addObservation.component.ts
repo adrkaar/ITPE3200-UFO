@@ -4,9 +4,6 @@ import { Router } from "@angular/router";
 import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 import { Observation } from '../../models/observation.model';
 import { UfoType } from '../../models/ufoType.model';
-import { User } from 'oidc-client';
-import { waitForAsync } from '@angular/core/testing';
-import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
 
 @Component({
     templateUrl: 'addObservation.component.html'
@@ -15,13 +12,15 @@ import { emitDistinctChangesOnlyDefaultValue } from '@angular/compiler';
 export class AddObservationComponent {
     AddObservationForm: FormGroup;
 
-    latitude: number;
+    maxDate;
+
     chosenType: string;
     types: Array<UfoType>;
     addNewType: string;
-    addLatLngViaMap;
 
-    maxDate;
+    marker: google.maps.Marker;
+    map: google.maps.Map;
+
     newObservation: Observation = {
         id: 0,
         date: ' ',
@@ -95,7 +94,7 @@ export class AddObservationComponent {
     }
 
     addObservation() {
-        // sjekker om brukeren vil legge til ny type
+        // sjekker om brukeren vil legge til ny type før typen settes
         if (this.chosenType === 'Add new type') {
             // henter verdien til ny type
             this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
@@ -118,24 +117,18 @@ export class AddObservationComponent {
             );
     }
 
-
-    marker: google.maps.Marker;
-    map: google.maps.Map;
-
-    // https://www.youtube.com/watch?v=orjkt0VHt1c
-    // kan ta tid å få svar
+    /* https://www.youtube.com/watch?v=orjkt0VHt1c */
     fetchMyCoords() {
         if (!navigator.geolocation) {
             console.log("geolocations not supported")
         }
-        // henter brukeres geo locasjon og fyller ut det for dem med max 10 tegn
+        // henter brukeres geolokasjon og fyller ut det for dem med max 10 tegn
         navigator.geolocation.getCurrentPosition((position) => {
             this.newObservation.latitude = String(position.coords.latitude).substring(0,10);
             this.newObservation.longitude = String(position.coords.longitude).substring(0, 10);
 
-            // sette markøren
+            // setter markøren
             var ltlg = { lat: position.coords.latitude, lng: position.coords.longitude };
-            // gir feilmelding hvis fetchmycoord blir kalt før addmap
             this.marker.setPosition(ltlg);
         }, error => console.log(error)
         );
@@ -165,15 +158,4 @@ export class AddObservationComponent {
             this.newObservation.longitude = event.latLng.lng().toFixed(5);
         });
     }
-
-    // er jo ikke så farlig, kan droppes å kunne lukke den
-    //closeMap() {
-    //    // fjerne kart
-    //    console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-    //    this.map = null;
-    //    delete (this.map);
-
-    //    (<HTMLInputElement>document.getElementById("map")).value = null;
-    //    //console.log((<HTMLInputElement>document.getElementById("map")).value);
-    //}
 }
