@@ -156,6 +156,10 @@ table td {
     margin: 2%;
 }
 
+.form-group:empty {
+    display: hidden;
+}
+
 
 /*-----------  Map  ------------------*/
 #homeMap {
