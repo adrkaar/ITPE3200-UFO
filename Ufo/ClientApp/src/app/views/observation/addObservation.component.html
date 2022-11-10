@@ -1,6 +1,6 @@
 ﻿<h1>Register New UFO Observation</h1>
 
-<form [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
+<form class="form" [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
     <div class="form-group">
         <label for="date">Date</label>
         <input type="date" formControlName="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" max="{{maxDate}}">
@@ -42,7 +42,7 @@
         </select>
     </div>
 
-    <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
+    <div class="form-group" *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>
 </form>

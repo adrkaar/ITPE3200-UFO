@@ -1,6 +1,6 @@
 ﻿<h1>Edit UFO Observation</h1>
 
-<form [formGroup]="EditObservationForm" #form="ngForm">
+<form class="form" [formGroup]="EditObservationForm" #form="ngForm">
     <div class="form-group">
         <label for="id">Id</label>
         <input type="text" formControlName="id" class="form-control" id="id" name="id" [(ngModel)]="editObservation.id" readonly>
@@ -31,13 +31,16 @@
         <p *ngIf="this.EditObservationForm.controls.description.status=='INVALID'">Description cannot be empty, max 160 characters</p>
     </div>
 
-    <select class="form-control" (change)="selectedOption($event.target.value)">
-        <option disabled selected>Select Type</option>
-        <option *ngFor="let type of types">{{ type.type }}</option>
-        <option>Add new type</option>
-    </select>
-
-    <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
+    <div class="form-group">
+        <label for="type">Type</label>
+        <select class="form-control" id="type" (change)="selectedOption($event.target.value)">
+            <option disabled selected>Select Type</option>
+            <option *ngFor="let type of types">{{ type.type }}</option>
+            <option>Add new type</option>
+        </select>
+    </div>
+    
+    <div *ngIf="addNewType" class="form-group" [innerHtml]="addNewType | safeHtml"></div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!EditObservationForm.valid" (click)="updateObservation()">Save</button>
 

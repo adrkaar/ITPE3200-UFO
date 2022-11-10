@@ -6,6 +6,7 @@
 body {
     background-color: #B7D6D3;
     font-family: 'Roboto';
+    height: 100%;
 }
 
 a {
@@ -16,8 +17,46 @@ code {
   color: #e01a76;
 }
 
-/*---------------------- KNAPPER ------------------------ */
+/*---------------------- NAVBAR ------------------------ */
+.bg-header {
+    background-color: #00695F;
+}
 
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+.frontweb {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.left-side {
+    margin-top: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 15px;
+    width: 300px;
+    height: 900px;
+    display: flex;
+    background-color: #00695F;
+    justify-content: center;
+}
+
+.right-side {
+    background-color: #00695F;
+    width: 100%;
+    height: auto;
+    margin-top: 1%;
+    margin-right: 1%;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+/*---------------------- KNAPPER ------------------------ */
 .btn-primary {
   color: #E3E3E3;
   background-color: #009688;
@@ -50,22 +89,8 @@ code {
   font-family: 'Roboto', bold;
 }
 
-/* -------------------------------------------------------- */
 
-
-/*---------------------- NAVBAR ------------------------ */
-
-.bg-header {
-  background-color: #00695F;
-}
-
-.logo {
-  width: 50px;
-  height: auto;
-}
-
-/* -------------------------------------------------------- */
-
+/*-----------  Icon ------------------*/
 .icon-primary {
   color: #009688;
 }
@@ -81,11 +106,6 @@ code {
 .icon-display-large {
   transform: scale(2.5);
   color: white;
-}
-
-body {
-  background-color: #B7D6D3;
-  font-family: 'Roboto';
 }
 
 
@@ -105,63 +125,43 @@ thead {
   position: sticky;
 }
 
+table td {
+    background: #B7D6D3;
+}
+
 
 /*-----------  Form  ------------------*/
-/* https://codepen.io/ainalem/pen/GRqPwoz?editors=1100 */
 .form {
-    background-color: #009688;
-    border-radius: 20px;
-    box-sizing: border-box;
-    width: 45em;
-    padding: 2% 5%;
-    align-content: center;
+    width: 40em;
+    padding: 2%;
 }
 
-.input {
-    background-color: #303245;
-    border-radius: 12px;
-    border: 0;
-    box-sizing: border-box;
-    color: #eee;
-    font-size: 18px;
-    height: 100%;
-    outline: 0;
-    padding: 4px 20px 0;
-    width: 100%;
+.form-group {
+    padding: 5%;
+    background: white;
+    border-radius: 10px;
+    margin: 2%;
 }
 
-/*  Navbar  */
-
-.frontweb {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
+.form-group p {
+    display: none;
+    color: red;
+}
+    
+.ng-touched p {
+    display: contents;
 }
 
-.left-side {
-  margin-top: 1%;
-  margin-left: 1%;
-  margin-right: 1%;
-  border-radius: 15px;
-  width: 300px;
-  height: 900px;
-  display: flex;
-  background-color: #00695F;
-  justify-content: center;
+.form .btn {
+    margin: 2%;
 }
 
-.right-side {
-  background-color: #00695F;
-  width: 100%;
-  height: auto;
-  margin-top: 1%;
-  margin-right: 1%;
-  border-radius: 15px;
-  padding: 10px;
-
-}
 
 /*-----------  Map  ------------------*/
+#homeMap {
+    height: 30em;
+}
+
 #map:not(:empty) {
     height: 20em;
 }
