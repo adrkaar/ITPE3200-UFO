@@ -97,7 +97,7 @@ export class AddObservationComponent {
         // sjekker om brukeren vil legge til ny type før typen settes
         if (this.chosenType === 'Add new type') {
             // henter verdien til ny type
-            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
+            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value; 
         }
         this.newObservation.ufoType = this.chosenType;
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
