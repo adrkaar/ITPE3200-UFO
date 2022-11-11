@@ -23,4 +23,8 @@ export class ObservationComponent {
                 error => console.log(error)
             );
     }
+
+    openMapwithLocation(latitude: number, longitude: number) {
+
+    }
 }
