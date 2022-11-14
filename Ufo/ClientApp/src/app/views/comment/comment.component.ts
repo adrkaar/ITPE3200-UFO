@@ -39,7 +39,7 @@ export class CommentComponent {
     ngOnInit() {
         // henter id fra parameter i url
         this.route.paramMap.subscribe(param => {
-            this.observationId = param.get('id');
+            this.observationId = Number(param.get('id'));
         })
 
         this.fetchAllComments(this.observationId);
@@ -89,9 +89,9 @@ export class CommentComponent {
         // setter riktig observationId før objektet sendes
         this.newComment.observationId = this.observationId;
 
-        this.http.post<Comment>('api/comment/addComment', this.newComment)
+        this.http.post<Comment>('api/comment/addComment/', this.newComment)
             .subscribe(() => {
-                // this.router.navigate(['/comment', this.observationId]);
+                window.location.reload()
             },
                 error => console.log(error)
             );
