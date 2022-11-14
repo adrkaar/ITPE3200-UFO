@@ -24,7 +24,7 @@ export class HomeComponent implements OnInit {
 
     // henter alle observasjonene som kun inneholder lokasjonen
     fetchAllLocations() {
-        this.http.get<Observation[]>('api/observation/fetchAllLocations')
+        this.http.get<Observation[]>('api/observation/fetchAllObservations')
             .subscribe(response => {
                 // legger til lokasjonene paa kartet
                 this.addToMap(response);
@@ -32,9 +32,11 @@ export class HomeComponent implements OnInit {
             );
     }
 
+
     // legger til lokasjonene paa kartet
     addToMap(observations: Observation[]) {
         var marker: google.maps.Marker;
+        //const infoWindow = new google.maps.InfoWindow();
 
         for (let i = 0; i < observations.length; i++) {
             // lager markører med lengde og breddegrad fra observasjonen
@@ -42,6 +44,15 @@ export class HomeComponent implements OnInit {
                 position: { lat: Number(observations[i].latitude), lng: Number(observations[i].longitude) },
                 map: this.map
             })
+
+            //marker.addListener("click", () => {
+            //    infoWindow.setContent(observations[i].description);
+            //    infoWindow.open({
+            //        anchor: marker,
+            //        map: this.map
+            //    });
+            //});
         }
     }
+
 }
