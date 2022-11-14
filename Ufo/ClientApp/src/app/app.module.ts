@@ -40,7 +40,8 @@ import { RouterModule } from '@angular/router';
       /*Comment*/
         CommentComponent,
         AddCommentComponent,
-        SafeHtml,
+        SafeHtml
+        
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

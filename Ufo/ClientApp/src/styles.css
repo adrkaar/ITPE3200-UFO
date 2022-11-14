@@ -152,6 +152,7 @@ table td {
 .form {
     width: 40em;
     padding: 2%;
+    margin: auto;
 }
 
 .form-group {

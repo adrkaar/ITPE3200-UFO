@@ -23,38 +23,8 @@
         <div class="feedboxField">
             <h3>Seen at</h3>
             <p>Latitude:&nbsp;{{ observation.latitude }}, Longitude:&nbsp;{{ observation.longitude }}</p>
-            <button class="btn btn-secondary" type="button" (click)="openMapwithLocation(observation.latitude, observation.longitude)">See location on map</button>
         </div>
         <button class="btn btn-secondary" [routerLink]="['/editObservation', observation.id]">View</button>
         <button class="btn btn-secondary" [routerLink]="['../comment', observation.id]">Comments</button>
     </div>
 </div>
-
-<table class="table table-bordered table-striped">
-    <thead style="background-color: #009688;">
-        <tr>
-            <th>Id</th> <!--ikke nødvendig for sisteutkast-->
-            <th>Type</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Description</th>
-            <th>Latitude</th>
-            <th>Longitude</th>
-            <th> </th>
-            <th> </th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let observation of allObservations ">
-        <tr>
-            <td>{{ observation.id }}</td> <!--ikke nødvendig for sisteutkast-->
-            <td>{{ observation.ufoType }}</td>
-            <td>{{ observation.date }}</td>
-            <td>{{ observation.time }}</td>
-            <td>{{ observation.description }}</td>
-            <td>{{ observation.latitude }}</td>
-            <td>{{ observation.longitude }}</td>
-            <td><button class="btn btn-secondary" [routerLink]="['/editObservation', observation.id]">View</button></td>
-            <td><button class="btn btn-secondary" [routerLink]="['../comment', observation.id]">Comments</button></td>
-        </tr>
-    </tbody>
-</table>
