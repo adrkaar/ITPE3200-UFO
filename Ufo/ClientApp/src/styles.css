@@ -74,18 +74,41 @@ code {
     margin: 0 2%;
 }
 
+.comment-feed {
+    background: white;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.comment-feedbox {
+    margin: 7% 2%;
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    width: auto;
+}
+
+.comment-feedbox-vertical {
+    width: 50%;
+}
+
+.comment-feedbox-vertical-button {
+    margin-left: 10%;
+}
+
+
 /*---------------------- KNAPPER ------------------------ */
 .btn-primary {
-  color: #E3E3E3;
-  background-color: #009688;
-  border-color: #292D32;
-  border-radius: 10px;
-  font-family: 'Roboto', bold;
-  width: 200px;
-  height: 50px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  margin-bottom: 20px;
+    color: #E3E3E3;
+    background-color: #009688;
+    border-color: #292D32;
+    border-radius: 10px;
+    font-family: 'Roboto', bold;
+    width: 200px;
+    height: 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .btn-primary:hover {
@@ -179,10 +202,30 @@ table td {
     display: hidden;
 }
 
+.comment-form-group {
+    padding: 2%;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    width: 60%;
+}
+.comment-form-group button {
+    margin-top: 2%;
+}
+
+.comment-form-group p {
+    display: none;
+    color: red;
+}
+
+.ng-touched p {
+    display: contents;
+}
+
 
 /*-----------  Map  ------------------*/
 #homeMap {
-    height: 30em;
+height: 30em;
 }
 
 #map:not(:empty) {
