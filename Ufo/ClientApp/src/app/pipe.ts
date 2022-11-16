@@ -10,8 +10,11 @@ export class SafeHtml implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }
 
     transform(html) {
+        if (html == '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/>') {
+            return this.sanitizer.bypassSecurityTrustHtml(html);
+        }
         //return this.sanitizer.bypassSecurityTrustStyle(html);
-        return this.sanitizer.bypassSecurityTrustHtml(html);
+        //return this.sanitizer.bypassSecurityTrustHtml(html);
         // return this.sanitizer.bypassSecurityTrustScript(html);
         // return this.sanitizer.bypassSecurityTrustUrl(html);
         // return this.sanitizer.bypassSecurityTrustResourceUrl(html);
