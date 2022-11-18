@@ -13,6 +13,7 @@ namespace Ufo.DAL
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         virtual public UfoTypes UfoTypes { get; set; }
+        virtual public Users Users { get; set; }
     }
 
     public class Comments
@@ -55,6 +56,5 @@ namespace Ufo.DAL
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-
     }
 }
