@@ -28,7 +28,7 @@ namespace Ufo.DAL
                 newObservationRow.Longitude = inObservation.Longitude;
 
                 // setter brukeren
-                var user = _db.Users.Where(u => inObservation.UserId == u.Id);
+                var user = _db.Users.Where(u => inObservation.Username == u.Username);
                 newObservationRow.Users = (Users)user;
 
                 // henter ufo objekt fra ufo tabell 
@@ -64,7 +64,7 @@ namespace Ufo.DAL
                     Latitude = obs.Latitude,
                     Longitude = obs.Longitude,
                     UfoType = obs.UfoTypes.Type,
-                    UserId = obs.Users.Id
+                    Username = obs.Users.Username
                 }).OrderBy(Date => Date.Date).ToListAsync();
                 return allObservations;
             }
@@ -85,7 +85,7 @@ namespace Ufo.DAL
                     Latitude = oneObservation.Latitude,
                     Longitude = oneObservation.Longitude,
                     Description = oneObservation.Description,
-                    UserId = oneObservation.Users.Id
+                    Username = oneObservation.Users.Username
                 };
                 return fetchedObservation;
             }
@@ -104,7 +104,7 @@ namespace Ufo.DAL
                 oneObservation.Longitude = changeObservation.Longitude;
 
                 // setter brukeren
-                var user = _db.Users.Where(u => changeObservation.UserId == u.Id);
+                var user = _db.Users.Where(u => changeObservation.Username == u.Username);
                 oneObservation.Users = (Users)user;
 
                 // henter ufo objekt fra ufo tabell 

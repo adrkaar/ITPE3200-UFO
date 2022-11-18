@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
-using System.Security.Cryptography;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Ufo.Models;
 
@@ -29,7 +29,7 @@ namespace Ufo.DAL
                 iterationCount: 10000,
                 numBytesRequested: 256 / 8);
         }
-        
+
         public static byte[] CreateSalt()
         {
             var csp = new RNGCryptoServiceProvider();
@@ -37,7 +37,7 @@ namespace Ufo.DAL
             csp.GetBytes(salt);
             return salt;
         }
-        
+
         public async Task<bool> Login(User user)
         {
             try
@@ -50,11 +50,11 @@ namespace Ufo.DAL
             }
             catch (Exception e)
             {
-                // _log.logInformation(e.Message);
+                _log.LogInformation(e.Message);
                 return false;
 
             }
         }
-        
+
     }
 }

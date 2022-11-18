@@ -24,6 +24,7 @@ namespace Ufo.DAL
         virtual public Observations Observations { get; set; }
         public int UpVote { get; set; }
         public int Downvote { get; set; }
+        virtual public Users Users { get; set; }
     }
 
     public class Users

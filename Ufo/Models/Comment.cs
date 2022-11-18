@@ -7,5 +7,6 @@
         public int ObservationId { get; set; }
         public int UpVote { get; set; }
         public int DownVote { get; set; }
+        public string Username { get; set; }
     }
 }
