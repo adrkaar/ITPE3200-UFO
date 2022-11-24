@@ -67,7 +67,7 @@ namespace Ufo.DAL
                 /* User */
                 var user = new Users();
                 user.Username = "Admin";
-                var password = "Supersecret";
+                var password = "Supersecret1!";
                 byte[] salt = UserRepository.CreateSalt();
                 byte[] hash = UserRepository.CreateHash(password, salt);
                 user.Password = hash;
