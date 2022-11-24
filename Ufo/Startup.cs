@@ -26,6 +26,7 @@ namespace Ufo
             services.AddDbContext<ObservationContext>(options => options.UseSqlite("Data source=Observasjon.db"));
             services.AddScoped<InterfaceObservationRepository, ObservationRepository>();
             services.AddScoped<InterfaceCommentRepository, CommentRepository>();
+            services.AddScoped<InterfaceUserRepository, UserRepository>();
 
             //services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory

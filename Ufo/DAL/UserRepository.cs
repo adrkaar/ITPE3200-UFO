@@ -50,10 +50,9 @@ namespace Ufo.DAL
             }
             catch (Exception e)
             {
-                // _log.logInformation(e.Message);
+                _log.LogInformation(e.Message);
                 return false;
             }
         }
-
     }
 }
