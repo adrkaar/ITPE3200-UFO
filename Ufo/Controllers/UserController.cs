@@ -35,7 +35,7 @@ namespace Ufo.Controllers
                     HttpContext.Session.SetString(_loggedIn, _notLoggedIn);
                     return Ok(false);
                 }
-                HttpContext.Session.SetString(_loggedIn, _loggedIn);
+                HttpContext.Session.SetString(_loggedIn, _loggedIn); // denne feiler
                 return Ok(true);
             }
             _log.LogInformation("Error in validation");

@@ -37,8 +37,9 @@ export class LoginComponent {
 
     logIn() {
         this.http.post<User>('api/user/logIn', this.user)
-            .subscribe(() => {
+            .subscribe(res => {
                 //this.router.navigate(['observation'])
+                console.log(res);
             },
                 error => console.log(error)
         );

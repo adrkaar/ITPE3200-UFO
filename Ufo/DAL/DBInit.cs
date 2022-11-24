@@ -1,4 +1,7 @@
-﻿namespace Ufo.DAL
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Ufo.DAL
 {
     public class DBInit
     {
@@ -19,7 +22,9 @@
                 //byte[] hash = UserRepository.CreateHash(password, salt);
                 //user.Password = hash;
 
-                var user1 = new Users { Username = "Admin", Password = UserRepository.CreateHash("Supersecret1!", UserRepository.CreateSalt()) };
+                // saltet blir ikke lagt inn
+                byte[] salt1 = UserRepository.CreateSalt();
+                var user1 = new Users { Username = "Admin", Password = UserRepository.CreateHash("Supersecret1!", salt1), Salt = salt1 };
 
                 context.Users.Add(user1);
 

@@ -231,6 +231,7 @@ table td {
     margin-bottom: 2%;
     width: 60%;
 }
+
 .comment-form-group button {
     margin-top: 2%;
 }
@@ -238,6 +239,25 @@ table td {
 .comment-form-group p {
     display: none;
     color: red;
+}
+
+
+.login-form-group {
+    padding: 2%;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    width: 50%;
+    align-content: center;
+}
+
+.login-form-group-field {
+    padding-bottom: 2%;
+}
+
+.login-form-group p {
+    display: none;
+    color: red
 }
 
 .ng-touched p {

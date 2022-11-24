@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Ufo.DAL
 {
@@ -41,6 +42,7 @@ namespace Ufo.DAL
         public string Type { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class ObservationContext : DbContext
     {
         public ObservationContext(DbContextOptions<ObservationContext> options) : base(options)

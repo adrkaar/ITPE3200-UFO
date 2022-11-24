@@ -1,4 +1,13 @@
-﻿namespace Ufo.DAL
+﻿using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
+using Ufo.Models;
+
+namespace Ufo.DAL
 {
     public class UserRepository : InterfaceUserRepository
     {
