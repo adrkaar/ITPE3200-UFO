@@ -1,10 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ufo.Models;
-
-namespace Ufo.DAL
+﻿namespace Ufo.DAL
 {
     public class ObservationRepository : InterfaceObservationRepository
     {
@@ -26,6 +20,10 @@ namespace Ufo.DAL
                 newObservationRow.Description = inObservation.Description;
                 newObservationRow.Latitude = inObservation.Latitude;
                 newObservationRow.Longitude = inObservation.Longitude;
+
+                // setter brukeren
+                var user = _db.Users.Where(u => inObservation.Username == u.Username);
+                newObservationRow.Users = (Users)user;
 
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
@@ -59,7 +57,8 @@ namespace Ufo.DAL
                     Description = obs.Description,
                     Latitude = obs.Latitude,
                     Longitude = obs.Longitude,
-                    UfoType = obs.UfoTypes.Type
+                    UfoType = obs.UfoTypes.Type,
+                    Username = obs.Users.Username
                 }).OrderByDescending(Date => Date.Date).ToListAsync();
                 return allObservations;
             }
@@ -80,6 +79,7 @@ namespace Ufo.DAL
                     Latitude = oneObservation.Latitude,
                     Longitude = oneObservation.Longitude,
                     Description = oneObservation.Description,
+                    Username = oneObservation.Users.Username
                 };
                 return fetchedObservation;
             }
@@ -96,6 +96,10 @@ namespace Ufo.DAL
                 oneObservation.Description = changeObservation.Description;
                 oneObservation.Latitude = changeObservation.Latitude;
                 oneObservation.Longitude = changeObservation.Longitude;
+
+                // setter brukeren
+                var user = _db.Users.Where(u => changeObservation.Username == u.Username);
+                oneObservation.Users = (Users)user;
 
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
