@@ -1,34 +1,30 @@
 ﻿<h1>Register New UFO Observation</h1>
 
-<form #form="ngForm" (ngSubmit)="addObservation()">
-
-    <!--<mat-form-field appearance="fill">
-        <mat-label for="date">Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" type="text" class="form-control" id="date" name="date"  [(ngModel)]="newObservation.date">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>-->
-    <!--kan sette dato i fremtiden-->
+<form [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
     <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" max="{{date}}">
+        <input type="date" formControlName="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" max="{{maxDate}}">
+        <p *ngIf="this.AddObservationForm.controls.date.status=='INVALID'">Date needs to be in the format DD/MM/YYYY, and cannot be a future date</p>
     </div>
     <div class="form-group">
         <label for="time">Time</label>
-        <input type="time" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
+        <input type="time" formControlName="time" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
+        <p *ngIf="this.AddObservationForm.controls.time.status=='INVALID'">Time needs to be in the format HH:MM</p>
     </div>
     <div class="form-group">
         <label for="latitude">Latitude</label>
-        <input type="text" class="form-control" id="latitude" name="latitude" [(ngModel)]="newObservation.latitude">
+        <input type="text" formControlName="latitude" class="form-control" id="latitude" name="latitude" [(ngModel)]="newObservation.latitude">
+        <p *ngIf="this.AddObservationForm.controls.latitude.status=='INVALID'">Latidute needs to be a number, max 10 characters</p>
     </div>
     <div class="form-group">
         <label for="longitude">Longitude</label>
-        <input type="text" class="form-control" id="longitude" name="longitude" [(ngModel)]="newObservation.longitude">
+        <input type="text" formControlName="longitude" class="form-control" id="longitude" name="longitude" [(ngModel)]="newObservation.longitude">
+        <p *ngIf="this.AddObservationForm.controls.longitude.status=='INVALID'">Longitude needs to be a number, max 10 characters</p>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="newObservation.description">
+        <input formControlName="description" type="text" class="form-control" id="description" name="description" [(ngModel)]="newObservation.description">
+        <p *ngIf="this.AddObservationForm.controls.description.status=='INVALID'">Description cannot be empty, max 160 characters</p>
     </div>
 
     <div class="form-group">
@@ -42,5 +38,5 @@
 
     <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>
 </form>

@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observation } from '../../models/observation.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UfoType } from '../../models/ufoType.model';
+import { FormGroup, FormControl, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
-    selector: 'editObservation',
     templateUrl: 'editObservation.component.html'
 })
 
 export class EditObservationComponent implements OnInit {
+    EditObservationForm: FormGroup;
     editObservation: Observation = {
         id: 0,
         date: ' ',
@@ -24,7 +25,54 @@ export class EditObservationComponent implements OnInit {
     date;
     addNewType: string;
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+    validation = {
+        id: [""],
+        date: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("\\d{4}-\\d{2}-\\d{2}")
+            ])
+        ],
+        time: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("([0-1]?[0-9]|2[0-3]):[0-5][0-9]")
+            ])
+        ],
+        latitude: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[0-9.-]{1,10}$")
+            ])
+        ],
+        longitude: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[0-9.-]{1,10}$")
+            ])
+        ],
+        description: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z .,-?!]{1,200}$")
+            ])
+        ],
+        UfoType: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z ]{1,20}$")
+            ])
+        ]    }
+
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+        this.EditObservationForm = formBuilder.group(this.validation);
+    }
 
     ngOnInit(): void {
         // henter id fra parameter i url
@@ -64,7 +112,7 @@ export class EditObservationComponent implements OnInit {
             this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
         }
         this.editObservation.ufoType = this.chosenType;
-        this.http.post<Observation>("api/observation/editObservation", this.editObservation)
+        this.http.put<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe(() => {
                 this.router.navigate(['observation'])
             },
@@ -81,7 +129,6 @@ export class EditObservationComponent implements OnInit {
             );
     }
 
-    // har hent ufotype i både edit og add...
     fetchUfoTypes() {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {

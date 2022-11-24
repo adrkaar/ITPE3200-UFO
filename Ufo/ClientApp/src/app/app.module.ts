@@ -2,10 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
 import { AddCommentComponent } from './views/comment/addComment.component';
 import { CommentComponent } from './views/comment/comment.component';
 import { HomeComponent } from './views/home/home.component';
@@ -14,6 +15,7 @@ import { AddObservationComponent } from './views/observation/addObservation.comp
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
 
+/*Material*/
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -46,14 +48,13 @@ import { LoginComponent } from './views/login/login.component';
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
-        FormsModule,
+        FormsModule, ReactiveFormsModule,
         MatIconModule,
         MatButtonModule,
-        MatFormFieldModule,
-        MatInputModule,
+        MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
-        AppRoutingModule,
         ReactiveFormsModule
+        NgbModule
     ],
     providers: [],
     bootstrap: [AppComponent],

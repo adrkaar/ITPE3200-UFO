@@ -3,8 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observation } from '../../models/observation.model';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
+    templateUrl: './home.component.html',
 })
 
 export class HomeComponent implements OnInit {
@@ -33,7 +32,7 @@ export class HomeComponent implements OnInit {
 
     // legger til lokasjonene p� kartet
     addToMap(observations: Observation[]) {
-        for (let i = 0; i <= observations.length; i++) {
+        for (let i = 0; i < observations.length; i++) {
             // henter ut lengde og breddegrad fra objektet
             let latitude = observations[i].latitude;
             let longitude = observations[i].longitude;

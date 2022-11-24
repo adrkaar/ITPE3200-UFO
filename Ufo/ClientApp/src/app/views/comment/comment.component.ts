@@ -4,7 +4,6 @@ import { ActivatedRoute } from "@angular/router";
 import { Comment } from "../../models/comment.model"; 
 
 @Component({
-    selector: 'comment',
     templateUrl: 'comment.component.html'
 })
 
