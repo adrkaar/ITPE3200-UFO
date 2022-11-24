@@ -7,12 +7,14 @@ import { Component } from '@angular/core';
 })
 
 export class NavMenuComponent {
+    isExpanded = false;
+    user: any;
 
-  collapse = false;
+    collapse() {
+        this.isExpanded = false;
+    }
 
-  toggleSideNav() {
-    this.collapse = !this.collapse;
-  }
-
-  constructor() { }
+    toggle() {
+        this.isExpanded = !this.isExpanded;
+    }
 }

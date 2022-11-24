@@ -13,7 +13,8 @@ namespace Ufo.Controllers
         private InterfaceUserRepository _db;
 
         private ILogger<UserController> _log;
-        
+
+        [HttpPost("logIn")]
         public async Task<ActionResult> LoggInn(User user)
         {
             if (ModelState.IsValid)

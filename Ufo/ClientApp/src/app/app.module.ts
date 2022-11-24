@@ -26,7 +26,7 @@ import { SafeHtml } from './pipe';
 
 /*Maps*/
 import { GoogleMapsModule } from '@angular/google-maps';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
@@ -53,8 +53,9 @@ import { LoginComponent } from './views/login/login.component';
         MatButtonModule,
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
-        ReactiveFormsModule
-        NgbModule
+        ReactiveFormsModule,
+        NgbModule,
+        RouterModule, AppRoutingModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
