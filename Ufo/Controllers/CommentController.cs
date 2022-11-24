@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,6 +15,9 @@ namespace Ufo.Controllers
         private readonly InterfaceCommentRepository _db;
         private ILogger<CommentController> _log;
 
+        private const string _loggedIn = "loggedIn";
+        private const string _notLoggedIn = "";
+
         public CommentController(InterfaceCommentRepository db, ILogger<CommentController> log)
         {
             _db = db;
@@ -23,11 +27,13 @@ namespace Ufo.Controllers
         [HttpGet("fetchAllComments/{id}")]
         public async Task<ActionResult> FetchAllComments(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+
             List<Comment> allComments = await _db.FetchAllComments(id);
             if (allComments == null)
             {
                 _log.LogInformation("Table in database is empty");
-                return BadRequest("Table in database is empty");
+                return NotFound("Table in database is empty");
             }
             return Ok(allComments);
         }
@@ -35,6 +41,8 @@ namespace Ufo.Controllers
         [HttpPost("addComment")]
         public async Task<ActionResult> AddComment(Comment inComment)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+
             if (ModelState.IsValid)
             {
                 bool returnOk = await _db.AddComment(inComment);
@@ -47,18 +55,21 @@ namespace Ufo.Controllers
             }
             else
             {
-                return BadRequest("Feil i inputvalidering");
+                _log.LogInformation("Error in input validation");
+                return BadRequest("Error in input validation");
             }
         }
 
         [HttpDelete("deleteComment/{id}")]
         public async Task<ActionResult> DeleteComment(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+
             bool returnOk = await _db.DeleteComment(id);
             if (!returnOk)
             {
                 _log.LogInformation("Could not delete comment");
-                return BadRequest("Could not delete comment");
+                return NotFound("Could not delete comment");
             }
             return Ok(returnOk);
         }
@@ -66,11 +77,13 @@ namespace Ufo.Controllers
         [HttpGet("upVote/{id}")]
         public async Task<ActionResult> UpVote(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+
             bool returnOk = await _db.UpVote(id);
             if (!returnOk)
             {
                 _log.LogInformation("Could not up vote");
-                return BadRequest("Could not up vote");
+                return NotFound("Could not up vote");
             }
             return Ok(returnOk);
         }
@@ -78,11 +91,13 @@ namespace Ufo.Controllers
         [HttpGet("downVote/{id}")]
         public async Task<ActionResult> DownVote(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+
             bool returnOk = await _db.DownVote(id);
             if (!returnOk)
             {
                 _log.LogInformation("Could not down vote");
-                return BadRequest("Could not down vote");
+                return NotFound("Could not down vote");
             }
             return Ok(returnOk);
         }
