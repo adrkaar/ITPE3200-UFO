@@ -1,4 +1,7 @@
-﻿namespace Ufo.DAL
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Ufo.DAL
 {
     public class DBInit
     {

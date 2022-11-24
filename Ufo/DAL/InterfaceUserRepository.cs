@@ -6,6 +6,6 @@ namespace Ufo.DAL
 {
     public interface InterfaceUserRepository 
     {
-        Task<bool> Login(User user);
+        Task<bool> LogIn(User user);
     }
 }

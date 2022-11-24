@@ -38,7 +38,7 @@ namespace Ufo.DAL
             return salt;
         }
 
-        public async Task<bool> Login(User user)
+        public async Task<bool> LogIn(User user)
         {
             try
             {

@@ -34,20 +34,18 @@ code {
 }
 
 .left-side {
-    margin-right: 1%;
-    height: calc(100vh);
+    border-radius: 0px;
     width: 18%;
+    height: calc(100vh);
     display: flex;
     background-color: #00695F;
     justify-content: center;
-    position: fixed;
+    box-shadow: 5px 0 20px 0 #00695F;
 }
 
 .right-side {
     width: 100%;
-    height: auto;
-    /*margin-top: 1%;*/
-    margin-left: 18%;
+    height: calc(100vh);
     border-radius: 15px;
     padding: 10px;
 }
@@ -230,23 +228,10 @@ table td {
     color: red;
 }
 
-.left-side {
-  border-radius: 0px;
-  width: 300px;
-  height: calc(100vh);
-  display: flex;
-  background-color: #00695F;
-  justify-content: center;
-  box-shadow: 5px 0 20px 0 #00695F;
 .ng-touched p {
     display: contents;
 }
 
-.right-side {
-  width: 100%;
-  height: calc(100vh);
-  border-radius: 15px;
-  padding: 10px;
 
 /*-----------  Map  ------------------*/
 #homeMap {

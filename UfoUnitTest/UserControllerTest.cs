@@ -27,7 +27,7 @@ namespace UfoUnitTest
         public async Task LogInOk()
         {
             // Assert
-            mockRepo.Setup(k => k.Login(It.IsAny<User>())).ReturnsAsync(true);
+            mockRepo.Setup(k => k.LogIn(It.IsAny<User>())).ReturnsAsync(true);
 
             var userController = new UserController(mockRepo.Object, mockLog.Object);
 
@@ -46,7 +46,7 @@ namespace UfoUnitTest
         [Fact]
         public async Task LogInNotOk()
         {
-            mockRepo.Setup(k => k.Login(It.IsAny<User>())).ReturnsAsync(false);
+            mockRepo.Setup(k => k.LogIn(It.IsAny<User>())).ReturnsAsync(false);
 
             var userController = new UserController(mockRepo.Object, mockLog.Object);
 
@@ -65,7 +65,7 @@ namespace UfoUnitTest
         [Fact]
         public async Task LogInModelStateInvalid()
         {
-            mockRepo.Setup(k => k.Login(It.IsAny<User>())).ReturnsAsync(true);
+            mockRepo.Setup(k => k.LogIn(It.IsAny<User>())).ReturnsAsync(true);
 
             var userController = new UserController(mockRepo.Object, mockLog.Object);
 

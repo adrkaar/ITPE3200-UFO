@@ -1,4 +1,11 @@
-﻿namespace Ufo.Controllers
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System.Threading.Tasks;
+using Ufo.DAL;
+using Ufo.Models;
+
+namespace Ufo.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
@@ -16,14 +23,12 @@
             _log = log;
         }
 
-        public async Task<ActionResult> LogIn(User user)
-
         [HttpPost("logIn")]
-        public async Task<ActionResult> LoggInn(User user)
+        public async Task<ActionResult> LogIn(User user)
         {
             if (ModelState.IsValid)
             {
-                bool returnResult = await _db.Login(user);
+                bool returnResult = await _db.LogIn(user);
                 if (!returnResult)
                 {
                     _log.LogInformation("Login failed");
