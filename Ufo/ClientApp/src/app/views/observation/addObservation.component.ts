@@ -12,11 +12,15 @@ import { UfoType } from '../../models/ufoType.model';
 export class AddObservationComponent {
     AddObservationForm: FormGroup;
 
+    maxDate;
+
     chosenType: string;
     types: Array<UfoType>;
     addNewType: string;
 
-    maxDate;
+    marker: google.maps.Marker;
+    map: google.maps.Map;
+
     newObservation: Observation = {
         id: 0,
         date: ' ',
@@ -85,15 +89,15 @@ export class AddObservationComponent {
             this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/>';
         }
         else {
-            this.addNewType = " ";
+            this.addNewType = "";
         }
     }
 
     addObservation() {
-        // sjekker om brukeren vil legge til ny type
+        // sjekker om brukeren vil legge til ny type før typen settes
         if (this.chosenType === 'Add new type') {
             // henter verdien til ny type
-            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
+            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value; 
         }
         this.newObservation.ufoType = this.chosenType;
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
@@ -111,5 +115,47 @@ export class AddObservationComponent {
             },
                 error => console.log(error)
             );
+    }
+
+    /* https://www.youtube.com/watch?v=orjkt0VHt1c */
+    fetchMyCoords() {
+        if (!navigator.geolocation) {
+            console.log("geolocations not supported")
+        }
+        // henter brukeres geolokasjon og fyller ut det for dem med max 10 tegn
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.newObservation.latitude = String(position.coords.latitude).substring(0,10);
+            this.newObservation.longitude = String(position.coords.longitude).substring(0, 10);
+
+            // setter markøren
+            var ltlg = { lat: position.coords.latitude, lng: position.coords.longitude };
+            this.marker.setPosition(ltlg);
+        }, error => console.log(error)
+        );
+    }
+
+    addMap() {
+        var center: google.maps.LatLngLiteral = { lat: 12, lng: 12 };
+
+        // åpner kartet
+        this.map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+            zoom: 3,
+            center: center
+        });
+
+        // setter ut markør
+        this.marker = new google.maps.Marker({
+            position: center,
+            map: this.map
+        });
+
+        // flytter på markøren dit man trykker på kartet
+        google.maps.event.addListener(this.map, 'click', (event) => {
+            this.marker.setPosition(event.latLng);
+
+            // setter latitude og longitude inputfeltene til verdien til markøren
+            this.newObservation.latitude = event.latLng.lat().toFixed(5);
+            this.newObservation.longitude = event.latLng.lng().toFixed(5);
+        });
     }
 }

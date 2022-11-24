@@ -7,42 +7,52 @@ import { Observation } from '../../models/observation.model';
 })
 
 export class HomeComponent implements OnInit {
-    zoom: number = 3;
-    center: google.maps.LatLngLiteral = { lat: 48.647983479154824, lng: 9.865054057063944 }
-    markerPositions: google.maps.LatLngLiteral[] = [];
-    latLng: google.maps.LatLngLiteral;
+    map: google.maps.Map;
+    markerOptions: google.maps.MarkerOptions = { draggable: false };
 
     constructor(private http: HttpClient) { }
 
     ngOnInit(): void {
         this.fetchAllLocations();
+
+        // lager kartet
+        this.map = new google.maps.Map(document.getElementById("homeMap") as HTMLElement, {
+            center: { lat: 48.647983479154824, lng: 9.865054057063944 },
+            zoom: 3,
+        });
     }
 
     // henter alle observasjonene som kun inneholder lokasjonen
     fetchAllLocations() {
-        this.http.get<Observation[]>('api/observation/fetchAllLocations')
+        this.http.get<Observation[]>('api/observation/fetchAllObservations')
             .subscribe(response => {
-
-                // legger til lokasjonene p� kartet
+                // legger til lokasjonene paa kartet
                 this.addToMap(response);
-            },
-                error => console.log(error)
+            }, error => console.log(error)
             );
     }
 
-    // legger til lokasjonene p� kartet
-    addToMap(observations: Observation[]) {
-        for (let i = 0; i < observations.length; i++) {
-            // henter ut lengde og breddegrad fra objektet
-            let latitude = observations[i].latitude;
-            let longitude = observations[i].longitude;
 
-            // legger til lengde og bredde grad i arrray med mark�rer
-            this.markerPositions.push(this.latLng = { lat: Number(latitude), lng: Number(longitude) });
+    // legger til lokasjonene paa kartet
+    addToMap(observations: Observation[]) {
+        var marker: google.maps.Marker;
+        //const infoWindow = new google.maps.InfoWindow();
+
+        for (let i = 0; i < observations.length; i++) {
+            // lager markører med lengde og breddegrad fra observasjonen
+            marker = new google.maps.Marker({
+                position: { lat: Number(observations[i].latitude), lng: Number(observations[i].longitude) },
+                map: this.map
+            })
+
+            //marker.addListener("click", () => {
+            //    infoWindow.setContent(observations[i].description);
+            //    infoWindow.open({
+            //        anchor: marker,
+            //        map: this.map
+            //    });
+            //});
         }
     }
 
-    markerOptions: google.maps.MarkerOptions = {
-        draggable: false
-    };
 }

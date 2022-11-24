@@ -6,6 +6,7 @@
 body {
     background-color: #B7D6D3;
     font-family: 'Roboto';
+    height: 100%;
 }
 
 a {
@@ -16,19 +17,98 @@ code {
   color: #e01a76;
 }
 
-/*---------------------- KNAPPER ------------------------ */
+/*---------------------- NAVBAR ------------------------ */
+.bg-header {
+    background-color: #00695F;
+}
 
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+.frontweb {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.left-side {
+    margin-right: 1%;
+    height: calc(100vh);
+    width: 18%;
+    display: flex;
+    background-color: #00695F;
+    justify-content: center;
+    position: fixed;
+}
+
+.right-side {
+    width: 100%;
+    height: auto;
+    /*margin-top: 1%;*/
+    margin-left: 18%;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+/*---------------------- Feed ------------------------ */
+.feed {
+    padding: 2%;
+    margin: 2%;
+}
+
+.feedbox {
+    padding: 2% 5%;
+    margin: 2% auto;
+    width: 60%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px #888
+}
+
+.feedboxField {
+}
+
+.feedbox button {
+    margin: 0 2%;
+}
+
+.comment-feed {
+    background: white;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.comment-feedbox {
+    margin: 7% 2%;
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    width: auto;
+}
+
+.comment-feedbox-vertical {
+    width: 50%;
+}
+
+.comment-feedbox-vertical-button {
+    margin-left: 10%;
+}
+
+
+/*---------------------- KNAPPER ------------------------ */
 .btn-primary {
-  color: #E3E3E3;
-  background-color: #009688;
-  border-color: #292D32;
-  border-radius: 10px;
-  font-family: 'Roboto', bold;
-  width: 200px;
-  height: 50px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 20px;
-  margin-bottom: 20px;
+    color: #E3E3E3;
+    background-color: #009688;
+    border-color: #292D32;
+    border-radius: 10px;
+    font-family: 'Roboto', bold;
+    width: 200px;
+    height: 50px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .btn-primary:hover {
@@ -50,22 +130,8 @@ code {
   font-family: 'Roboto', bold;
 }
 
-/* -------------------------------------------------------- */
 
-
-/*---------------------- NAVBAR ------------------------ */
-
-.bg-header {
-  background-color: #00695F;
-}
-
-.logo {
-  width: 50px;
-  height: auto;
-}
-
-/* -------------------------------------------------------- */
-
+/*-----------  Icon ------------------*/
 .icon-primary {
   color: #009688;
 }
@@ -81,11 +147,6 @@ code {
 .icon-display-large {
   transform: scale(2.5);
   color: white;
-}
-
-body {
-  background-color: #B7D6D3;
-  font-family: 'Roboto';
 }
 
 
@@ -105,6 +166,10 @@ thead {
   position: sticky;
 }
 
+table td {
+    background: #B7D6D3;
+}
+
 
 /*-----------  Modal ------------------*/
 .modal-content {
@@ -119,35 +184,50 @@ thead {
 
 
 /*-----------  Form  ------------------*/
-/* https://codepen.io/ainalem/pen/GRqPwoz?editors=1100 */
 .form {
-    background-color: #009688;
-    border-radius: 20px;
-    box-sizing: border-box;
-    width: 45em;
-    padding: 2% 5%;
-    align-content: center;
+    width: 40em;
+    padding: 2%;
+    margin: auto;
 }
 
-.input {
-    background-color: #303245;
-    border-radius: 12px;
-    border: 0;
-    box-sizing: border-box;
-    color: #eee;
-    font-size: 18px;
-    height: 100%;
-    outline: 0;
-    padding: 4px 20px 0;
-    width: 100%;
+.form-group {
+    padding: 5%;
+    background: white;
+    border-radius: 10px;
+    margin: 2%;
 }
 
-/*  Navbar  */
+.form-group p {
+    display: none;
+    color: red;
+}
+    
+.ng-touched p {
+    display: contents;
+}
 
-.frontweb {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
+.form .btn {
+    margin: 2%;
+}
+
+.form-group:empty {
+    display: hidden;
+}
+
+.comment-form-group {
+    padding: 2%;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    width: 60%;
+}
+.comment-form-group button {
+    margin-top: 2%;
+}
+
+.comment-form-group p {
+    display: none;
+    color: red;
 }
 
 .left-side {
@@ -158,6 +238,8 @@ thead {
   background-color: #00695F;
   justify-content: center;
   box-shadow: 5px 0 20px 0 #00695F;
+.ng-touched p {
+    display: contents;
 }
 
 .right-side {
@@ -166,4 +248,11 @@ thead {
   border-radius: 15px;
   padding: 10px;
 
+/*-----------  Map  ------------------*/
+#homeMap {
+height: 30em;
+}
+
+#map:not(:empty) {
+    height: 20em;
 }

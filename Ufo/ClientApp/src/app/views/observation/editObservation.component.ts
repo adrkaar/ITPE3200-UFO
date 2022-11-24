@@ -26,7 +26,11 @@ export class EditObservationComponent implements OnInit {
     addNewType: string;
 
     validation = {
-        id: [""],
+        id: [null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("[0-9]")
+            ])],
         date: [
             null,
             Validators.compose([
@@ -62,13 +66,14 @@ export class EditObservationComponent implements OnInit {
                 Validators.pattern("^[a-zA-Z .,-?!]{1,200}$")
             ])
         ],
-        UfoType: [
-            null,
-            Validators.compose([
-                Validators.required,
-                Validators.pattern("^[a-zA-Z ]{1,20}$")
-            ])
-        ]    }
+        //UfoType: [
+        //    null,
+        //    Validators.compose([
+        //        Validators.required,
+        //        Validators.pattern("^[a-zA-Z ]{1,20}$")
+        //    ])
+        
+    }
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
         this.EditObservationForm = formBuilder.group(this.validation);
@@ -115,8 +120,7 @@ export class EditObservationComponent implements OnInit {
         this.http.put<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe(() => {
                 this.router.navigate(['observation'])
-            },
-                error => console.log(error)
+            }, error => console.log(error)
             );
     }
 
@@ -124,8 +128,7 @@ export class EditObservationComponent implements OnInit {
         this.http.delete<Observation>("api/observation/deleteObservation/" + id)
             .subscribe(() => {
                 this.router.navigate(['observation'])
-            },
-                error => console.log(error)
+            }, error => console.log(error)
             );
     }
 
@@ -133,8 +136,7 @@ export class EditObservationComponent implements OnInit {
         this.http.get<UfoType[]>('api/observation/fetchUfoTypes')
             .subscribe(response => {
                 this.types = response;
-            },
-                error => console.log(error)
+            }, error => console.log(error)
             );
     }
 }

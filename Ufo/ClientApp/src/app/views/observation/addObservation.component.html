@@ -1,6 +1,6 @@
 ﻿<h1>Register New UFO Observation</h1>
 
-<form [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
+<form class="form" [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
     <div class="form-group">
         <label for="date">Date</label>
         <input type="date" formControlName="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" max="{{maxDate}}">
@@ -11,10 +11,15 @@
         <input type="time" formControlName="time" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
         <p *ngIf="this.AddObservationForm.controls.time.status=='INVALID'">Time needs to be in the format HH:MM</p>
     </div>
+
+    <button type="button" class="btn btn-primary" (click)="fetchMyCoords()">Fetch my location</button>
+    <button type="button" class="btn btn-primary" (click)="addMap()">Add position via map</button>
+    <div id="map"></div>
+
     <div class="form-group">
         <label for="latitude">Latitude</label>
         <input type="text" formControlName="latitude" class="form-control" id="latitude" name="latitude" [(ngModel)]="newObservation.latitude">
-        <p *ngIf="this.AddObservationForm.controls.latitude.status=='INVALID'">Latidute needs to be a number, max 10 characters</p>
+        <p *ngIf="this.AddObservationForm.controls.latitude.status=='INVALID'">Latitude needs to be a number, max 10 characters</p>
     </div>
     <div class="form-group">
         <label for="longitude">Longitude</label>
@@ -23,7 +28,7 @@
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input formControlName="description" type="text" class="form-control" id="description" name="description" [(ngModel)]="newObservation.description">
+        <textarea formControlName="description" type="text" class="form-control" id="description" name="description" [(ngModel)]="newObservation.description"></textarea>
         <p *ngIf="this.AddObservationForm.controls.description.status=='INVALID'">Description cannot be empty, max 160 characters</p>
     </div>
 
@@ -36,7 +41,7 @@
         </select>
     </div>
 
-    <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
+    <div class="form-group" *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>
 </form>
