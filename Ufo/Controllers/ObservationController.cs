@@ -48,7 +48,7 @@ namespace Ufo.Controllers
         [HttpGet("fetchAllObservations")]
         public async Task<ActionResult> FetchAllObservations()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
             List<Observation> allObservatoins = await _db.FetchAllObservations();
             if (allObservatoins == null)
             {
@@ -61,7 +61,7 @@ namespace Ufo.Controllers
         [HttpGet("fetchOneObservation/{id}")]
         public async Task<ActionResult> GetOneObservation(int id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
             Observation oneObservation = await _db.GetOneObservation(id);
             if (oneObservation == null)
             {
@@ -108,7 +108,7 @@ namespace Ufo.Controllers
         [HttpGet("fetchUfoTypes")]
         public async Task<ActionResult> FetchUfoTypes()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
             List<UfoType> ufotypes = await _db.FetchUfoTypes();
             if (ufotypes == null)
             {
@@ -121,7 +121,7 @@ namespace Ufo.Controllers
         [HttpGet("fetchAllLocations")]
         public async Task<ActionResult> FetchAllLocations()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
             List<Observation> allLocations = await _db.FetchAllLocations();
             if (allLocations == null)
             {

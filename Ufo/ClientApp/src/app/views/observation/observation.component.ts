@@ -17,6 +17,8 @@ export class ObservationComponent {
     }
     
     fetchAllObservations() {
+        // fetch all observations eller locations
+        // har en lille tiden man sparer noe å si?
         this.http.get<Observation[]>('api/observation/fetchAllObservations')
             .subscribe(response => {
                 this.allObservations = response;
