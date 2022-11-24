@@ -30,6 +30,9 @@ namespace Ufo.DAL
                 // setter brukeren
                 var user = _db.Users.Where(u => inObservation.Username == u.Username);
                 newObservationRow.Users = (Users)user;
+                //feiler på linjen over fordi bruker ikke var satt i client
+                // brukernav må hentes og settes i klient
+                // evt kan man her hent brukeren som er logget inn??
 
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
