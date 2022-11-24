@@ -52,9 +52,7 @@ namespace Ufo.DAL
             {
                 _log.LogInformation(e.Message);
                 return false;
-
             }
         }
-
     }
 }

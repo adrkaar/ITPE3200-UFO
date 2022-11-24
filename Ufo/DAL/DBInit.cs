@@ -18,11 +18,11 @@ namespace Ufo.DAL
                 var user = new Users();
                 //user.Username = "Admin";
                 //var password = "Supersecret";
-                byte[] salt = UserRepository.CreateSalt();
+                //byte[] salt = UserRepository.CreateSalt();
                 //byte[] hash = UserRepository.CreateHash(password, salt);
                 //user.Password = hash;
 
-                var user1 = new Users { Username = "Admin", Password = UserRepository.CreateHash("Supersecret", salt) };
+                var user1 = new Users { Username = "Admin", Password = UserRepository.CreateHash("Supersecret", UserRepository.CreateSalt()) };
 
                 context.Users.Add(user1);
 
@@ -74,7 +74,6 @@ namespace Ufo.DAL
                 context.Comments.Add(comment2);
                 context.Comments.Add(comment3);
                 context.Comments.Add(comment4);
-
 
                 context.SaveChanges();
             }
