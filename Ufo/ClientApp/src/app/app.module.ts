@@ -23,14 +23,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SafeHtml } from './pipe';
 
 /*Maps*/
-//import { AgmCoreModule } from '@agm/core';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
-import { ModalLogin } from './components/modal/modalLogin.component';
 
-
-// m�  g�es igjennom hca som faktisk brukes og er p� riktig sted typ trenger alle de decalrations?
 @NgModule({
     declarations: [
         AppComponent,
@@ -46,7 +42,6 @@ import { ModalLogin } from './components/modal/modalLogin.component';
         SafeHtml,
       /* Login */
         LoginComponent,
-        ModalLogin
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -59,13 +54,8 @@ import { ModalLogin } from './components/modal/modalLogin.component';
         GoogleMapsModule,
         AppRoutingModule,
         ReactiveFormsModule
-        //AgmCoreModule.forRoot({
-        //    apiKey: 'AIzaSyAqyuJni8oooxYmrtJ-7EI0u6gbK5xm4Sg'
-        //})
-        // NoopAnimationsModule
     ],
     providers: [],
     bootstrap: [AppComponent],
-    entryComponents: [ModalLogin]
 })
 export class AppModule { }

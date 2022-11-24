@@ -8,7 +8,6 @@ import { HomeComponent } from './views/home/home.component';
 import { AddObservationComponent } from './views/observation/addObservation.component';
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
-
 import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
@@ -19,8 +18,9 @@ const routes: Routes = [
       { path: 'editObservation/:id', component: EditObservationComponent },
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
-      { path: 'addComment/:id', component: AddCommentComponent },
-      { path: 'login', component: LoginComponent },
+    { path: 'addComment/:id', component: AddCommentComponent },
+      /*LogIn*/
+      { path: 'logIn', component: LoginComponent },
 ];
 
 @NgModule({
@@ -29,7 +29,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forRoot(routes,
     {relativeLinkResolution: 'legacy'}),
-        // NoopAnimationsModule
   ],
   exports: [
     RouterModule
