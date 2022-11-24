@@ -29,7 +29,7 @@ export class EditObservationComponent implements OnInit {
         id: [null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("[0-9]")
+                Validators.pattern("[0-9]{0,2}")
             ])],
         date: [
             null,
@@ -106,7 +106,7 @@ export class EditObservationComponent implements OnInit {
             this.addNewType = '<label for="newType" style="color: black">Add new type</label> <input type="text" class="form-control" id="newType" name="newType" [(ngModel)]="newType" style="color: black"/>';
         }
         else {
-            this.addNewType = " ";
+            this.addNewType = "";
         }
     }
 
