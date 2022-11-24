@@ -41,13 +41,15 @@ code {
     background-color: #00695F;
     justify-content: center;
     box-shadow: 5px 0 20px 0 #00695F;
+    position: fixed;
 }
 
 .right-side {
+    margin-left: 18%;
     width: 100%;
     height: calc(100vh);
     border-radius: 15px;
-    padding: 10px;
+    padding: 2%;
 }
 
 /*---------------------- Feed ------------------------ */
@@ -235,7 +237,8 @@ table td {
 
 /*-----------  Map  ------------------*/
 #homeMap {
-height: 30em;
+    height: 30em;
+    width: 100%;
 }
 
 #map:not(:empty) {
