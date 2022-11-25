@@ -14,9 +14,7 @@ namespace Ufo.Controllers
     {
         private readonly InterfaceObservationRepository _db;
         private ILogger<ObservationController> _log;
-
-        private const string _loggedIn = "loggedIn";
-        private const string _notLoggedIn = "";
+        private UserController userController;
 
         public ObservationController(InterfaceObservationRepository db, ILogger<ObservationController> log)
         {
@@ -27,7 +25,7 @@ namespace Ufo.Controllers
         [HttpPost("addObservation")]
         public async Task<ActionResult> SaveObservation(Observation inObservation)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
             if (ModelState.IsValid)
             {
                 bool returnOk = await _db.SaveObservation(inObservation);
@@ -74,7 +72,7 @@ namespace Ufo.Controllers
         [HttpPut("editObservation")]
         public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
             if (ModelState.IsValid)
             {
                 bool returnOk = await _db.ChangeObservation(changeObservation);
@@ -95,7 +93,7 @@ namespace Ufo.Controllers
         [HttpDelete("deleteObservation/{id}")]
         public async Task<ActionResult> DeleteObservation(int id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
             bool deleteOk = await _db.DeleteObservation(id);
             if (!deleteOk)
             {

@@ -14,8 +14,7 @@ namespace Ufo.Controllers
         private InterfaceUserRepository _db;
         private ILogger<UserController> _log;
 
-        private const string _loggedIn = "loggedIn";
-        private const string _notLoggedIn = "";
+        private const string _loggedIn = "";
 
         public UserController(InterfaceUserRepository db, ILogger<UserController> log)
         {
@@ -32,19 +31,39 @@ namespace Ufo.Controllers
                 if (!returnResult)
                 {
                     _log.LogInformation("Login failed");
-                    HttpContext.Session.SetString(_loggedIn, _notLoggedIn);
+                    HttpContext.Session.SetString(_loggedIn, "");
                     return Ok(false);
                 }
-                HttpContext.Session.SetString(_loggedIn, _loggedIn); // denne feiler
+                HttpContext.Session.SetString(_loggedIn, "loggedIn");
+                LoggedInUser(user);
                 return Ok(true);
             }
             _log.LogInformation("Error in validation");
             return BadRequest("Error in input validation");
         }
 
+        [HttpPost("logOut")]
         public void LogOut()
         {
-            HttpContext.Session.SetString(_loggedIn, _notLoggedIn);
+            HttpContext.Session.SetString(_loggedIn, "");
+        }
+
+        [HttpGet("checkLogIn")]
+        public async Task<ActionResult> Check()
+        {
+            var logIn = HttpContext.Session.GetString(_loggedIn);
+            return Ok(logIn == "loggedIn");
+        }
+
+        public string CheckLogIn()
+        {
+            return _loggedIn;
+        }
+
+        // setter bruk
+        public string LoggedInUser(User user)
+        {
+            return user.Username;
         }
     }
 }
