@@ -11,6 +11,7 @@ import { ObservationComponent } from './views/observation/observation.component'
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { SafeHtml } from './pipe';
+import { ContactComponent } from './views/contact/contact.component';
 
 const routes: Routes = [
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -20,7 +21,8 @@ const routes: Routes = [
       { path: 'editObservation/:id', component: EditObservationComponent },
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
-      { path: 'addComment/:id', component: AddCommentComponent },
+    { path: 'addComment/:id', component: AddCommentComponent },
+    { path: 'contact', component: ContactComponent }
 ];
 
 @NgModule({

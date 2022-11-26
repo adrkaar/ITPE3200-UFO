@@ -1,4 +1,5 @@
-﻿<h1>UFO Observations</h1>
+﻿
+<h1>UFO Observations</h1>
 
 <button class="btn btn-secondary" [routerLink]="['/addObservation']" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
 
@@ -26,5 +27,9 @@
         </div>
         <button class="btn btn-secondary" [routerLink]="['/editObservation', observation.id]">View</button>
         <button class="btn btn-secondary" [routerLink]="['../comment', observation.id]">Comments</button>
+
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" target="_blank" class="btn btn-secondary"
+           data-show-count="false">Share on twitter</a>
+
     </div>
 </div>

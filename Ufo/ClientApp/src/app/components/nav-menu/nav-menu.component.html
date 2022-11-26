@@ -10,20 +10,24 @@
         
     </div>
     <div>
-                <ul class="navbar-nav flex-grow">
-                    <li class="nav-item btn-primary"
-                        [routerLinkActive]="['link-active']"
-                        [routerLinkActiveOptions]="{ exact: true }">
-                        <a class="nav-link" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
-                    </li>
-                    <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
-                        <a class="nav-link" [routerLink]="['/observation']"><mat-icon>map</mat-icon>Observations</a>
-                    </li>
+        <ul class="navbar-nav flex-grow">
+            <li class="nav-item btn-primary"
+                [routerLinkActive]="['link-active']"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
+            </li>
+            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
+                <a class="nav-link" [routerLink]="['/observation']"><mat-icon>map</mat-icon>Observations</a>
+            </li>
 
-                    <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
-                        <a class="nav-link" [routerLink]="['/addObservation']"><mat-icon>add_location</mat-icon>Add</a>
-                    </li>
-                </ul>
+            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
+                <a class="nav-link" [routerLink]="['/addObservation']"><mat-icon>add_location</mat-icon>Add</a>
+            </li>
+
+            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
+                <a class="nav-link" [routerLink]="['/contact']"><mat-icon>account_circle</mat-icon>Contact us</a>
+            </li>
+        </ul>
     </div>
 </div>
 

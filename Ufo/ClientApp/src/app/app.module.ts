@@ -27,6 +27,7 @@ import { SafeHtml } from './pipe';
 /*Maps*/
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
+import { ContactComponent } from './views/contact/contact.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import { RouterModule } from '@angular/router';
       /*Comment*/
         CommentComponent,
         AddCommentComponent,
-        SafeHtml
+        SafeHtml,
+        ContactComponent
         
     ],
     imports: [
