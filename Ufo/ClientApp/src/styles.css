@@ -242,9 +242,8 @@ table td {
 /*-----------  Map  ------------------*/
 #homeMap {
 height: 30em;
-z-index: -1;
 border-radius: 15px;
-border-color: black;
+border-color: white;
 border-style: solid;
 }
 
