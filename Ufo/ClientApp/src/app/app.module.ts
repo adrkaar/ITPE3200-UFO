@@ -15,6 +15,7 @@ import { AddObservationComponent } from './views/observation/addObservation.comp
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
 
+
 /*Material*/
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,6 +28,7 @@ import { SafeHtml } from './pipe';
 /*Maps*/
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
     declarations: [
@@ -40,8 +42,9 @@ import { RouterModule } from '@angular/router';
       /*Comment*/
         CommentComponent,
         AddCommentComponent,
-        SafeHtml
-        
+        SafeHtml,
+        DialogComponent,
+
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,7 +55,7 @@ import { RouterModule } from '@angular/router';
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
         AppRoutingModule,
-        NgbModule
+        NgbModule,
     ],
     providers: [],
     bootstrap: [AppComponent]
