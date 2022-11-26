@@ -14,7 +14,6 @@ namespace Ufo.Controllers
     {
         private readonly InterfaceCommentRepository _db;
         private ILogger<CommentController> _log;
-        private UserController userController;
 
         public CommentController(InterfaceCommentRepository db, ILogger<CommentController> log)
         {
@@ -25,8 +24,6 @@ namespace Ufo.Controllers
         [HttpGet("fetchAllComments/{id}")]
         public async Task<ActionResult> FetchAllComments(int id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
-
             List<Comment> allComments = await _db.FetchAllComments(id);
             if (allComments == null)
             {
@@ -39,8 +36,7 @@ namespace Ufo.Controllers
         [HttpPost("addComment")]
         public async Task<ActionResult> AddComment(Comment inComment)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
-
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             if (ModelState.IsValid)
             {
                 bool returnOk = await _db.AddComment(inComment);
@@ -61,8 +57,7 @@ namespace Ufo.Controllers
         [HttpDelete("deleteComment/{id}")]
         public async Task<ActionResult> DeleteComment(int id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
-
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             bool returnOk = await _db.DeleteComment(id);
             if (!returnOk)
             {
@@ -75,8 +70,7 @@ namespace Ufo.Controllers
         [HttpGet("upVote/{id}")]
         public async Task<ActionResult> UpVote(int id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
-
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             bool returnOk = await _db.UpVote(id);
             if (!returnOk)
             {
@@ -89,8 +83,7 @@ namespace Ufo.Controllers
         [HttpGet("downVote/{id}")]
         public async Task<ActionResult> DownVote(int id)
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
-
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             bool returnOk = await _db.DownVote(id);
             if (!returnOk)
             {

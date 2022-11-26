@@ -22,7 +22,6 @@ namespace Ufo.Controllers
             _log = log;
         }
 
-
         [HttpPost("logIn")]
         public async Task<ActionResult> LogIn(User user)
         {
@@ -50,16 +49,10 @@ namespace Ufo.Controllers
         }
 
         [HttpGet("checkLogIn")]
-        public async Task<ActionResult> Check()
+        public async Task<ActionResult> CheckLogIn()
         {
             var logIn = HttpContext.Session.GetString(_loggedIn);
             return Ok(logIn == "loggedIn");
-        }
-
-        public string CheckLogIn()
-        {
-            var h = HttpContext.Session.GetString(_loggedIn);
-            return h;
         }
 
         // setter bruk

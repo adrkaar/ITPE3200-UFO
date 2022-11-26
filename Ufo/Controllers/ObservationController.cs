@@ -71,7 +71,7 @@ namespace Ufo.Controllers
         [HttpPut("editObservation")]
         public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             if (ModelState.IsValid)
             {
                 bool returnOk = await _db.ChangeObservation(changeObservation);
@@ -92,7 +92,7 @@ namespace Ufo.Controllers
         [HttpDelete("deleteObservation/{id}")]
         public async Task<ActionResult> DeleteObservation(int id)
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(userController.CheckLogIn()))) { return Unauthorized("Not logged in"); }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             bool deleteOk = await _db.DeleteObservation(id);
             if (!deleteOk)
             {
