@@ -91,7 +91,7 @@ export class CommentComponent {
 
         this.http.post<Comment>('api/comment/addComment/', this.newComment)
             .subscribe(() => {
-                window.location.reload()
+                this.fetchAllComments(this.observationId);
             },
                 error => console.log(error)
             );

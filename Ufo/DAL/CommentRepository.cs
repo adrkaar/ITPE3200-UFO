@@ -29,7 +29,6 @@ namespace Ufo.DAL
                         ObservationId = c.Observations.Id,
                         UpVote = c.UpVote,
                         DownVote = c.Downvote,
-                        Username = c.Users.Username
                     }).ToListAsync();
 
                 return allComments;
@@ -45,8 +44,8 @@ namespace Ufo.DAL
                 newCommentRow.Text = inComment.Text;
 
                 // setter brukeren
-                var user = _db.Users.Where(u => inComment.Username == u.Username);
-                newCommentRow.Users = (Users)user;
+                //var user = _db.Users.Where(u => inComment.Username == u.Username);
+                //newCommentRow.Users = (Users)user;
 
                 // henter observasjonen som kommentaren skal knyttes til
                 var enObservasjon = await _db.Observations.FindAsync(inComment.ObservationId);

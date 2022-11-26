@@ -45,7 +45,6 @@ namespace Ufo.Controllers
         [HttpGet("fetchAllObservations")]
         public async Task<ActionResult> FetchAllObservations()
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
             List<Observation> allObservatoins = await _db.FetchAllObservations();
             if (allObservatoins == null)
             {
@@ -58,7 +57,6 @@ namespace Ufo.Controllers
         [HttpGet("fetchOneObservation/{id}")]
         public async Task<ActionResult> GetOneObservation(int id)
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
             Observation oneObservation = await _db.GetOneObservation(id);
             if (oneObservation == null)
             {

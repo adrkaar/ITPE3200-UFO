@@ -21,7 +21,7 @@ export class LoginComponent {
     //loading: false;
     // submitted = false;
 
-    constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, /*private accountService: AccountService*/) { 
+    constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, /*private accountService: AccountService*/) {
         this.Form = this.formBuilder.group({
             username: [null,
                 Validators.compose([
@@ -38,8 +38,9 @@ export class LoginComponent {
 
     logIn() {
         this.http.post<User>('api/user/logIn', this.user)
-            .subscribe(() => {
-                this.router.navigate(['observation'])
+            .subscribe(response => {
+                if (response) this.router.navigate(['observation'])
+                else alert("Wrong username or password, please try again");
             },
                 error => console.log(error)
         );
