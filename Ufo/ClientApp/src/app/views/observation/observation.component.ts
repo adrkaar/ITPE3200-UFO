@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observation } from '../../models/observation.model';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'observation.component.html'
@@ -10,15 +10,13 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 export class ObservationComponent {
     allObservations: Array<Observation>;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private router: Router) { }
 
     ngOnInit() {
         this.fetchAllObservations();
     }
     
     fetchAllObservations() {
-        // fetch all observations eller locations
-        // har en lille tiden man sparer noe å si?
         this.http.get<Observation[]>('api/observation/fetchAllObservations')
             .subscribe(response => {
                 this.allObservations = response;
@@ -28,5 +26,19 @@ export class ObservationComponent {
     }
 
     openMapwithLocation(latitude: number, longitude: number) {
+    }
+
+    RouteEditObservation(observationId: number) {
+        // sjekker om brukeren er logget inn
+        this.http.get<boolean>('api/user/checkLogIn')
+            .subscribe(response => {
+                if (response) {
+                    this.router.navigate(['editObservation', observationId])
+                }
+                else {
+                    alert("You have to log in");
+                }
+            }, error => console.log(error)
+            );
     }
 }

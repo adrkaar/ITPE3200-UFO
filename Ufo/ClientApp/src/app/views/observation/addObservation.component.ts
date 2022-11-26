@@ -102,32 +102,19 @@ export class AddObservationComponent {
     }
 
     async addObservation() {
-        // gjør ferdig ifen før checklogin får kjørt
-        //var h = setTimeout(() => { this.checkLogIn(); }, 30000);
-
-        this.http.get<boolean>('api/user/checkLogIn')
-            .subscribe(response => {
-                if (response) {
-                    // sjekker om brukeren vil legge til ny type før typen settes
-                    if (this.chosenType === 'Add new type') {
-                        // henter verdien til ny type
-                        this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
-                    }
-                    this.newObservation.ufoType = this.chosenType;
-                    this.http.post<Observation>('api/observation/addObservation', this.newObservation)
-                        .subscribe(res => {
-                            console.log(res)
-                            this.router.navigate(['observation'])
-                        },
-                            error => console.log(error)
-                        );
-                }
-                else {
-                    alert("You have to log in");
-                }
-
-            }, error => console.log(error)
-            );        
+        // sjekker om brukeren vil legge til ny type før typen settes
+        if (this.chosenType === 'Add new type') {
+            // henter verdien til ny type
+            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
+        }
+        this.newObservation.ufoType = this.chosenType;
+        this.http.post<Observation>('api/observation/addObservation', this.newObservation)
+            .subscribe(res => {
+                console.log(res)
+                this.router.navigate(['observation'])
+            },
+                error => console.log(error)
+            );
     }
 
     fetchUfoTypes() {
@@ -146,7 +133,7 @@ export class AddObservationComponent {
         }
         // henter brukeres geolokasjon og fyller ut det for dem med max 10 tegn
         navigator.geolocation.getCurrentPosition((position) => {
-            this.newObservation.latitude = String(position.coords.latitude).substring(0,10);
+            this.newObservation.latitude = String(position.coords.latitude).substring(0, 10);
             this.newObservation.longitude = String(position.coords.longitude).substring(0, 10);
 
             // setter markøren

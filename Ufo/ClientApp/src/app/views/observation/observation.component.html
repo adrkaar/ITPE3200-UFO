@@ -24,7 +24,7 @@
             <h3>Seen at</h3>
             <p>Latitude:&nbsp;{{ observation.latitude }}, Longitude:&nbsp;{{ observation.longitude }}</p>
         </div>
-        <button class="btn btn-secondary" [routerLink]="['/editObservation', observation.id]">View</button>
+        <button class="btn btn-secondary" (click)="RouteEditObservation(observation.id)">View</button>
         <button class="btn btn-secondary" [routerLink]="['../comment', observation.id]">Comments</button>
     </div>
 </div>

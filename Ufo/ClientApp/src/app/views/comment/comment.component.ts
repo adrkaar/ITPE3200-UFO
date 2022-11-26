@@ -45,14 +45,22 @@ export class CommentComponent {
         this.fetchAllComments(this.observationId);
     }
 
-    refreshWebsite(): void {
-        window.location.reload()
-    }
-
     fetchAllComments(id: any) {
         this.http.get<Comment[]>('api/comment/fetchAllComments/' + id)
             .subscribe(response => {
                 this.allcomments = response;
+            },
+                error => console.log(error)
+            );
+    }
+
+    addComment() {
+        // setter riktig observationId før objektet sendes
+        this.newComment.observationId = this.observationId;
+
+        this.http.post<Comment>('api/comment/addComment/', this.newComment)
+            .subscribe(() => {
+                this.fetchAllComments(this.observationId);
             },
                 error => console.log(error)
             );
@@ -78,18 +86,6 @@ export class CommentComponent {
 
     downVote(id: number) {
         this.http.get<Comment>("api/comment/downVote/" + id)
-            .subscribe(() => {
-                this.fetchAllComments(this.observationId);
-            },
-                error => console.log(error)
-            );
-    }
-
-    addComment() {
-        // setter riktig observationId før objektet sendes
-        this.newComment.observationId = this.observationId;
-
-        this.http.post<Comment>('api/comment/addComment/', this.newComment)
             .subscribe(() => {
                 this.fetchAllComments(this.observationId);
             },

@@ -17,8 +17,10 @@
             <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
                 <a class="nav-link" [routerLink]="['/observation']"><mat-icon>map</mat-icon>Observations</a>
             </li>
-            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
-                <a class="nav-link" [routerLink]="['/addObservation']"><mat-icon>add_location</mat-icon>Add</a>
+            <li class="nav-item">
+                <button (click)="checkLogIn()" class="nav-item btn-primary">
+                    <a class="nav-link"><mat-icon>add_location</mat-icon>Add</a>
+                </button>
             </li>
             <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
                 <a class="nav-link" [routerLink]="['/logIn']"><mat-icon>login</mat-icon>Login</a>

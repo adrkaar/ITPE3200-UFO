@@ -18,10 +18,8 @@ export class LoginComponent {
         password: '',
         token: ''
     }
-    //loading: false;
-    // submitted = false;
 
-    constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router, /*private accountService: AccountService*/) {
+    constructor(private http: HttpClient, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) {
         this.Form = this.formBuilder.group({
             username: [null,
                 Validators.compose([
@@ -44,8 +42,5 @@ export class LoginComponent {
             },
                 error => console.log(error)
         );
-    }
-
-    ngOnInit() {
     }
 }

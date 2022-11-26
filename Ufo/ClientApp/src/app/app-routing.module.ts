@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
-import { AddCommentComponent } from './views/comment/addComment.component';
 import { CommentComponent } from './views/comment/comment.component';
 import { HomeComponent } from './views/home/home.component';
 import { AddObservationComponent } from './views/observation/addObservation.component';
@@ -18,7 +17,6 @@ const routes: Routes = [
       { path: 'editObservation/:id', component: EditObservationComponent },
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
-    { path: 'addComment/:id', component: AddCommentComponent },
       /*LogIn*/
       { path: 'logIn', component: LoginComponent },
 ];

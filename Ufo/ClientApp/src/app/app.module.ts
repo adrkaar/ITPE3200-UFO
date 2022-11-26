@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AddCommentComponent } from './views/comment/addComment.component';
 import { CommentComponent } from './views/comment/comment.component';
 import { HomeComponent } from './views/home/home.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -40,10 +39,10 @@ import { LoginComponent } from './views/login/login.component';
         EditObservationComponent,
       /*Comment*/
         CommentComponent,
-        AddCommentComponent,
-        SafeHtml,
-      /* Login */
+           /* Login */
         LoginComponent,
+        SafeHtml,
+   
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
