@@ -1,4 +1,13 @@
-﻿<h1>Register New UFO Observation</h1>
+﻿<!--------------------------- PAGE "ADD" ------------------------------->
+<br>
+<h2>Register UFO Observation</h2>
+<br>
+<br>
+
+<section>
+    <p>You can add a new UFO observation to our database by filling out the form below. <br>
+    Each observation should be registered separately. </p>
+</section>
 
 <form class="form" [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
     <div class="form-group">
@@ -44,4 +53,5 @@
     <div class="form-group" *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>
+    <a href="#top">Back to top of page</a>                          <!--For link "To the top"-->
 </form>
