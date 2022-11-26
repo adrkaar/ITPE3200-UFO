@@ -47,7 +47,8 @@ code {
     width: 100%;
     height: auto;
     /*margin-top: 1%;*/
-    margin-left: 18%;
+    margin-right: 40px;
+    margin-left: 300px;
     border-radius: 15px;
     padding: 10px;
 }
@@ -242,6 +243,9 @@ table td {
 #homeMap {
 height: 30em;
 z-index: -1;
+border-radius: 15px;
+border-color: black;
+border-style: solid;
 }
 
 #map:not(:empty) {
