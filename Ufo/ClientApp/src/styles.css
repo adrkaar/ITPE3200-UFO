@@ -231,3 +231,11 @@ height: 30em;
 #map:not(:empty) {
     height: 20em;
 }
+
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+    text-decoration: none;
+    color: initial;
+}
