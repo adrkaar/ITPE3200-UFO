@@ -15,14 +15,6 @@ namespace Ufo.DAL
                 context.Database.EnsureCreated();
 
                 /* User */
-                var user = new Users();
-                //user.Username = "Admin";
-                //var password = "Supersecret";
-                //byte[] salt = UserRepository.CreateSalt();
-                //byte[] hash = UserRepository.CreateHash(password, salt);
-                //user.Password = hash;
-
-                // saltet blir ikke lagt inn
                 byte[] salt1 = UserRepository.CreateSalt();
                 var user1 = new Users { Username = "Admin", Password = UserRepository.CreateHash("Supersecret1!", salt1), Salt = salt1 };
 

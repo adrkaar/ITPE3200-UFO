@@ -14,13 +14,14 @@ namespace Ufo.Controllers
         private InterfaceUserRepository _db;
         private ILogger<UserController> _log;
 
-        private const string _loggedIn = "";
+        public const string _loggedIn = "";
 
         public UserController(InterfaceUserRepository db, ILogger<UserController> log)
         {
             _db = db;
             _log = log;
         }
+
 
         [HttpPost("logIn")]
         public async Task<ActionResult> LogIn(User user)
@@ -57,7 +58,8 @@ namespace Ufo.Controllers
 
         public string CheckLogIn()
         {
-            return _loggedIn;
+            var h = HttpContext.Session.GetString(_loggedIn);
+            return h;
         }
 
         // setter bruk

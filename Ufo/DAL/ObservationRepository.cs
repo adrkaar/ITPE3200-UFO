@@ -28,8 +28,8 @@ namespace Ufo.DAL
                 newObservationRow.Longitude = inObservation.Longitude;
 
                 // setter brukeren
-                var user = _db.Users.Where(u => inObservation.Username == u.Username);
-                newObservationRow.Users = (Users)user;
+                //var user = _db.Users.Where(u => inObservation.Username == u.Username);
+                //newObservationRow.Users = (Users)user;
                 //feiler på linjen over fordi bruker ikke var satt i client
                 // brukernav må hentes og settes i klient
                 // evt kan man her hent brukeren som er logget inn??
