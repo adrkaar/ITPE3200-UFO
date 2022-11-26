@@ -47,9 +47,8 @@ code {
     width: 100%;
     height: auto;
     /*margin-top: 1%;*/
-    margin-left: 18%;
+    margin-left: 250px;
     border-radius: 15px;
-    padding: 10px;
 }
 
 /*---------------------- Feed ------------------------ */
@@ -240,8 +239,10 @@ table td {
 
 /*-----------  Map  ------------------*/
 #homeMap {
-height: 30em;
-z-index: -1;
+height: calc(100vh);
+width: 100%;
+/* border-color: white;
+border-left-style: solid; */
 }
 
 #map:not(:empty) {
