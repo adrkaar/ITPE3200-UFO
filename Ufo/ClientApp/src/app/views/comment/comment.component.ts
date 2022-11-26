@@ -55,15 +55,26 @@ export class CommentComponent {
     }
 
     addComment() {
-        // setter riktig observationId før objektet sendes
-        this.newComment.observationId = this.observationId;
+        // sjekker om brukeren er logget inn
+        this.http.get<boolean>('api/user/checkLogIn')
+            .subscribe(response => {
+                if (response) {
+                    // setter riktig observationId før objektet sendes
+                    this.newComment.observationId = this.observationId;
 
-        this.http.post<Comment>('api/comment/addComment/', this.newComment)
-            .subscribe(() => {
-                this.fetchAllComments(this.observationId);
-            },
-                error => console.log(error)
+                    this.http.post<Comment>('api/comment/addComment/', this.newComment)
+                        .subscribe(() => {
+                            this.fetchAllComments(this.observationId);
+                        },
+                            error => console.log(error)
+                        );
+                }
+                else {
+                    alert("You have to log in to be able to comment");
+                }
+            }, error => console.log(error)
             );
+        
     }
 
     deleteComment(id: number) {

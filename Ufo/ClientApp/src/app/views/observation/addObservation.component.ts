@@ -101,7 +101,7 @@ export class AddObservationComponent {
             );
     }
 
-    async addObservation() {
+    addObservation() {
         // sjekker om brukeren vil legge til ny type før typen settes
         if (this.chosenType === 'Add new type') {
             // henter verdien til ny type

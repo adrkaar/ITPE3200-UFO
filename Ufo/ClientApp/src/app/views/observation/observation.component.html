@@ -1,6 +1,6 @@
 ﻿<h1>UFO Observations</h1>
 
-<button class="btn btn-secondary" [routerLink]="['/addObservation']" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
+<button class="btn btn-secondary" (click)="checkLogIn()" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
 
 <div class="feed">
     <div class="feedbox" *ngFor="let observation of allObservations">

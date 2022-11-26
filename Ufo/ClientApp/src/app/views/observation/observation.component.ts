@@ -28,6 +28,20 @@ export class ObservationComponent {
     openMapwithLocation(latitude: number, longitude: number) {
     }
 
+    checkLogIn() {
+        // sjekker om brukeren er logget inn
+        this.http.get<boolean>('api/user/checkLogIn')
+            .subscribe(response => {
+                if (response) {
+                    this.router.navigate(['addObservation'])
+                }
+                else {
+                    alert("You have to log in");
+                }
+            }, error => console.log(error)
+            );
+    }
+
     RouteEditObservation(observationId: number) {
         // sjekker om brukeren er logget inn
         this.http.get<boolean>('api/user/checkLogIn')
