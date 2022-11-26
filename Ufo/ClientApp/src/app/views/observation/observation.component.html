@@ -1,4 +1,9 @@
-﻿<h1>UFO Observations</h1>
+﻿<br>
+<h2>UFO Observations</h2>
+<br>
+<p> Our database with the registrated UFO observations is represented below. <br>
+    If you do not see the UFO observation, which you are aware, use the button "Add new observation" to registrate it. </p>  
+<br>
 
 <button class="btn btn-secondary" [routerLink]="['/addObservation']" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
 
@@ -27,4 +32,5 @@
         <button class="btn btn-secondary" [routerLink]="['/editObservation', observation.id]">View</button>
         <button class="btn btn-secondary" [routerLink]="['../comment', observation.id]">Comments</button>
     </div>
+    <a href="#top">Back to top of page</a>          <!--We dont use <a name="top"></a> at the beginning here, because all modern browsers understand the "#top" value--->
 </div>
