@@ -29,6 +29,7 @@ import { SafeHtml } from './pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
 
 @NgModule({
     declarations: [
@@ -44,6 +45,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
         AddCommentComponent,
         SafeHtml,
         DialogComponent,
+        WarningmodalComponent,
 
     ],
     imports: [
