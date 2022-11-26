@@ -35,4 +35,12 @@ export class NavMenuComponent {
             }, error => console.log(error)
             );
     }
+
+    logOut() {
+        this.http.post<boolean>('api/user/logOut', "")
+            .subscribe(() => {
+                alert("You have been logged out");
+            }, error => console.log(error)
+            );
+    }
 }
