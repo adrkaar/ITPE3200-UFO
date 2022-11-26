@@ -35,7 +35,6 @@ namespace Ufo.Controllers
                     return Ok(false);
                 }
                 HttpContext.Session.SetString(_loggedIn, "loggedIn");
-                LoggedInUser(user);
                 return Ok(true);
             }
             _log.LogInformation("Error in validation");
@@ -53,12 +52,6 @@ namespace Ufo.Controllers
         {
             var logIn = HttpContext.Session.GetString(_loggedIn);
             return Ok(logIn == "loggedIn");
-        }
-
-        // setter bruk
-        public string LoggedInUser(User user)
-        {
-            return user.Username;
         }
     }
 }

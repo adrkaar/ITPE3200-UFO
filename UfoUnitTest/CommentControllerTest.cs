@@ -37,7 +37,7 @@ namespace UfoUnitTest
             commentController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
-            var result = await commentController.AddComment(It.IsAny<Comment>()) as ObjectResult;
+            var result = await commentController.AddComment(It.IsAny<Comment>()) as OkObjectResult;
 
             // Assert
             Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
@@ -48,11 +48,11 @@ namespace UfoUnitTest
         public async Task AddcommentNotLoggedInn()
         {
             // Arrange
-            mockRepo.Setup(o => o.AddComment(It.IsAny<Comment>())).ReturnsAsync(false);
+            mockRepo.Setup(o => o.AddComment(It.IsAny<Comment>())).ReturnsAsync(true);
 
             var commentController = new CommentController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _notLoggedIn;
+            mockSession[_loggedIn] = "";
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
             commentController.ControllerContext.HttpContext = mockHttpContext.Object;
 
@@ -120,36 +120,11 @@ namespace UfoUnitTest
             mockRepo.Setup(c => c.FetchAllComments(It.IsAny<int>())).ReturnsAsync(commentList);
             var commentController = new CommentController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            commentController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await commentController.FetchAllComments(It.IsAny<int>()) as OkObjectResult;
 
             // Assert
-            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
             Assert.Equal(commentList, (List<Comment>)result.Value);
-        }
-
-        [Fact]
-        public async Task FetchAllCommentsNotLoggedIn()
-        {
-            // Arrange
-            mockRepo.Setup(o => o.FetchAllComments(It.IsAny<int>())).ReturnsAsync(It.IsAny<List<Comment>>());
-
-            var commentController = new CommentController(mockRepo.Object, mockLog.Object);
-
-            mockSession[_loggedIn] = _notLoggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            commentController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var result = await commentController.FetchAllComments(It.IsAny<int>()) as UnauthorizedObjectResult;
-
-            // Assert
-            Assert.Equal((int)HttpStatusCode.Unauthorized, result.StatusCode);
-            Assert.Equal("Not logged in", result.Value);
         }
 
         [Fact]
@@ -159,15 +134,10 @@ namespace UfoUnitTest
             mockRepo.Setup(c => c.FetchAllComments(It.IsAny<int>())).ReturnsAsync(() => null);
             var commentController = new CommentController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            commentController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await commentController.FetchAllComments(It.IsAny<int>()) as NotFoundObjectResult;
 
             // Assert
-            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
             Assert.Equal("Table in database is empty", result.Value);
         }
 

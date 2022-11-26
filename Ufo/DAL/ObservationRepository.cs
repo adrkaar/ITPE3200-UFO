@@ -177,21 +177,5 @@ namespace Ufo.DAL
             }
             catch { return null; }
         }
-
-        public async Task<List<Observation>> FetchAllLocations()
-        {
-            try
-            {
-                // henter alle observasjoner, og setter kun latitude og longitude
-                List<Observation> allLocations = await _db.Observations.Select(obs => new Observation
-                {
-                    Latitude = obs.Latitude,
-                    Longitude = obs.Longitude,
-                }).ToListAsync();
-
-                return allLocations;
-            }
-            catch { return null; }
-        }
     }
 }

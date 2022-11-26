@@ -103,7 +103,6 @@ namespace Ufo.Controllers
         [HttpGet("fetchUfoTypes")]
         public async Task<ActionResult> FetchUfoTypes()
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
             List<UfoType> ufotypes = await _db.FetchUfoTypes();
             if (ufotypes == null)
             {
@@ -111,19 +110,6 @@ namespace Ufo.Controllers
                 return NotFound("Table in database is empty");
             }
             return Ok(ufotypes);
-        }
-
-        [HttpGet("fetchAllLocations")]
-        public async Task<ActionResult> FetchAllLocations()
-        {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggedIn))) { return Unauthorized("Not logged in"); }
-            List<Observation> allLocations = await _db.FetchAllLocations();
-            if (allLocations == null)
-            {
-                _log.LogInformation("Table in database is empty");
-                return NotFound("Table in database is empty");
-            }
-            return Ok(allLocations);
         }
     }
 }

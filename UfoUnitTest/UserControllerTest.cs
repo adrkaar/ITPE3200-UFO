@@ -84,12 +84,12 @@ namespace UfoUnitTest
         }
 
         [Fact]
-        public void LoggUt()
+        public void LogOut()
         {
             var userController = new UserController(mockRepo.Object, mockLog.Object);
 
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            mockSession[_loggedIn] = _loggedIn;
+            mockSession[_loggedIn] = "";
             userController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act

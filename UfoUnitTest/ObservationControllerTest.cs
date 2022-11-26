@@ -120,15 +120,10 @@ namespace UfoUnitTest
             mockRepo.Setup(o => o.FetchAllObservations()).ReturnsAsync(observationList);
             var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await observationController.FetchAllObservations() as OkObjectResult;
 
             //Assert
-            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
             Assert.Equal(observationList, (List<Observation>)result.Value);
         }
 
@@ -142,36 +137,11 @@ namespace UfoUnitTest
 
             var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await observationController.FetchAllObservations() as NotFoundObjectResult;
 
             //Assert
-            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
             Assert.Equal("Table in database is empty", result.Value);
-        }
-
-        [Fact]
-        public async Task FetchAllObservationsNotLoggedInn()
-        {
-            // Arrange
-            mockRepo.Setup(o => o.FetchAllObservations()).ReturnsAsync(It.IsAny<List<Observation>>());
-
-            var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
-
-            mockSession[_loggedIn] = _notLoggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var result = await observationController.FetchAllObservations() as UnauthorizedObjectResult;
-
-            // Assert
-            Assert.Equal((int)HttpStatusCode.Unauthorized, result.StatusCode);
-            Assert.Equal("Not logged in", result.Value);
         }
 
         /********** Fetch all ufotypes **********/
@@ -188,15 +158,10 @@ namespace UfoUnitTest
             mockRepo.Setup(o => o.FetchUfoTypes()).ReturnsAsync(ufoList);
             var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await observationController.FetchUfoTypes() as OkObjectResult;
 
             //Assert
-            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
             Assert.Equal(ufoList, (List<UfoType>)result.Value);
         }
 
@@ -210,104 +175,11 @@ namespace UfoUnitTest
 
             var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await observationController.FetchUfoTypes() as NotFoundObjectResult;
 
             //Assert
-            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
             Assert.Equal("Table in database is empty", result.Value);
-        }
-
-        [Fact]
-        public async Task FetchUfotypesNotLoggedInn()
-        {
-            // Arrange
-            mockRepo.Setup(o => o.FetchUfoTypes()).ReturnsAsync(It.IsAny<List<UfoType>>());
-
-            var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
-
-            mockSession[_loggedIn] = _notLoggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var result = await observationController.FetchUfoTypes() as UnauthorizedObjectResult;
-
-            // Assert
-            Assert.Equal((int)HttpStatusCode.Unauthorized, result.StatusCode);
-            Assert.Equal("Not logged in", result.Value);
-        }
-
-        /********** Fetch all locations **********/
-        [Fact]
-        public async Task FetchAllLocationsLogInOk()
-        {
-            // Arrange
-            var observation1 = new Observation { Date = "2022-09-21", Time = "22:22", Latitude = "56.66015", Longitude = "14.077921", UfoType = "Flat", Description = "I went outside and saw a big egg in the sky" };
-            var observation2 = new Observation { Date = "2022-10-01", Time = "00:09", Latitude = "48.6479", Longitude = "9.8650", UfoType = "Round", Description = "I saw an UFO!!" };
-            var observation3 = new Observation { Date = "2022-10-13", Time = "23:09", Latitude = "69.955420", Longitude = "23.139056", UfoType = "Big", Description = "I saw Swirling rivers of greenish-blue light in the sky, obviously from an UFO" };
-
-            var locationList = new List<Observation> { observation1, observation2, observation3 };
-
-            mockRepo.Setup(o => o.FetchAllLocations()).ReturnsAsync(locationList);
-            var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
-
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var result = await observationController.FetchAllLocations() as OkObjectResult;
-
-            //Assert
-            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
-            Assert.Equal(locationList, (List<Observation>)result.Value);
-        }
-
-        [Fact]
-        public async Task FetchAllLocationsLogInDbError()
-        {
-            // Arrange
-            var locationList = new List<Observation>();
-
-            mockRepo.Setup(o => o.FetchAllLocations()).ReturnsAsync(() => null);
-
-            var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
-
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var result = await observationController.FetchAllLocations() as NotFoundObjectResult;
-
-            //Assert
-            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
-            Assert.Equal("Table in database is empty", result.Value);
-        }
-
-        [Fact]
-        public async Task FetchAllLocationsNotLoggedInn()
-        {
-            // Arrange
-            mockRepo.Setup(o => o.FetchAllLocations()).ReturnsAsync(It.IsAny<List<Observation>>());
-
-            var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
-
-            mockSession[_loggedIn] = _notLoggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var result = await observationController.FetchAllLocations() as UnauthorizedObjectResult;
-
-            // Assert
-            Assert.Equal((int)HttpStatusCode.Unauthorized, result.StatusCode);
-            Assert.Equal("Not logged in", result.Value);
         }
 
         /********** Fetch one Observation **********/
@@ -320,36 +192,11 @@ namespace UfoUnitTest
             mockRepo.Setup(o => o.GetOneObservation(It.IsAny<int>())).ReturnsAsync(observation);
             var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await observationController.GetOneObservation(It.IsAny<int>()) as OkObjectResult;
 
             // Assert
-            Assert.Equal((int)HttpStatusCode.OK, result.StatusCode);
             Assert.Equal(observation, (Observation)result.Value);
-        }
-
-        [Fact]
-        public async Task FetchOneObservationNotLoggedIn()
-        {
-            // Arrange
-            mockRepo.Setup(o => o.GetOneObservation(It.IsAny<int>())).ReturnsAsync(It.IsAny<Observation>());
-
-            var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
-
-            mockSession[_loggedIn] = _notLoggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
-            // Act
-            var result = await observationController.GetOneObservation(It.IsAny<int>()) as UnauthorizedObjectResult;
-
-            // Assert
-            Assert.Equal((int)HttpStatusCode.Unauthorized, result.StatusCode);
-            Assert.Equal("Not logged in", result.Value);
         }
 
         [Fact]
@@ -360,15 +207,10 @@ namespace UfoUnitTest
 
             var observationController = new ObservationController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = _loggedIn;
-            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            observationController.ControllerContext.HttpContext = mockHttpContext.Object;
-
             // Act
             var result = await observationController.GetOneObservation(It.IsAny<int>()) as NotFoundObjectResult;
 
             // Assert
-            Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
             Assert.Equal("Observation was not found", result.Value);
         }
 

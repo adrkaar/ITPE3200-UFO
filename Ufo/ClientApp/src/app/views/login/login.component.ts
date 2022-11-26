@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../models/user.model';
-import { LoggedInUser } from '../../models/LoggedInUser.component';
 
 @Component({
     selector: 'login',
