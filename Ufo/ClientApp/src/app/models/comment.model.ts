@@ -4,9 +4,4 @@
     observationId: number;
     upVote: number;
     downVote: number;
-
-    /*
-    date: string;
-    time: string;
-        */
 }

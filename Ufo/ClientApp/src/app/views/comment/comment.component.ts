@@ -1,10 +1,10 @@
 ﻿import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Comment } from "../../models/comment.model"; 
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'comment',
     templateUrl: 'comment.component.html'
 })
 
@@ -12,12 +12,34 @@ export class CommentComponent {
     allcomments: Array<Comment>;
     observationId: any;
 
-    constructor(private http: HttpClient, private route: ActivatedRoute) { }
+    CommentForm: FormGroup;
+    newComment: Comment = {
+        id: 0,
+        text: '',
+        observationId: 0,
+        upVote: 0,
+        downVote: 0
+    }
+
+    validation = {
+        id: [""],
+        comment: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z .,?!]{1,200}$")
+            ])
+        ],
+    }
+
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+        this.CommentForm = formBuilder.group(this.validation);
+    }
 
     ngOnInit() {
         // henter id fra parameter i url
         this.route.paramMap.subscribe(param => {
-            this.observationId = param.get('id');
+            this.observationId = Number(param.get('id'));
         })
 
         this.fetchAllComments(this.observationId);
@@ -27,7 +49,6 @@ export class CommentComponent {
         window.location.reload()
     }
 
-    // føler ikke egt frontend brude sende med id, føler det er riktigere å gjøre det i backend??
     fetchAllComments(id: any) {
         this.http.get<Comment[]>('api/comment/fetchAllComments/' + id)
             .subscribe(response => {
@@ -59,6 +80,18 @@ export class CommentComponent {
         this.http.get<Comment>("api/comment/downVote/" + id)
             .subscribe(() => {
                 this.fetchAllComments(this.observationId);
+            },
+                error => console.log(error)
+            );
+    }
+
+    addComment() {
+        // setter riktig observationId før objektet sendes
+        this.newComment.observationId = this.observationId;
+
+        this.http.post<Comment>('api/comment/addComment/', this.newComment)
+            .subscribe(() => {
+                window.location.reload()
             },
                 error => console.log(error)
             );

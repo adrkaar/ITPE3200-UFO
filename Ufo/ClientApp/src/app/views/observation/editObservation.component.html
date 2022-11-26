@@ -1,52 +1,48 @@
 ﻿<h1>Edit UFO Observation</h1>
 
-<!--Man må legge til type selv-->
-<form #form="ngForm">
-    <!--ikke nødvendig for sisteutkast-->
+<form class="form" [formGroup]="EditObservationForm" #form="ngForm">
     <div class="form-group">
         <label for="id">Id</label>
-        <input type="text" class="form-control" id="id" name="id" [(ngModel)]="editObservation.id" readonly>
+        <input type="text" formControlName="id" class="form-control" id="id" name="id" [(ngModel)]="editObservation.id" readonly>
     </div>
-
-    <!--<mat-form-field appearance="fill">
-        <mat-label for="date">Choose a date</mat-label>
-        <input matInput [matDatepicker]="picker" type="text" class="form-control" id="date" name="date" [(ngModel)]="editObservation.date">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>-->
-
     <div class="form-group">
         <label for="date">Date</label>
-        <input type="date" class="form-control" id="date" name="date" [(ngModel)]="editObservation.date" max="{{date}}">
+        <input type="date" formControlName="date" class="form-control" id="date" name="date" [(ngModel)]="editObservation.date" max="{{date}}">
+        <p *ngIf="this.EditObservationForm.controls.date.status=='INVALID'">Date needs to be in the format DD/MM/YYYY, and cannot be a future date</p>
     </div>
     <div class="form-group">
         <label for="time">Time</label>
-        <input type="time" class="form-control" id="time" name="time" [(ngModel)]="editObservation.time">
+        <input type="time" formControlName="time" class="form-control" id="time" name="time" [(ngModel)]="editObservation.time">
+        <p *ngIf="this.EditObservationForm.controls.time.status=='INVALID'">Time needs to be in the format HH:MM</p>
     </div>
     <div class="form-group">
         <label for="latitude">Latitude</label>
-        <input type="text" class="form-control" id="latitude" name="latitude" [(ngModel)]="editObservation.latitude">
+        <input type="text" formControlName="latitude" class="form-control" id="latitude" name="latitude" [(ngModel)]="editObservation.latitude">
+        <p *ngIf="this.EditObservationForm.controls.latitude.status=='INVALID'">Latitude needs to be a number, max 10 characters</p>
     </div>
     <div class="form-group">
         <label for="longitude">Longitude</label>
-        <input type="text" class="form-control" id="longitude" name="longitude" [(ngModel)]="editObservation.longitude">
+        <input type="text" formControlName="longitude" class="form-control" id="longitude" name="longitude" [(ngModel)]="editObservation.longitude">
+        <p *ngIf="this.EditObservationForm.controls.longitude.status=='INVALID'">Longitude needs to be a number, max 10 characters</p>
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <input type="text" class="form-control" id="description" name="description" [(ngModel)]="editObservation.description">
+        <textarea type="text" formControlName="description" class="form-control" id="description" name="description" [(ngModel)]="editObservation.description"></textarea>
+        <p *ngIf="this.EditObservationForm.controls.description.status=='INVALID'">Description cannot be empty, max 160 characters</p>
     </div>
 
-    <select class="form-control" (change)="selectedOption($event.target.value)">
-        <!--øverste option skal være den som var fra før-->
-        <option disabled selected>Select Type</option> <!--trenger ikke select type-->
-        <option *ngFor="let type of types">{{ type.type }}</option>
-        <option>Add new type</option>
-    </select>
+    <div class="form-group">
+        <label for="type">Type</label>
+        <select class="form-control" id="type" (change)="selectedOption($event.target.value)">
+            <option disabled selected>Select Type</option>
+            <option *ngFor="let type of types">{{ type.type }}</option>
+            <option>Add new type</option>
+        </select>
+    </div>
+    
+    <div class="form-group" *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
-    <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
-
-    <button type="submit" class="btn btn-primary" (click)="updateObservation()">Save</button>
+    <button type="button" class="btn btn-primary" [disabled]="!EditObservationForm.valid" (click)="updateObservation()">Save</button>
 
     <button class="btn btn-danger" (click)="deleteObservation(editObservation.id)">Delete</button>
 </form>

@@ -60,7 +60,7 @@ namespace Ufo.DAL
                     Latitude = obs.Latitude,
                     Longitude = obs.Longitude,
                     UfoType = obs.UfoTypes.Type
-                }).OrderBy(Date => Date.Date).ToListAsync();
+                }).OrderByDescending(Date => Date.Date).ToListAsync();
                 return allObservations;
             }
             catch { return null; }
