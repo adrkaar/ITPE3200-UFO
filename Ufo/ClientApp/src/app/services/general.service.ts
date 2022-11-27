@@ -6,5 +6,6 @@ import { Injectable } from '@angular/core';
 export class GeneralService {
   showDialog = false;
   showWarningDialog = false;
+  showWelcomeDialog = true;
   constructor() { }
 }

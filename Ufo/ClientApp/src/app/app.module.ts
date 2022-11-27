@@ -30,6 +30,7 @@ import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
+import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomemodal.component';
 
 @NgModule({
     declarations: [
@@ -46,8 +47,10 @@ import { WarningmodalComponent } from './components/dialog/warningmodal/warningm
         LoginComponent,
         SafeHtml,
         SafeHtml,
+      /* Dialog / Modals */ 
         DialogComponent,
         WarningmodalComponent,
+        WelcomemodalComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
