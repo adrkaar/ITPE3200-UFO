@@ -11,10 +11,8 @@ import { GeneralService } from 'src/app/services/general.service';
 
 export class NavMenuComponent {
 
-    constructor(private http: HttpClient, private router: Router) {
+    constructor(private http: HttpClient, private router: Router, public generalService: GeneralService) {
     }
-
-  constructor(public generalService: GeneralService) { }
 
     checkLogIn() {
         this.http.get<boolean>('api/user/checkLogIn')

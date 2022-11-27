@@ -28,7 +28,6 @@ import { SafeHtml } from './pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
-import { RouterModule } from '@angular/router';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
 
@@ -46,7 +45,6 @@ import { WarningmodalComponent } from './components/dialog/warningmodal/warningm
            /* Login */
         LoginComponent,
         SafeHtml,
-        AddCommentComponent,
         SafeHtml,
         DialogComponent,
         WarningmodalComponent,

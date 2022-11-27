@@ -7,8 +7,7 @@ import { GeneralService } from './services/general.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  constructor(public generalService: GeneralService) { }
+  constructor(public generalService: GeneralService, private modalService: NgbModal) { }
   title = 'app';
 
-  constructor(private modalService: NgbModal) { }
 }
