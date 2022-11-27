@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observation } from '../../models/observation.model';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
     templateUrl: './home.component.html',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
     map: google.maps.Map;
     markerOptions: google.maps.MarkerOptions = { draggable: false };
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, public generalService: GeneralService) { }
 
     ngOnInit(): void {
         this.fetchAllLocations();
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit {
         this.map = new google.maps.Map(document.getElementById("homeMap") as HTMLElement, {
             center: { lat: 48.647983479154824, lng: 9.865054057063944 },
             zoom: 3,
-            //mapTypeId: google.maps.MapTypeId.SATELLITE,
+            // mapTypeId: google.maps.MapTypeId.SATELLITE,
             disableDefaultUI: true,
         });
     }

@@ -30,6 +30,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
+import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomemodal.component';
 
 @NgModule({
     declarations: [
@@ -44,8 +45,10 @@ import { WarningmodalComponent } from './components/dialog/warningmodal/warningm
         CommentComponent,
         AddCommentComponent,
         SafeHtml,
+      /* Dialog / Modals */ 
         DialogComponent,
         WarningmodalComponent,
+        WelcomemodalComponent,
 
     ],
     imports: [

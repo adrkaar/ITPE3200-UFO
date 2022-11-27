@@ -1,6 +1,7 @@
 <div id="container">
     <div id="content">
         <!-- https://developers.google.com/maps/documentation/javascript/adding-a-google-map -->
+        <welcomemodal *ngIf="generalService.showWelcomeDialog"></welcomemodal>
         <div id="homeMap"></div>
     </div>
     
