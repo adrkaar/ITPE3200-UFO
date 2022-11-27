@@ -12,6 +12,11 @@ export class HomeComponent implements OnInit {
     map: google.maps.Map;
     markerOptions: google.maps.MarkerOptions = { draggable: false };
 
+    icon = {
+        url: "marker.png",
+        scaledSize: new google.maps.Size(40, 40),
+    }
+
     constructor(private http: HttpClient, public generalService: GeneralService) { }
 
     ngOnInit(): void {
@@ -45,7 +50,8 @@ export class HomeComponent implements OnInit {
             // lager markører med lengde og breddegrad fra observasjonen
             marker = new google.maps.Marker({
                 position: { lat: Number(observations[i].latitude), lng: Number(observations[i].longitude) },
-                map: this.map
+                map: this.map,
+                icon: this.icon
             })
 
             //marker.addListener("click", () => {
