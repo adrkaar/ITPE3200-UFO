@@ -26,7 +26,6 @@ import { SafeHtml } from './pipe';
 
 /*Maps*/
 import { GoogleMapsModule } from '@angular/google-maps';
-import { RouterModule } from '@angular/router';
 import { ContactComponent } from './views/contact/contact.component';
 import { Router, RouterModule } from '@angular/router';
 import { LoginComponent } from './views/login/login.component';
@@ -45,7 +44,6 @@ import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomem
         EditObservationComponent,
       /*Comment*/
         CommentComponent,
-        AddCommentComponent,
         SafeHtml,
         ContactComponent,
            /* Login */

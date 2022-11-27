@@ -21,9 +21,8 @@ const routes: Routes = [
       { path: 'editObservation/:id', component: EditObservationComponent },
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
-    { path: 'addComment/:id', component: AddCommentComponent },
-    { path: 'contact', component: ContactComponent }
-      /*LogIn*/
+      { path: 'contact', component: ContactComponent },
+            /*LogIn*/
       { path: 'logIn', component: LoginComponent },
 ];
 
