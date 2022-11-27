@@ -11,5 +11,6 @@ export class GeneralService {
   isLogedIn = false;
   showLoginButton = true;
   showLogoutButton = false;
+  isAdminLogedIn = false;
   constructor() { }
 }

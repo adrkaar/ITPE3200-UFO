@@ -59,8 +59,56 @@ html {
   justify-content: flex-end;
 }
 
+.header-box {
+  width: 200px;
+  height: 150px;
+  background-color: #009688;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.nav-but {
+    color: #E3E3E3;
+    background-color: #00bfad;
+    border-radius: 10px;
+    font-family: 'Roboto', bold;
+    margin-top: 50px;
+    width: 100px;
+    height: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    outline: none; 
+    border: none;
+}
+
+.nav-but:hover {
+  background-color: #009688;
+}
+
+.first-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.header-text {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
+}
+
 .icon-display-large {
-  transform: scale(2.5);
+  transform: scale(2);
+  margin-right: 20px;
 }
 
 .navbar-brand {

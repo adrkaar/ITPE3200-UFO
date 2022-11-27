@@ -49,6 +49,7 @@ logIn() {
             this.generalService.isLogedIn = true;
             this.generalService.showLoginButton = false;
             this.generalService.showLogoutButton = true;
+            this.generalService.isAdminLogedIn = true;
           }
           else alert("Wrong username or password, please try again");
       },
