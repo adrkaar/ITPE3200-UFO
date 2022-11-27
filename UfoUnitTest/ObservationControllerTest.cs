@@ -108,7 +108,7 @@ namespace UfoUnitTest
 
         /********** Fetch all observations **********/
         [Fact]
-        public async Task FetchAllObservationsLogInOk()
+        public async Task FetchAllObservationsOk()
         {
             // Arrange
             var observation1 = new Observation { Date = "2022-09-21", Time = "22:22", Latitude = "56.66015", Longitude = "14.077921", UfoType = "Flat", Description = "I went outside and saw a big egg in the sky" };
@@ -128,7 +128,7 @@ namespace UfoUnitTest
         }
 
         [Fact]
-        public async Task FetchAllObservationsLogInDbError()
+        public async Task FetchAllObservationsDbError()
         {
             // Arrange
             var observationList = new List<Observation>();
@@ -146,7 +146,7 @@ namespace UfoUnitTest
 
         /********** Fetch all ufotypes **********/
         [Fact]
-        public async Task FetchUfotypesLogInOk()
+        public async Task FetchUfotypesOk()
         {
             // Arrange
             var type1 = new UfoType { Type = "Round" };
@@ -166,7 +166,7 @@ namespace UfoUnitTest
         }
 
         [Fact]
-        public async Task FetchUfotypesLogInDbError()
+        public async Task FetchUfotypesDbError()
         {
             // Arrange
             var ufoList = new List<UfoType>();
@@ -184,7 +184,7 @@ namespace UfoUnitTest
 
         /********** Fetch one Observation **********/
         [Fact]
-        public async Task FetchOneObservationLogInOk()
+        public async Task FetchOneObservationOk()
         {
             // Arrange
             var observation = new Observation { Date = "2022-09-21", Time = "22:22", Latitude = "56.66015", Longitude = "14.077921", UfoType = "Flat", Description = "I went outside and saw a big egg in the sky" };
@@ -200,7 +200,7 @@ namespace UfoUnitTest
         }
 
         [Fact]
-        public async Task FetchOneObservationLogInCouldNotFetch()
+        public async Task FetchOneObservationCouldNotFetch()
         {
             // Arrange
             mockRepo.Setup(o => o.GetOneObservation(It.IsAny<int>())).ReturnsAsync(() => null);

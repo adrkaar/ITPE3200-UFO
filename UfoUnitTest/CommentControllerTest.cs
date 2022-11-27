@@ -52,7 +52,7 @@ namespace UfoUnitTest
 
             var commentController = new CommentController(mockRepo.Object, mockLog.Object);
 
-            mockSession[_loggedIn] = "";
+            mockSession[_loggedIn] = _notLoggedIn;
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
             commentController.ControllerContext.HttpContext = mockHttpContext.Object;
 
@@ -108,7 +108,7 @@ namespace UfoUnitTest
 
         /********** Fetch all comments **********/
         [Fact]
-        public async Task FetchAllCommentsLogInnOk()
+        public async Task FetchAllCommentsOk()
         {
             // Arrange
             var comment1 = new Comment { Id = 1, Text = "comment", DownVote = 1, UpVote = 1, ObservationId = 1 };
@@ -128,7 +128,7 @@ namespace UfoUnitTest
         }
 
         [Fact]
-        public async Task FetchAllCommentsLogInDbError()
+        public async Task FetchAllCommentsDbError()
         {
             // Arrange
             mockRepo.Setup(c => c.FetchAllComments(It.IsAny<int>())).ReturnsAsync(() => null);
