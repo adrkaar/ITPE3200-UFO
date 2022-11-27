@@ -35,6 +35,7 @@ export class NavMenuComponent {
                 alert("You have been logged out");
                 this.generalService.showLoginButton = true;
                 this.generalService.showLogoutButton = false;
+                this.generalService.isAdminLogedIn = false;
             }, error => console.log(error)
             );
     }

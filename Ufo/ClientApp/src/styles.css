@@ -62,6 +62,15 @@ code {
     border-radius: 15px;
 }
 
+.right-header {
+    display: flex;
+    margin: auto;
+    width: 30%;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 20px;
+}
+
 
 /*---------------------- Feed ------------------------ */
 .feed {
@@ -154,7 +163,6 @@ code {
 
 .btn-user-box:hover {
     color: black;
-    background-color: #00bfad;
   }
 
 /*-----------  Icon ------------------*/
