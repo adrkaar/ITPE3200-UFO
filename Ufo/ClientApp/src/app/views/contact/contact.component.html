@@ -1,22 +1,22 @@
 <h1>Contact</h1>
 
-    <form class="form" [formGroup]="ContactForm" #form="ngForm" (ngSubmit)="contact()">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" formControlName="name" class="form-control" id="name" name="name" [(ngModel)]="newContactMessage.name">
-            <p *ngIf="this.ContactForm.controls.name.status=='INVALID'">Invalid name format</p>
-        </div>
+<form class="form" [formGroup]="ContactForm" #form="ngForm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" formControlName="name" class="form-control" id="name" name="name" [(ngModel)]="newContactMessage.name">
+        <p *ngIf="this.ContactForm.controls.name.status=='INVALID'">Invalid name format</p>
+    </div>
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" formControlName="email" class="form-control" id="email" name="email" [(ngModel)]="newContactMessage.email">
-            <p *ngIf="this.ContactForm.controls.email.status=='INVALID'">Invalid email format</p>
-        </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" formControlName="email" class="form-control" id="email" name="email" [(ngModel)]="newContactMessage.email">
+        <p *ngIf="this.ContactForm.controls.email.status=='INVALID'">Invalid email format</p>
+    </div>
 
-        <div class="form-group">
-            <label for="email">Message</label>
-            <input type="text" formControlName="message" class="form-control" id="message" name="message" [(ngModel)]="newContactMessage.message">
-            <p *ngIf="this.ContactForm.controls.message.status=='INVALID'">Invalid message format</p>
-        </div>
-        <button type="submit" class="btn btn-primary" [disabled]="!ContactForm.valid">Submit message</button>
-    </form>
+    <div class="form-group">
+        <label for="email">Message</label>
+        <input type="text" formControlName="message" class="form-control" id="message" name="message" [(ngModel)]="newContactMessage.message">
+        <p *ngIf="this.ContactForm.controls.message.status=='INVALID'">Invalid message format</p>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!ContactForm.valid"><a [href]="contact()">Submit message</a></button>
+</form>
