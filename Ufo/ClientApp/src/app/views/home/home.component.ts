@@ -4,6 +4,7 @@ import { Observation } from '../../models/observation.model';
 
 @Component({
     templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent implements OnInit {
@@ -19,6 +20,8 @@ export class HomeComponent implements OnInit {
         this.map = new google.maps.Map(document.getElementById("homeMap") as HTMLElement, {
             center: { lat: 48.647983479154824, lng: 9.865054057063944 },
             zoom: 3,
+            //mapTypeId: google.maps.MapTypeId.SATELLITE,
+            disableDefaultUI: true,
         });
     }
 

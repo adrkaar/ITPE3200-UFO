@@ -1,11 +1,11 @@
 <div class="container_nav">
-    <a class="navbar-brand" [routerLink]="['/']">Identified UFO</a>
     <div class="user-box">
-        <div>
-            <mat-icon class="icon-display-large">account_circle</mat-icon>
-        </div>
-        <div>
-        </div>
+
+        <mat-icon class="icon-display-large">account_circle</mat-icon>
+        <li class="btn-user-box" (click)="generalService.showDialog = true">
+            <a class="nav-link"><mat-icon>login</mat-icon>Login</a>
+        </li>
+
     </div>
     <div>
         <ul class="navbar-nav flex-grow">

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
   selector: 'app-nav-menu',
@@ -9,19 +10,11 @@ import { Router } from '@angular/router';
 })
 
 export class NavMenuComponent {
-    isExpanded = false;
-    user: any;
 
     constructor(private http: HttpClient, private router: Router) {
     }
 
-    collapse() {
-        this.isExpanded = false;
-    }
-
-    toggle() {
-        this.isExpanded = !this.isExpanded;
-    }
+  constructor(public generalService: GeneralService) { }
 
     checkLogIn() {
         this.http.get<boolean>('api/user/checkLogIn')
