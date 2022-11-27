@@ -30,7 +30,7 @@ export class ContactComponent {
             null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("^[a-zA-Z .,-?!]{1,200}$")
+                Validators.pattern("^[a-zA-Z .,-?!@]{1,200}$")
             ])
         ],
         message: [

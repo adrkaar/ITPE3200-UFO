@@ -32,18 +32,16 @@ namespace Ufo.Controllers
             {
                 _log.LogInformation(contactMessage.Name + contactMessage.Email + contactMessage.Message);
 
-                /*
-                 * this can be used if we have a valid email hosting
-                 * 
+                
                 var smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
-                    Credentials = new NetworkCredential("username", "password"),
+                    Credentials = new NetworkCredential("webapp2022ufo@gmail.com", "Sommer2022!dag123"),
                     EnableSsl = true,
                 };
 
-                smtpClient.Send("admin@ufosightings.com", contactMessage.Email, "UFO sightings", "Thanks for contacting us");
-                */
+                smtpClient.Send("webapp2022ufo@gmail.com", contactMessage.Email, "UFO sightings", "Thanks for contacting us");
+                
             }
             return Ok();
         }
