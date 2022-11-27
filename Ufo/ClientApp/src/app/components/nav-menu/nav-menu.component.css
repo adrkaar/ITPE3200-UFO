@@ -59,3 +59,7 @@ html {
 .navbar-brand {
   justify-content: center;
 }
+
+.modal-backdrop {
+  z-index: -1;
+}

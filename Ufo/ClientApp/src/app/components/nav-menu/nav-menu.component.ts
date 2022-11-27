@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
@@ -6,17 +8,30 @@ import { GeneralService } from 'src/app/services/general.service';
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.css']
 })
+
 export class NavMenuComponent {
-  isExpanded = false;
-  user: any;
 
-  constructor(public generalService: GeneralService) { }
+    constructor(private http: HttpClient, private router: Router, public generalService: GeneralService) {
+    }
 
-  collapse() {
-    this.isExpanded = false;
-  }
+    checkLogIn() {
+        this.http.get<boolean>('api/user/checkLogIn')
+            .subscribe(response => {
+                if (response) {
+                    this.router.navigate(['addObservation'])
+                }
+                else {
+                    alert("You have to log in");
+                }
+            }, error => console.log(error)
+            );
+    }
 
-  toggle() {
-    this.isExpanded = !this.isExpanded;
-  }
+    logOut() {
+        this.http.post<boolean>('api/user/logOut', "")
+            .subscribe(() => {
+                alert("You have been logged out");
+            }, error => console.log(error)
+            );
+    }
 }
