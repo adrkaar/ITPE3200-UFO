@@ -13,13 +13,13 @@ export class ContactComponent {
     ContactForm: FormGroup;
 
     newContactMessage: ContactMessage = {
-        name: '',
+        subject: '',
         email: '',
         message: ''
     };
 
     validation = {
-        name: [
+        subject: [
             null,
             Validators.compose([
                 Validators.required,
@@ -49,13 +49,13 @@ export class ContactComponent {
         this.ContactForm = formBuilder.group(this.validation);
     }
 
-    mailtoHeader = "mailto:?";
+    mailtoHeader = "mailto:webapp2022ufo@gmail.com?";
     subjectProp = "subject=";
     bodyProp = "body=";
 
     contact() {
         /* https://stackblitz.com/edit/mailto-links-for-assets?file=src%2Fapp%2Fmailto-example%2Fmailto-example.component.ts */
-        const url = `${this.mailtoHeader}${this.subjectProp}${this.newContactMessage.name}&${this.bodyProp}${this.newContactMessage.message}`;
+        const url = `${this.mailtoHeader}${this.subjectProp}${this.newContactMessage.subject}&${this.bodyProp}${this.newContactMessage.message}`;
         return this.sanitizer.bypassSecurityTrustUrl(url)
 
         this.http.post<ContactMessage>('api/contact/handleContact', this.newContactMessage)

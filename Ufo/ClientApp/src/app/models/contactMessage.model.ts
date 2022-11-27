@@ -1,5 +1,5 @@
 ﻿export class ContactMessage {
-    name: string;
+    subject: string;
     email: string;
     message: string;
 }
