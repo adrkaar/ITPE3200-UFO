@@ -89,7 +89,7 @@ namespace UfoUnitTest
             var userController = new UserController(mockRepo.Object, mockLog.Object);
 
             mockHttpContext.Setup(s => s.Session).Returns(mockSession);
-            mockSession[_loggedIn] = "";
+            mockSession[_loggedIn] = _notLoggedIn;
             userController.ControllerContext.HttpContext = mockHttpContext.Object;
 
             // Act
@@ -97,6 +97,39 @@ namespace UfoUnitTest
 
             // Assert
             Assert.Equal(_notLoggedIn, mockSession[_loggedIn]);
+        }
+
+        [Fact]
+        public async Task CheckLogInOk()
+        {
+            var userController = new UserController(mockRepo.Object, mockLog.Object);
+
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            mockSession[_loggedIn] = _loggedIn;
+            userController.ControllerContext.HttpContext = mockHttpContext.Object;
+
+            // Act
+            var resultat = await userController.CheckLogIn() as OkObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.True((bool)resultat.Value);
+        }
+
+        [Fact]
+        public async Task CheckLogInNotOk()
+        {
+            var userController = new UserController(mockRepo.Object, mockLog.Object);
+
+            mockHttpContext.Setup(s => s.Session).Returns(mockSession);
+            mockSession[_loggedIn] = _notLoggedIn;
+            userController.ControllerContext.HttpContext = mockHttpContext.Object;
+            // Act
+            var resultat = await userController.CheckLogIn() as OkObjectResult;
+
+            // Assert 
+            Assert.Equal((int)HttpStatusCode.OK, resultat.StatusCode);
+            Assert.False((bool)resultat.Value);
         }
     }
 }
