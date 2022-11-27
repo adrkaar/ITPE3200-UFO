@@ -1,9 +1,11 @@
 <div class="container_nav">
     <div class="user-box">
-
         <mat-icon class="icon-display-large">account_circle</mat-icon>
         <li class="btn-user-box" (click)="generalService.showLoginDialog = true">
-            <a class="nav-link"><mat-icon>login</mat-icon>Login</a>
+            <div class="login-box" *ngIf="generalService.showLoginButton">
+                <a class="nav-login"><mat-icon>login</mat-icon>Login</a>
+            </div>
+            
         </li>
 
     </div>
@@ -24,11 +26,11 @@
 
             <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
                 <a class="nav-link" [routerLink]="['/contact']"><mat-icon>account_circle</mat-icon>Contact us</a>
-            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
-                <a class="nav-link" [routerLink]="['/logIn']"><mat-icon>login</mat-icon>Log in</a>
+            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']" *ngIf="generalService.showLoginButton">
+                <a class="nav-link" (click)="generalService.showLoginDialog = true"><mat-icon>login</mat-icon>Log in</a>
             </li>
-            <li class="nav-item btn-primary">
-                <a class="nav-link" (click)="logOut()"><mat-icon>logout</mat-icon>Log out</a>
+            <li class="nav-item btn-primary" *ngIf="generalService.showLogoutButton">
+                <a class="nav-link" (click)="logOut()" ><mat-icon>logout</mat-icon>Log out</a>
             </li>
         </ul>
     </div>

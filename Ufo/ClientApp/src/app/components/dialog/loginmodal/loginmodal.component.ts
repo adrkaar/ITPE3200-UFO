@@ -43,14 +43,19 @@ export class LoginmodalComponent implements OnInit {
 logIn() {
   this.http.post<User>('api/user/logIn', this.user)
       .subscribe(response => {
-          if (response) this.router.navigate(['observation'])
+          if (response) {
+            this.router.navigate(['observation'])
+            this.generalService.showLoginDialog = false;
+            this.generalService.isLogedIn = true;
+            this.generalService.showLoginButton = false;
+            this.generalService.showLogoutButton = true;
+          }
           else alert("Wrong username or password, please try again");
       },
           error => console.log(error)
-  );
-}
+    );
+  }
 
   ngOnInit(): void {
   }
-
 }

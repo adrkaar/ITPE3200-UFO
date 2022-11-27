@@ -1,6 +1,6 @@
 <h1>Log In</h1>
 
-<form (ngSubmit)="logIn()">
+<form [formGroup]="Form"  (ngSubmit)="logIn()">
     <div>
         <label for="username">User name</label>
         <input type="text" id="username" formControlName="username" [(ngModel)]="user.username">

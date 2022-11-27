@@ -142,6 +142,7 @@ code {
 }
 
 .btn-user-box{
+    display: show;
     color: black;
     border-color: #292D32;
     border-radius: 10px;
