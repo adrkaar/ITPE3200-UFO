@@ -1,7 +1,7 @@
 <h1>Log In</h1>
 
-<form [formGroup]="Form" class="login-form-group" (ngSubmit)="logIn()">
-    <div class="login-form-group-field">
+<form (ngSubmit)="logIn()">
+    <div>
         <label for="username">User name</label>
         <input type="text" id="username" formControlName="username" [(ngModel)]="user.username">
         <p *ngIf="this.Form.controls.username.status=='INVALID'">Invalid user name</p>

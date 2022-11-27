@@ -7,5 +7,6 @@ export class GeneralService {
   showDialog = false;
   showWarningDialog = false;
   showWelcomeDialog = true;
+  showLoginDialog = false; 
   constructor() { }
 }
