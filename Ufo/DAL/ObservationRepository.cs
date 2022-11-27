@@ -27,6 +27,13 @@ namespace Ufo.DAL
                 newObservationRow.Latitude = inObservation.Latitude;
                 newObservationRow.Longitude = inObservation.Longitude;
 
+                // setter brukeren
+                //var user = _db.Users.Where(u => inObservation.Username == u.Username);
+                //newObservationRow.Users = (Users)user;
+                //feiler på linjen over fordi bruker ikke var satt i client
+                // brukernav må hentes og settes i klient
+                // evt kan man her hent brukeren som er logget inn??
+
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
 
@@ -59,7 +66,7 @@ namespace Ufo.DAL
                     Description = obs.Description,
                     Latitude = obs.Latitude,
                     Longitude = obs.Longitude,
-                    UfoType = obs.UfoTypes.Type
+                    UfoType = obs.UfoTypes.Type,
                 }).OrderByDescending(Date => Date.Date).ToListAsync();
                 return allObservations;
             }
@@ -96,6 +103,10 @@ namespace Ufo.DAL
                 oneObservation.Description = changeObservation.Description;
                 oneObservation.Latitude = changeObservation.Latitude;
                 oneObservation.Longitude = changeObservation.Longitude;
+
+                // setter brukeren
+                //var user = _db.Users.Where(u => changeObservation.Username == u.Username);
+                //oneObservation.Users = (Users)user;
 
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();
@@ -163,22 +174,6 @@ namespace Ufo.DAL
                 _db.UfoTypes.Add(ufoType);
                 await _db.SaveChangesAsync();
                 return ufoType;
-            }
-            catch { return null; }
-        }
-
-        public async Task<List<Observation>> FetchAllLocations()
-        {
-            try
-            {
-                // henter alle observasjoner, og setter kun latitude og longitude
-                List<Observation> allLocations = await _db.Observations.Select(obs => new Observation
-                {
-                    Latitude = obs.Latitude,
-                    Longitude = obs.Longitude,
-                }).ToListAsync();
-
-                return allLocations;
             }
             catch { return null; }
         }

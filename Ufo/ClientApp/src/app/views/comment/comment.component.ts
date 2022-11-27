@@ -45,10 +45,6 @@ export class CommentComponent {
         this.fetchAllComments(this.observationId);
     }
 
-    refreshWebsite(): void {
-        window.location.reload()
-    }
-
     fetchAllComments(id: any) {
         this.http.get<Comment[]>('api/comment/fetchAllComments/' + id)
             .subscribe(response => {
@@ -56,6 +52,29 @@ export class CommentComponent {
             },
                 error => console.log(error)
             );
+    }
+
+    addComment() {
+        // sjekker om brukeren er logget inn
+        this.http.get<boolean>('api/user/checkLogIn')
+            .subscribe(response => {
+                if (response) {
+                    // setter riktig observationId før objektet sendes
+                    this.newComment.observationId = this.observationId;
+
+                    this.http.post<Comment>('api/comment/addComment/', this.newComment)
+                        .subscribe(() => {
+                            this.fetchAllComments(this.observationId);
+                        },
+                            error => console.log(error)
+                        );
+                }
+                else {
+                    alert("You have to log in to be able to comment");
+                }
+            }, error => console.log(error)
+            );
+        
     }
 
     deleteComment(id: number) {
@@ -80,18 +99,6 @@ export class CommentComponent {
         this.http.get<Comment>("api/comment/downVote/" + id)
             .subscribe(() => {
                 this.fetchAllComments(this.observationId);
-            },
-                error => console.log(error)
-            );
-    }
-
-    addComment() {
-        // setter riktig observationId før objektet sendes
-        this.newComment.observationId = this.observationId;
-
-        this.http.post<Comment>('api/comment/addComment/', this.newComment)
-            .subscribe(() => {
-                window.location.reload()
             },
                 error => console.log(error)
             );

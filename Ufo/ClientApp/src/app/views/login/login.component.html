@@ -1,0 +1,16 @@
+<h1>Log In</h1>
+
+<form [formGroup]="Form" class="login-form-group" (ngSubmit)="logIn()">
+    <div class="login-form-group-field">
+        <label for="username">User name</label>
+        <input type="text" id="username" formControlName="username" [(ngModel)]="user.username">
+        <p *ngIf="this.Form.controls.username.status=='INVALID'">Invalid user name</p>
+    </div>
+    <div class="form-group-field">
+        <label for="passwrod">Password</label>
+        <input type="password" id="password" formControlName="password" [(ngModel)]="user.password">
+        <p *ngIf="this.Form.controls.password.status=='INVALID'">Password must contain letters, capital letters, numbers and special characters, at least 8 characters</p>
+    </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!Form.valid">Login</button>
+    <!--<button type="submit" [disabled]="!Form.valid">Register</button>-->
+</form>

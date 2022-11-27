@@ -7,13 +7,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AddCommentComponent } from './views/comment/addComment.component';
 import { CommentComponent } from './views/comment/comment.component';
 import { HomeComponent } from './views/home/home.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { AddObservationComponent } from './views/observation/addObservation.component';
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
+
 
 /*Material*/
 import { MatInputModule } from '@angular/material/input';
@@ -28,6 +28,11 @@ import { SafeHtml } from './pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { RouterModule } from '@angular/router';
 import { ContactComponent } from './views/contact/contact.component';
+import { Router, RouterModule } from '@angular/router';
+import { LoginComponent } from './views/login/login.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
+import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomemodal.component';
 
 @NgModule({
     declarations: [
@@ -42,8 +47,13 @@ import { ContactComponent } from './views/contact/contact.component';
         CommentComponent,
         AddCommentComponent,
         SafeHtml,
-        ContactComponent
-        
+        ContactComponent,
+           /* Login */
+        LoginComponent,
+      /* Dialog / Modals */ 
+        DialogComponent,
+        WarningmodalComponent,
+        WelcomemodalComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -53,10 +63,12 @@ import { ContactComponent } from './views/contact/contact.component';
         MatButtonModule,
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
-        AppRoutingModule,
-        NgbModule
+        ReactiveFormsModule,
+        NgbModule,
+        RouterModule, AppRoutingModule,
+
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

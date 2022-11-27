@@ -66,13 +66,6 @@ export class EditObservationComponent implements OnInit {
                 Validators.pattern("^[a-zA-Z .,-?!]{1,200}$")
             ])
         ],
-        //UfoType: [
-        //    null,
-        //    Validators.compose([
-        //        Validators.required,
-        //        Validators.pattern("^[a-zA-Z ]{1,20}$")
-        //    ])
-        
     }
 
     constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
@@ -118,7 +111,8 @@ export class EditObservationComponent implements OnInit {
         }
         this.editObservation.ufoType = this.chosenType;
         this.http.put<Observation>("api/observation/editObservation", this.editObservation)
-            .subscribe(() => {
+            .subscribe(res => {
+                console.log(res)
                 this.router.navigate(['observation'])
             }, error => console.log(error)
             );
@@ -126,7 +120,8 @@ export class EditObservationComponent implements OnInit {
 
     deleteObservation(id: number) {
         this.http.delete<Observation>("api/observation/deleteObservation/" + id)
-            .subscribe(() => {
+            .subscribe(res => {
+                console.log(res)
                 this.router.navigate(['observation'])
             }, error => console.log(error)
             );

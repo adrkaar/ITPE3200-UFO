@@ -1,16 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observation } from '../../models/observation.model';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
     templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 
 export class HomeComponent implements OnInit {
     map: google.maps.Map;
     markerOptions: google.maps.MarkerOptions = { draggable: false };
 
-    constructor(private http: HttpClient) { }
+    icon = {
+        url: "marker.png",
+        scaledSize: new google.maps.Size(40, 40),
+    }
+
+    constructor(private http: HttpClient, public generalService: GeneralService) { }
 
     ngOnInit(): void {
         this.fetchAllLocations();
@@ -19,6 +26,8 @@ export class HomeComponent implements OnInit {
         this.map = new google.maps.Map(document.getElementById("homeMap") as HTMLElement, {
             center: { lat: 48.647983479154824, lng: 9.865054057063944 },
             zoom: 3,
+            // mapTypeId: google.maps.MapTypeId.SATELLITE,
+            disableDefaultUI: true,
         });
     }
 
@@ -32,7 +41,6 @@ export class HomeComponent implements OnInit {
             );
     }
 
-
     // legger til lokasjonene paa kartet
     addToMap(observations: Observation[]) {
         var marker: google.maps.Marker;
@@ -42,7 +50,8 @@ export class HomeComponent implements OnInit {
             // lager markører med lengde og breddegrad fra observasjonen
             marker = new google.maps.Marker({
                 position: { lat: Number(observations[i].latitude), lng: Number(observations[i].longitude) },
-                map: this.map
+                map: this.map,
+                icon: this.icon
             })
 
             //marker.addListener("click", () => {

@@ -13,6 +13,10 @@ html {
   }
 }
 
+.container_nav {
+  margin-top: 15px;
+}
+
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
@@ -28,6 +32,13 @@ html {
   color: white;
   font-size: 20px;
   text-align: center;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
 }
 
 .user-box {
@@ -47,4 +58,8 @@ html {
 
 .navbar-brand {
   justify-content: center;
+}
+
+.modal-backdrop {
+  z-index: -1;
 }

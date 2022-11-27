@@ -93,15 +93,24 @@ export class AddObservationComponent {
         }
     }
 
+    checkLogIn(): any {
+        this.http.get<boolean>('api/user/checkLogIn')
+            .subscribe(response => {
+                return response;
+            }, error => console.log(error)
+            );
+    }
+
     addObservation() {
         // sjekker om brukeren vil legge til ny type før typen settes
         if (this.chosenType === 'Add new type') {
             // henter verdien til ny type
-            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value; 
+            this.chosenType = (<HTMLInputElement>document.getElementById('newType')).value;
         }
         this.newObservation.ufoType = this.chosenType;
         this.http.post<Observation>('api/observation/addObservation', this.newObservation)
-            .subscribe(() => {
+            .subscribe(res => {
+                console.log(res)
                 this.router.navigate(['observation'])
             },
                 error => console.log(error)
@@ -124,7 +133,7 @@ export class AddObservationComponent {
         }
         // henter brukeres geolokasjon og fyller ut det for dem med max 10 tegn
         navigator.geolocation.getCurrentPosition((position) => {
-            this.newObservation.latitude = String(position.coords.latitude).substring(0,10);
+            this.newObservation.latitude = String(position.coords.latitude).substring(0, 10);
             this.newObservation.longitude = String(position.coords.longitude).substring(0, 10);
 
             // setter markøren

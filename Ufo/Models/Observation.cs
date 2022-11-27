@@ -16,5 +16,6 @@ namespace Ufo.Models
         public string Latitude { get; set; }
         [RegularExpression(@"^[0-9.-]{1,10}$")]
         public string Longitude { get; set; }
+        public string Username { get; set; }
     }
 }
