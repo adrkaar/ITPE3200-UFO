@@ -117,7 +117,7 @@ namespace UfoUnitTest
         }
 
         [Fact]
-        public async Task CheckLogInNotOk()
+        public async Task CheckLogInNotLoggedIn()
         {
             var userController = new UserController(mockRepo.Object, mockLog.Object);
 
