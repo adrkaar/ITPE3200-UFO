@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AddCommentComponent } from './views/comment/addComment.component';
 import { CommentComponent } from './views/comment/comment.component';
 import { HomeComponent } from './views/home/home.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -27,6 +26,8 @@ import { SafeHtml } from './pipe';
 
 /*Maps*/
 import { GoogleMapsModule } from '@angular/google-maps';
+import { Router, RouterModule } from '@angular/router';
+import { LoginComponent } from './views/login/login.component';
 import { RouterModule } from '@angular/router';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
@@ -42,11 +43,13 @@ import { WarningmodalComponent } from './components/dialog/warningmodal/warningm
         EditObservationComponent,
       /*Comment*/
         CommentComponent,
+           /* Login */
+        LoginComponent,
+        SafeHtml,
         AddCommentComponent,
         SafeHtml,
         DialogComponent,
         WarningmodalComponent,
-
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -56,10 +59,12 @@ import { WarningmodalComponent } from './components/dialog/warningmodal/warningm
         MatButtonModule,
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
-        AppRoutingModule,
+        ReactiveFormsModule,
         NgbModule,
+        RouterModule, AppRoutingModule,
+
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

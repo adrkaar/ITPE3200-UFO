@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
             );
     }
 
-
     // legger til lokasjonene paa kartet
     addToMap(observations: Observation[]) {
         var marker: google.maps.Marker;

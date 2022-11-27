@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralService } from './services/general.service';
 
 @Component({
@@ -8,4 +9,6 @@ import { GeneralService } from './services/general.service';
 export class AppComponent {
   constructor(public generalService: GeneralService) { }
   title = 'app';
+
+  constructor(private modalService: NgbModal) { }
 }

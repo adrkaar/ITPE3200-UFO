@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Ufo.DAL
 {
@@ -13,6 +14,7 @@ namespace Ufo.DAL
         public string Latitude { get; set; }
         public string Longitude { get; set; }
         virtual public UfoTypes UfoTypes { get; set; }
+        virtual public Users Users { get; set; }
     }
 
     public class Comments
@@ -23,6 +25,15 @@ namespace Ufo.DAL
         virtual public Observations Observations { get; set; }
         public int UpVote { get; set; }
         public int Downvote { get; set; }
+        virtual public Users Users { get; set; }
+    }
+
+    public class Users
+    {
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public byte[] Password { get; set; }
+        public byte[] Salt { get; set; }
     }
 
     public class UfoTypes
@@ -31,6 +42,7 @@ namespace Ufo.DAL
         public string Type { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class ObservationContext : DbContext
     {
         public ObservationContext(DbContextOptions<ObservationContext> options) : base(options)
@@ -41,11 +53,11 @@ namespace Ufo.DAL
         public DbSet<Observations> Observations { get; set; }
         public DbSet<Comments> Comments { get; set; }
         public DbSet<UfoTypes> UfoTypes { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
         }
-
     }
 }

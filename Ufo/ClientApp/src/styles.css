@@ -17,9 +17,18 @@ code {
   color: #e01a76;
 }
 
-/*---------------------- NAVBAR ------------------------ */
+
+/*---------------------- Navbar ------------------------ */
 .bg-header {
     background-color: #00695F;
+}
+
+.navbar-brand {
+    color: black;
+}
+
+.navbar-brand:hover {
+    color: #292D32;
 }
 
 .logo {
@@ -40,16 +49,19 @@ code {
     display: flex;
     background-color: #00695F;
     justify-content: center;
+    box-shadow: 5px 0 20px 0 #00695F;
     position: fixed;
 }
 
 .right-side {
+
     width: 100%;
     height: auto;
     /*margin-top: 1%;*/
     margin-left: 250px;
     border-radius: 15px;
 }
+
 
 /*---------------------- Feed ------------------------ */
 .feed {
@@ -96,7 +108,7 @@ code {
 }
 
 
-/*---------------------- KNAPPER ------------------------ */
+/*---------------------- Button ------------------------ */
 .btn-primary {
     color: #E3E3E3;
     background-color: #009688;
@@ -185,6 +197,18 @@ table td {
 }
 
 
+/*-----------  Modal ------------------*/
+.modal-content {
+  z-index: 1020!important;
+}
+
+.ngb-modal-backdrop {
+  z-index: -1;
+}
+
+.modal-backdrop.in { z-index: auto;}
+
+
 /*-----------  Form  ------------------*/
 .form {
     width: 40em;
@@ -223,6 +247,7 @@ table td {
     margin-bottom: 2%;
     width: 60%;
 }
+
 .comment-form-group button {
     margin-top: 2%;
 }
@@ -230,6 +255,24 @@ table td {
 .comment-form-group p {
     display: none;
     color: red;
+}
+
+.login-form-group {
+    padding: 2%;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 2%;
+    width: 50%;
+    align-content: center;
+}
+
+.login-form-group-field {
+    padding-bottom: 2%;
+}
+
+.login-form-group p {
+    display: none;
+    color: red
 }
 
 .ng-touched p {
