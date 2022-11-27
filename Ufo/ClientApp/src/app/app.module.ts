@@ -19,6 +19,7 @@ import { ObservationComponent } from './views/observation/observation.component'
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
 /*Pipe*/
@@ -32,6 +33,8 @@ import { LoginComponent } from './views/login/login.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
 import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomemodal.component';
+import { LoginmodalComponent } from './components/dialog/loginmodal/loginmodal.component';
+
 
 @NgModule({
     declarations: [
@@ -52,12 +55,13 @@ import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomem
         DialogComponent,
         WarningmodalComponent,
         WelcomemodalComponent,
+        LoginmodalComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
         FormsModule, ReactiveFormsModule,
-        MatIconModule,
+        MatIconModule, MatTooltipModule, 
         MatButtonModule,
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,

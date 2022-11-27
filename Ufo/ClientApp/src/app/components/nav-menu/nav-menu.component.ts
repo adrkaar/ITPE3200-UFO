@@ -19,6 +19,8 @@ export class NavMenuComponent {
             .subscribe(response => {
                 if (response) {
                     this.router.navigate(['addObservation'])
+                    this.generalService.showLoginButton = false;
+                    window.location.reload();
                 }
                 else {
                     alert("You have to log in");
@@ -31,6 +33,8 @@ export class NavMenuComponent {
         this.http.post<boolean>('api/user/logOut', "")
             .subscribe(() => {
                 alert("You have been logged out");
+                this.generalService.showLoginButton = true;
+                this.generalService.showLogoutButton = false;
             }, error => console.log(error)
             );
     }

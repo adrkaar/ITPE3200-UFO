@@ -1,0 +1,36 @@
+<div id="container">
+    <div id="header">Login</div>
+    <form [formGroup]="Form" (ngSubmit)="logIn()">
+        <div class="content">
+            <div class="form-group-field">
+                <label for="username" class="label-text">User name</label>
+                <input type="text" 
+                id="username" 
+                formControlName="username" 
+                [(ngModel)]="user.username" class="label-input" 
+                matTooltip="Invalid username" [matTooltipPosition]="'right'">
+                <mat-icon
+                matTooltip="Invalid username"
+                *ngIf="this.Form.controls.username.status=='INVALID'"
+                [matTooltipPosition]="'right'">
+                error</mat-icon>
+            </div>
+            <div class="form-group-field">
+                <label class="label-text" for="password">Password</label>
+                <input type="password" id="passwrod" formControlName="password" 
+                [(ngModel)]="user.password" 
+                class="label-input">
+                <mat-icon
+                matTooltip="Must contain letters, capital letters, numbers and special characters, at least 8 characters"
+                *ngIf="this.Form.controls.password.status=='INVALID'"
+                [matTooltipPosition]="'right'">
+                error</mat-icon>
+            </div>
+        </div>
+
+        <div id="actions">
+            <button class="btn btn-primary" (click)="generalService.showLoginDialog= false">Cancel</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!Form.valid">Login</button>
+        </div>
+    </form>
+</div>
