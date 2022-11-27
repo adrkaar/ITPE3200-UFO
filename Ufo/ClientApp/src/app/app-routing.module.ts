@@ -12,6 +12,9 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
 import { SafeHtml } from './pipe';
 import { ContactComponent } from './views/contact/contact.component';
+import { ImageComponent } from './views/image/image.component';
+import { ExternalComponent } from './views/external website/externalwebsite.component';
+import { VideoComponent } from './views/video/video';
 
 const routes: Routes = [
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -22,7 +25,10 @@ const routes: Routes = [
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
     { path: 'addComment/:id', component: AddCommentComponent },
-    { path: 'contact', component: ContactComponent }
+    { path: 'contact', component: ContactComponent },
+    { path: 'image', component: ImageComponent },
+    { path: 'externalwebsite', component: ExternalComponent },
+    { path: 'video', component: VideoComponent }
 ];
 
 @NgModule({

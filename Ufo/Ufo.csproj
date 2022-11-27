@@ -43,6 +43,9 @@
     <TypeScriptCompile Remove="ClientApp\src\app\models\comment.model.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\models\ufoType.model.ts" />
     <TypeScriptCompile Remove="ClientApp\src\app\pipe.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\views\external website\externalwebsite.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\views\image\image.component.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\app\views\video\video.ts" />
   </ItemGroup>
 
   <ItemGroup>
