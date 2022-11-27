@@ -7,6 +7,10 @@ import { HomeComponent } from './views/home/home.component';
 import { AddObservationComponent } from './views/observation/addObservation.component';
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
+import { AppComponent } from './app.component';
+import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
+import { SafeHtml } from './pipe';
+import { ContactComponent } from './views/contact/contact.component';
 import { LoginComponent } from './views/login/login.component';
 
 const routes: Routes = [
@@ -17,6 +21,8 @@ const routes: Routes = [
       { path: 'editObservation/:id', component: EditObservationComponent },
             /*Comment*/
       { path: 'comment/:id', component: CommentComponent },
+    { path: 'addComment/:id', component: AddCommentComponent },
+    { path: 'contact', component: ContactComponent }
       /*LogIn*/
       { path: 'logIn', component: LoginComponent },
 ];
