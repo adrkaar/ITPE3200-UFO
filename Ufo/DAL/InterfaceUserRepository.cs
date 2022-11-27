@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Ufo.Models;
 
 namespace Ufo.DAL
 {
-    public interface InterfaceUserRepository 
+    public interface InterfaceUserRepository
     {
         Task<bool> LogIn(User user);
     }

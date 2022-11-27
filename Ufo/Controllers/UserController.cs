@@ -14,7 +14,7 @@ namespace Ufo.Controllers
         private InterfaceUserRepository _db;
         private ILogger<UserController> _log;
 
-        public const string _loggedIn = "";
+        public const string _loggedIn = "loggedIn";
 
         public UserController(InterfaceUserRepository db, ILogger<UserController> log)
         {

@@ -33,7 +33,10 @@ namespace KundeAppTest
             }
         }
 
-        IEnumerable<string> ISession.Keys { get { throw new NotImplementedException(); } }
+        IEnumerable<string> ISession.Keys
+        {
+            get { return sessionStorage.Keys; }
+        }
 
         string ISession.Id { get { throw new NotImplementedException(); } }
 

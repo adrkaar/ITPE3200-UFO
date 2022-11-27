@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Ufo.DAL;
@@ -36,6 +37,7 @@ namespace Ufo.Controllers
         [HttpPost("addComment")]
         public async Task<ActionResult> AddComment(Comment inComment)
         {
+            Console.WriteLine(UserController._loggedIn);
             if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             if (ModelState.IsValid)
             {
