@@ -12,6 +12,5 @@ namespace Ufo.Models
         public int UpVote { get; set; }
         [RegularExpression(@"^[0-9]{1,3}$")]
         public int DownVote { get; set; }
-        public string Username { get; set; }
     }
 }

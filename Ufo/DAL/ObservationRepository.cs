@@ -20,7 +20,7 @@ namespace Ufo.DAL
             try
             {
                 var newObservationRow = new Observations();
-
+                newObservationRow.Headline = inObservation.Headline;
                 newObservationRow.Date = inObservation.Date;
                 newObservationRow.Time = inObservation.Time;
                 newObservationRow.Description = inObservation.Description;
@@ -61,6 +61,7 @@ namespace Ufo.DAL
                 List<Observation> allObservations = await _db.Observations.Select(obs => new Observation
                 {
                     Id = obs.Id,
+                    Headline = obs.Headline,
                     Date = obs.Date,
                     Time = obs.Time,
                     Description = obs.Description,
@@ -81,6 +82,7 @@ namespace Ufo.DAL
                 var fetchedObservation = new Observation()
                 {
                     Id = oneObservation.Id,
+                    Headline = oneObservation.Headline,
                     UfoType = oneObservation.UfoTypes.Type,
                     Date = oneObservation.Date,
                     Time = oneObservation.Time,
@@ -98,8 +100,9 @@ namespace Ufo.DAL
             var oneObservation = await _db.Observations.FindAsync(changeObservation.Id);
             try
             {
-                oneObservation.Time = changeObservation.Time;
+                oneObservation.Headline = changeObservation.Headline;
                 oneObservation.Date = changeObservation.Date;
+                oneObservation.Time = changeObservation.Time;
                 oneObservation.Description = changeObservation.Description;
                 oneObservation.Latitude = changeObservation.Latitude;
                 oneObservation.Longitude = changeObservation.Longitude;

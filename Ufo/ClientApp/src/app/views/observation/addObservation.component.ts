@@ -23,6 +23,7 @@ export class AddObservationComponent {
 
     newObservation: Observation = {
         id: 0,
+        headline: '',
         date: ' ',
         time: ' ',
         latitude: '',
@@ -33,6 +34,13 @@ export class AddObservationComponent {
 
     validation = {
         id: [""],
+        headline: [
+            null,
+            Validators.compose([
+                Validators.required,
+                Validators.pattern("^[a-zA-Z .,-?!]{1,20}$")
+            ])
+        ],
         date: [
             null,
             Validators.compose([

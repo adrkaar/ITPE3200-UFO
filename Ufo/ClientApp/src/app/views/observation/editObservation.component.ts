@@ -13,6 +13,7 @@ export class EditObservationComponent implements OnInit {
     EditObservationForm: FormGroup;
     editObservation: Observation = {
         id: 0,
+        headline: '',
         date: ' ',
         time: ' ',
         latitude: ' ',
@@ -26,11 +27,13 @@ export class EditObservationComponent implements OnInit {
     addNewType: string;
 
     validation = {
-        id: [null,
+        headline: [
+            null,
             Validators.compose([
                 Validators.required,
-                Validators.pattern("[0-9]{0,2}")
-            ])],
+                Validators.pattern("^[a-zA-Z .,-?!]{1,20}$")
+            ])
+        ],
         date: [
             null,
             Validators.compose([

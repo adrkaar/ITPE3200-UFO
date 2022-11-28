@@ -5,6 +5,8 @@ namespace Ufo.Models
     public class Observation
     {
         public int Id { get; set; }
+        [RegularExpression(@"^[a-zA-Z .,-?!]{1,20}$")]
+        public string Headline { get; set; }
         public string UfoType { get; set; }
         [RegularExpression(@"^\d{4}-\d{2}-\d{2}$")]
         public string Date { get; set; }
@@ -16,6 +18,5 @@ namespace Ufo.Models
         public string Latitude { get; set; }
         [RegularExpression(@"^[0-9.-]{1,10}$")]
         public string Longitude { get; set; }
-        public string Username { get; set; }
     }
 }

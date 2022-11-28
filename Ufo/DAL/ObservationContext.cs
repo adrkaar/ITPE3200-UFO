@@ -8,6 +8,7 @@ namespace Ufo.DAL
     {
         [Key]
         public int Id { get; set; }
+        public string Headline { get; set; }
         public string Date { get; set; }
         public string Time { get; set; }
         public string Description { get; set; }
