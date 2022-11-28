@@ -19,11 +19,12 @@ export class NavMenuComponent {
             .subscribe(response => {
                 if (response) {
                     this.router.navigate(['addObservation'])
-                    this.generalService.showLoginButton = false;
-                    window.location.reload();
+                    //this.generalService.showLoginButton = false;
+                    //window.location.reload();
                 }
                 else {
-                    alert("You have to log in");
+                    this.generalService.showNotLoggedInDialog = true;
+                    alert("Not logged in");
                 }
             }, error => console.log(error)
             );

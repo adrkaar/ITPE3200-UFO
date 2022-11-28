@@ -1,24 +1,26 @@
-﻿<h1>Comments</h1>
+﻿<div class="comment-page">
+    <h1>Comments</h1>
 
-<form [formGroup]="CommentForm" #form="ngForm" (ngSubmit)="addComment()">
-    <div class="comment-form-group">
-        <label for="comment">Comment</label>
-        <textarea type="text" formControlName="comment" class="form-control" id="comment" name="comment" [(ngModel)]="newComment.text"></textarea>
-        <p *ngIf="this.CommentForm.controls.comment.status=='INVALID'">Comment cannot be empty, max 160 characters<br /></p>
-        <button type="submit" class="btn btn-primary" [disabled]="!CommentForm.valid"><mat-icon>add_comment</mat-icon>Comment</button>
-    </div>
-</form>
-
-<div class="comment-feed">
-    <div class="comment-feedbox" *ngFor="let comment of allcomments">
-        <div class="comment-feedbox-vertical">
-            <p><mat-icon class="icon-display-medium">account_circle</mat-icon>User</p>
-            <p>{{ comment.text }}</p>
+    <form [formGroup]="CommentForm" #form="ngForm" (ngSubmit)="addComment()">
+        <div class="comment-form-group">
+            <label for="comment">Comment</label>
+            <textarea type="text" formControlName="comment" class="form-control" id="comment" name="comment" [(ngModel)]="newComment.text"></textarea>
+            <p *ngIf="this.CommentForm.controls.comment.status=='INVALID'">Comment cannot be empty, max 160 characters<br /></p>
+            <button type="submit" class="btn btn-primary" [disabled]="!CommentForm.valid"><mat-icon>add_comment</mat-icon>Comment</button>
         </div>
-        <div class="comment-feedbox-vertical">
-            <mat-button class="comment-feedbox-vertical-button" (click)="upVote(comment.id)">{{ comment.upVote }}<mat-icon class="icon-primary">thumb_up</mat-icon></mat-button>
-            <mat-button class="comment-feedbox-vertical-button" (click)="downVote(comment.id)">{{ comment.downVote }}<mat-icon class="icon-primary">thumb_down</mat-icon></mat-button>
-            <button class="btn btn-danger comment-feedbox-vertical-button" (click)="deleteComment(comment.id)">Delete</button>
+    </form>
+
+    <div class="comment-feed">
+        <div class="comment-feedbox" *ngFor="let comment of allcomments">
+            <div class="comment-feedbox-vertical">
+                <p><mat-icon class="icon-display-medium">account_circle</mat-icon>User</p>
+                <p>{{ comment.text }}</p>
+            </div>
+            <div class="comment-feedbox-vertical">
+                <mat-button class="comment-feedbox-vertical-button" (click)="upVote(comment.id)">{{ comment.upVote }}<mat-icon class="icon-primary">thumb_up</mat-icon></mat-button>
+                <mat-button class="comment-feedbox-vertical-button" (click)="downVote(comment.id)">{{ comment.downVote }}<mat-icon class="icon-primary">thumb_down</mat-icon></mat-button>
+                <button class="btn btn-danger comment-feedbox-vertical-button" (click)="deleteComment(comment.id)">Delete</button>
+            </div>
         </div>
     </div>
 </div>

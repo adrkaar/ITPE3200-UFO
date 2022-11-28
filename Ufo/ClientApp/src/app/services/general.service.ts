@@ -8,7 +8,7 @@ export class GeneralService {
     showWarningDialog = false;
     showWelcomeDialog = true;
     showLoginDialog = false;
-    showNotLoggenInDialog = false;
+    showNotLoggedInDialog = false;
     isLogedIn = false;
     showLoginButton = true;
     showLogoutButton = false;

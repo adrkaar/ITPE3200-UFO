@@ -54,10 +54,8 @@ code {
 }
 
 .right-side {
-
     width: 100%;
     height: auto;
-    /*margin-top: 1%;*/
     margin-left: 250px;
     border-radius: 15px;
 }
@@ -92,6 +90,11 @@ code {
 
 .feedbox button {
     margin: 0 2%;
+}
+
+.comment-page {
+    padding-left: 5%;
+    padding-top: 2%;
 }
 
 .comment-feed {
