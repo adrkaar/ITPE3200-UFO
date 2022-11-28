@@ -1,11 +1,11 @@
-:host {
+ :host {
     display: flex;
     position: fixed;
-    left: 0px;
+    left: 0px; 
     right: 0px;
     width: 100%;
     height: 100%;
-    background-color: rgba(141, 134, 134, 0.6);
+    background-color:  rgba(141, 134, 134, 0.6);
     backdrop-filter: blur(10px);
     align-items: center;
     justify-content: center;
@@ -22,9 +22,9 @@
         border-radius: 20px;
         display: flex;
         flex-direction: column;
-    }
-
-    #header {
+     }
+    
+     #header {
         border-bottom: 1px solid #ccc;
         height: 70px;
         padding-left: 30px;
@@ -32,35 +32,31 @@
         display: flex;
         align-items: center;
         justify-content: center;
-    }
-
-    #content {
+     }
+    
+     #content {
         flex-grow: 1;
         padding: 30px;
         font-size: 18px;
-        overflow: scroll;
-    }
-
-    #actions {
+     }
+    
+     #actions {
         display: flex;
         justify-content: flex-end;
         height: 100px;
         gap: 20px;
         padding: 20px;
-
         button {
             padding: 10px 20px;
             width: 100px;
             font-size: 18px;
             border-radius: 15px;
             cursor: pointer;
-
             &:hover {
                 background-color: #ccc;
             }
-
             &.cancel {
             }
         }
     }
-}
+ }
