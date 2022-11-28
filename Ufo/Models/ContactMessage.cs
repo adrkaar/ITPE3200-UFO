@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Ufo.Models
+﻿namespace Ufo.Models
 {
     public class ContactMessage
     {
