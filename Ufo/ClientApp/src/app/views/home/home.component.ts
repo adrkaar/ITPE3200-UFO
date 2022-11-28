@@ -42,26 +42,31 @@ export class HomeComponent implements OnInit {
 
     // legger til lokasjonene paa kartet
     addToMap(observations: Observation[]) {
-        var marker: google.maps.Marker;
-        const infoWindow = new google.maps.InfoWindow();
 
         for (let i = 0; i < observations.length; i++) {
-            var info = "<p>" + observations[i].description + "</p>";
+
+            var marker: google.maps.Marker;
+            var info = "<div id='content'><p>" + observations[i].description + "</div></p>";
+
+            var infoWindow = new google.maps.InfoWindow({
+                content: info
+            });
 
             // lager markører med lengde og breddegrad fra observasjonen
             marker = new google.maps.Marker({
                 position: { lat: Number(observations[i].latitude), lng: Number(observations[i].longitude) },
                 map: this.map,
-                icon: this.icon
+                icon: this.icon,
+                title: info
             })
 
-            marker.addListener("click", () => {
-                infoWindow.setContent(info);
-                infoWindow.open({
-                    anchor: marker,
-                    map: this.map
-                });
-            });
+             marker.addListener("click", () => {
+                        infoWindow.open({
+                            anchor: marker,
+                            map: this.map
+                        });
+                    });
         }
+       
     }
 }
