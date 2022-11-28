@@ -15,12 +15,15 @@
         <div class="feedboxField">
             <p class="seen">seen {{ observation.date }} at {{ observation.time }}</p>
         </div>
-        <!-- Hva med å faktisk ha en overskrift, kan gjøre det mer spennende å se på -->
+        
+    <!-- Hva med å faktisk ha en overskrift, kan gjøre det mer spennende å se på -->
+        <!---I would delete "HEADLINE" because we don't have it in our form on the "ADD" page.
+    <div class="feedboxField">
+        <h3>Headline</h3>
+    </div>-->
+
         <div class="feedboxField">
-            <h2>Headline</h2>
-        </div>
-        <div class="feedboxField">
-            <p>Type: {{ observation.ufoType }}</p>
+            <p>Type of UFO: {{ observation.ufoType }}</p>
         </div>
         <div class="feedboxField">
             <p>{{ observation.description }}</p>
