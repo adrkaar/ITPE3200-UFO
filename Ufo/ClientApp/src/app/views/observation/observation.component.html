@@ -13,20 +13,20 @@
             <p><mat-icon class="icon-display-medium">account_circle</mat-icon>User</p>
         </div>
         <div class="feedboxField">
-            <p class="seen">Seen {{ observation.date }} at {{ observation.time }}</p>
+            <p class="seen">seen {{ observation.date }} at {{ observation.time }}</p>
         </div>
         <!-- Hva med å faktisk ha en overskrift, kan gjøre det mer spennende å se på -->
         <div class="feedboxField">
             <h2>Headline</h2>
         </div>
         <div class="feedboxField">
-            <p>{{ observation.ufoType }}</p>
+            <p>Type: {{ observation.ufoType }}</p>
         </div>
         <div class="feedboxField">
             <p>{{ observation.description }}</p>
         </div>
         <div class="feedboxField">
-            <h3>Geographic coordinates</h3>
+            <h4>Geographic coordinates</h4>
             <p class="latitude">Latitude:&nbsp;{{ observation.latitude }}, Longitude:&nbsp;{{ observation.longitude }}</p>
         </div>
         <button class="btn btn-secondary" [routerLink]="['/editObservation', observation.id]">View</button>
