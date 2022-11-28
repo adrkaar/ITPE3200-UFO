@@ -57,16 +57,16 @@ export class HomeComponent implements OnInit {
                 position: { lat: Number(observations[i].latitude), lng: Number(observations[i].longitude) },
                 map: this.map,
                 icon: this.icon,
-                title: info
             })
 
-             marker.addListener("click", () => {
-                        infoWindow.open({
-                            anchor: marker,
-                            map: this.map
-                        });
-                    });
+            /* https://stackoverflow.com/questions/13674194/google-maps-api-multiple-markers-info-window-only-showing-last-element */
+            // satter info vindu til hver markør med beskrivelsen av observasjonen
+            marker.addListener("click", (function (marker, info) {
+                return function () {
+                    infoWindow.setContent(info);
+                    infoWindow.open(this.map, marker);
+                }
+            })(marker, info));
         }
-       
     }
 }
