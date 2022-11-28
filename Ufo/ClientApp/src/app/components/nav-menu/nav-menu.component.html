@@ -1,57 +1,54 @@
 <div class="container_nav">
-    <div class="user-box">
-        <mat-icon class="icon-display-large">account_circle</mat-icon>
-        <li class="btn-user-box" (click)="generalService.showDialog = true">
-            <a class="nav-link"><mat-icon>login</mat-icon>Login</a>
-        </li>
-        
-    </div>
-    <div>
-                <ul class="navbar-nav flex-grow">
-                    <li class="nav-item btn-primary"
-                        [routerLinkActive]="['link-active']"
-                        [routerLinkActiveOptions]="{ exact: true }">
-                        <a class="nav-link" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
-                    </li>
-                    <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
-                        <a class="nav-link" [routerLink]="['/observation']"><mat-icon>map</mat-icon>Observations</a>
-                    </li>
-
-                    <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
-                        <a class="nav-link" [routerLink]="['/addObservation']"><mat-icon>add_location</mat-icon>Add</a>
-                    </li>
-                </ul>
-    </div>
-</div>
-
-
-<!--
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-header">
-        <div class="container">
-            <a class="navbar-brand" [routerLink]="['/']">Identified UFO</a>
-            <button class="navbar-toggler"
-                    type="button"
-                    data-toggle="collapse"
-                    data-target=".navbar-collapse"
-                    aria-label="Toggle navigation"
-                    [attr.aria-expanded]="isExpanded"
-                    (click)="toggle()">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-                [ngClass]="{ show: isExpanded }">
-                <ul class="navbar-nav flex-grow">
-                    <li class="nav-item btn-primary mr-3"
-                        [routerLinkActive]="['link-active']"
-                        [routerLinkActiveOptions]="{ exact: true }">
-                        <a class="nav-link text-white" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
-                    </li>
-                    <li class="nav-item btn-primary col" [routerLinkActive]="['link-active']">
-                        <a class="nav-link text-white" [routerLink]="['/observation']"><mat-icon>map</mat-icon>UFO Observations</a>
-                    </li>
-                </ul>
+    <div class="header-box">
+        <div class="first-row">
+            <div>
+                <mat-icon class="icon-display-large">account_circle</mat-icon>
+            </div>
+            <div *ngIf="generalService.isAdminLogedIn">
+                <span class="header-text">Administrator</span>
             </div>
         </div>
-    </nav>
+        <div class="second-row">
+            <div class="btn-user-box">
+                <div class="login-box" *ngIf="generalService.showLoginButton" (click)="generalService.showLoginDialog=true">
+                    <button class="nav-but"><mat-icon>login</mat-icon>Login</button>
+                </div>
+                <div class="login-box" *ngIf="generalService.showLogoutButton">
+                    <button class="nav-but" (click)="logOut()"><mat-icon>login</mat-icon>Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <ul class="navbar-nav flex-grow">
+            <li class="nav-item btn-primary"
+                [routerLinkActive]="['link-active']"
+                [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link" [routerLink]="['/']"><mat-icon>home</mat-icon>Home</a>
+            </li>
+            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
+                <a class="nav-link" [routerLink]="['/observation']"><mat-icon>map</mat-icon>Observations</a>
+            </li>
 
---->
+            <li class="nav-item btn-primary">
+                <a class="nav-link" (click)="checkLogIn()"><mat-icon>add_location</mat-icon>Add</a>
+            </li>
+
+            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
+                <a class="nav-link" [routerLink]="['/contact']"><mat-icon>account_circle</mat-icon>Contact us</a>
+            
+
+            <!--
+
+            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']" *ngIf="generalService.showLoginButton">
+                <a class="nav-link" (click)="generalService.showLoginDialog = true"><mat-icon>login</mat-icon>Log in</a>
+            </li>
+            
+            <li class="nav-item btn-primary" *ngIf="generalService.showLogoutButton">
+                <a class="nav-link" (click)="logOut()" ><mat-icon>logout</mat-icon>Log out</a>
+            </li>
+
+             -->
+        </ul>
+    </div>
+</div>

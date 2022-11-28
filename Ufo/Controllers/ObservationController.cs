@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Ufo.Controllers
         [HttpPost("addObservation")]
         public async Task<ActionResult> SaveObservation(Observation inObservation)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             if (ModelState.IsValid)
             {
                 bool returnOk = await _db.SaveObservation(inObservation);
@@ -35,7 +37,8 @@ namespace Ufo.Controllers
             }
             else
             {
-                return BadRequest("Feil i inputvalidering");
+                _log.LogInformation("Error in input validation");
+                return BadRequest("Error in input validation");
             }
         }
 
@@ -46,7 +49,7 @@ namespace Ufo.Controllers
             if (allObservatoins == null)
             {
                 _log.LogInformation("Table in database is empty");
-                return BadRequest("Table in database is empty");
+                return NotFound("Table in database is empty");
             }
             return Ok(allObservatoins);
         }
@@ -58,7 +61,7 @@ namespace Ufo.Controllers
             if (oneObservation == null)
             {
                 _log.LogInformation("Observation was not found");
-                return BadRequest("Observation was not found");
+                return NotFound("Observation was not found");
             }
             return Ok(oneObservation);
         }
@@ -66,30 +69,33 @@ namespace Ufo.Controllers
         [HttpPut("editObservation")]
         public async Task<ActionResult> ChangeObservation(Observation changeObservation)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             if (ModelState.IsValid)
             {
                 bool returnOk = await _db.ChangeObservation(changeObservation);
                 if (!returnOk)
                 {
                     _log.LogInformation("Observation could not be changed");
-                    return BadRequest("Observation could not be changed");
+                    return NotFound("Observation could not be changed");
                 }
                 return Ok(returnOk);
             }
             else
             {
-                return BadRequest("Feil i inputvalidering");
+                _log.LogInformation("Error in input validation");
+                return BadRequest("Error in input validation");
             }
         }
 
         [HttpDelete("deleteObservation/{id}")]
         public async Task<ActionResult> DeleteObservation(int id)
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(UserController._loggedIn))) { return Unauthorized("Not logged in"); }
             bool deleteOk = await _db.DeleteObservation(id);
             if (!deleteOk)
             {
                 _log.LogInformation("Observation could not be deleted");
-                return BadRequest("Observation could not be deleted");
+                return NotFound("Observation could not be deleted");
             }
             return Ok(deleteOk);
         }
@@ -101,21 +107,9 @@ namespace Ufo.Controllers
             if (ufotypes == null)
             {
                 _log.LogInformation("Table in database is empty");
-                return BadRequest("Table in database is empty");
+                return NotFound("Table in database is empty");
             }
             return Ok(ufotypes);
-        }
-
-        [HttpGet("fetchAllLocations")]
-        public async Task<ActionResult> FetchAllLocations()
-        {
-            List<Observation> allLocations = await _db.FetchAllLocations();
-            if (allLocations == null)
-            {
-                _log.LogInformation("Table in database is empty");
-                return BadRequest("Table in database is empty");
-            }
-            return Ok(allLocations);
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Ufo.DAL
                         Text = c.Text,
                         ObservationId = c.Observations.Id,
                         UpVote = c.UpVote,
-                        DownVote = c.Downvote
+                        DownVote = c.Downvote,
                     }).ToListAsync();
 
                 return allComments;

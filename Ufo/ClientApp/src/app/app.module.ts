@@ -3,11 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { AppComponent } from './app.component';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AddCommentComponent } from './views/comment/addComment.component';
+
 import { CommentComponent } from './views/comment/comment.component';
 import { HomeComponent } from './views/home/home.component';
 import { NavMenuComponent } from './components/nav-menu/nav-menu.component';
@@ -15,49 +13,62 @@ import { AddObservationComponent } from './views/observation/addObservation.comp
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
 
-
-/*Material*/
+/* Material */
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-/*Pipe*/
+/* Pipe */
 import { SafeHtml } from './pipe';
 
-/*Maps*/
+/* Maps */
 import { GoogleMapsModule } from '@angular/google-maps';
-import { RouterModule } from '@angular/router';
+import { ContactComponent } from './views/contact/contact.component';
+import { Router, RouterModule } from '@angular/router';
+import { LoginComponent } from './views/login/login.component';
+
+/* Modal */
 import { DialogComponent } from './components/dialog/dialog.component';
+import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
+import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomemodal.component';
+import { LoginmodalComponent } from './components/dialog/loginmodal/loginmodal.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
         HomeComponent,
-      /*Oversation*/
+        SafeHtml,
+        /* Oversation */
         ObservationComponent,
         AddObservationComponent,
         EditObservationComponent,
-      /*Comment*/
+        /* Comment */
         CommentComponent,
-        AddCommentComponent,
-        SafeHtml,
+        ContactComponent,
+        /* Login */
+        LoginComponent,
+        /* Dialog / Modals */
         DialogComponent,
-
+        WarningmodalComponent,
+        WelcomemodalComponent,
+        LoginmodalComponent,
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
         HttpClientModule,
         FormsModule, ReactiveFormsModule,
-        MatIconModule,
+        MatIconModule, MatTooltipModule,
         MatButtonModule,
         MatFormFieldModule, MatInputModule,
         GoogleMapsModule,
-        AppRoutingModule,
+        ReactiveFormsModule,
         NgbModule,
+        RouterModule, AppRoutingModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule { }

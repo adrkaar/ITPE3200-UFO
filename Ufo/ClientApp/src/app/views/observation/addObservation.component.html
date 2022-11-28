@@ -2,6 +2,11 @@
 
 <form class="form" [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
     <div class="form-group">
+        <label for="headline">Headline</label>
+        <textarea formControlName="headline" type="text" class="form-control" id="headline" name="headline" [(ngModel)]="newObservation.headline"></textarea>
+        <p *ngIf="this.AddObservationForm.controls.headline.status=='INVALID'">Headline cannot be empty, max 20 characters</p>
+    </div>
+    <div class="form-group">
         <label for="date">Date</label>
         <input type="date" formControlName="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" max="{{maxDate}}">
         <p *ngIf="this.AddObservationForm.controls.date.status=='INVALID'">Date needs to be in the format DD/MM/YYYY, and cannot be a future date</p>
@@ -40,7 +45,6 @@
             <option>Add new type</option>
         </select>
     </div>
-
     <div class="form-group" *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
 
     <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>

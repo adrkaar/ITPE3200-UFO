@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralService } from './services/general.service';
 
 @Component({
@@ -6,6 +7,7 @@ import { GeneralService } from './services/general.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  constructor(public generalService: GeneralService) { }
+  constructor(public generalService: GeneralService, private modalService: NgbModal) { }
   title = 'app';
+
 }

@@ -7,6 +7,7 @@ a.navbar-brand {
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -14,7 +15,7 @@ html {
 }
 
 .container_nav {
-  margin-top: 15px;
+  margin-top: 5%;
 }
 
 .box-shadow {
@@ -34,6 +35,12 @@ html {
   text-align: center;
 }
 
+.nav-login {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+}
+
 .navbar-brand {
   color: white;
   font-size: 20px;
@@ -48,14 +55,67 @@ html {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   margin-bottom: 20px;
-  padding: 25px;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.header-box {
+  width: 200px;
+  height: 150px;
+  background-color: #009688;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.nav-but {
+    color: #E3E3E3;
+    background-color: #00bfad;
+    border-radius: 10px;
+    font-family: 'Roboto', bold;
+    margin-top: 50px;
+    width: 100px;
+    height: 40px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    margin-bottom: 20px;
+    outline: none; 
+    border: none;
+}
+
+.nav-but:hover {
+  background-color: #009688;
+}
+
+.first-row {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.header-text {
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  justify-content: center;
 }
 
 .icon-display-large {
-  transform: scale(2.5);
+  transform: scale(2);
+  margin-right: 20px;
 }
 
 .navbar-brand {
   justify-content: center;
+}
+
+.modal-backdrop {
+  z-index: -1;
 }

@@ -20,7 +20,7 @@ namespace Ufo.DAL
             try
             {
                 var newObservationRow = new Observations();
-
+                newObservationRow.Headline = inObservation.Headline;
                 newObservationRow.Date = inObservation.Date;
                 newObservationRow.Time = inObservation.Time;
                 newObservationRow.Description = inObservation.Description;
@@ -54,12 +54,13 @@ namespace Ufo.DAL
                 List<Observation> allObservations = await _db.Observations.Select(obs => new Observation
                 {
                     Id = obs.Id,
+                    Headline = obs.Headline,
                     Date = obs.Date,
                     Time = obs.Time,
                     Description = obs.Description,
                     Latitude = obs.Latitude,
                     Longitude = obs.Longitude,
-                    UfoType = obs.UfoTypes.Type
+                    UfoType = obs.UfoTypes.Type,
                 }).OrderByDescending(Date => Date.Date).ToListAsync();
                 return allObservations;
             }
@@ -74,6 +75,7 @@ namespace Ufo.DAL
                 var fetchedObservation = new Observation()
                 {
                     Id = oneObservation.Id,
+                    Headline = oneObservation.Headline,
                     UfoType = oneObservation.UfoTypes.Type,
                     Date = oneObservation.Date,
                     Time = oneObservation.Time,
@@ -91,8 +93,9 @@ namespace Ufo.DAL
             var oneObservation = await _db.Observations.FindAsync(changeObservation.Id);
             try
             {
-                oneObservation.Time = changeObservation.Time;
+                oneObservation.Headline = changeObservation.Headline;
                 oneObservation.Date = changeObservation.Date;
+                oneObservation.Time = changeObservation.Time;
                 oneObservation.Description = changeObservation.Description;
                 oneObservation.Latitude = changeObservation.Latitude;
                 oneObservation.Longitude = changeObservation.Longitude;
@@ -163,22 +166,6 @@ namespace Ufo.DAL
                 _db.UfoTypes.Add(ufoType);
                 await _db.SaveChangesAsync();
                 return ufoType;
-            }
-            catch { return null; }
-        }
-
-        public async Task<List<Observation>> FetchAllLocations()
-        {
-            try
-            {
-                // henter alle observasjoner, og setter kun latitude og longitude
-                List<Observation> allLocations = await _db.Observations.Select(obs => new Observation
-                {
-                    Latitude = obs.Latitude,
-                    Longitude = obs.Longitude,
-                }).ToListAsync();
-
-                return allLocations;
             }
             catch { return null; }
         }

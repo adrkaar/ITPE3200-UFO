@@ -1,0 +1,118 @@
+:host {
+    display: flex;
+    position: fixed;
+    left: 0px; 
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color:  rgba(141, 134, 134, 0.6);
+    backdrop-filter: blur(1px);
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+    z-index: 1;
+
+    #container {
+        width: 30%;
+        height: 300px;
+        background-color: rgba(0, 0, 0, 0.5);
+        box-shadow: 5px 5px 5px rgba(19, 19, 19, 0.2);
+        background-color: #fff;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+     }
+    
+     #header {
+        border-bottom: 1px solid #ccc;
+        height: 70px;
+        padding-left: 30px;
+        padding-right: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-style: bold;
+        font-size: 25px;
+     }
+
+     .label-text {
+        font-size: 20px;
+        font-weight: 500;
+        padding-right: 20px;
+        
+     }
+
+     .label-input {
+        height: 40px;
+        z-index: 9999;
+    }
+    
+     #content {
+        flex-grow: 1;
+        padding: 40px;
+        font-size: 18px;
+        justify-content: center;
+     }
+
+     .form-group-field {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        z-index: 9999;
+     }
+
+     
+    
+     #actions {
+        display: flex;
+        justify-content: center;
+        height: 100px;
+        gap: 20px;
+        padding: 20px;
+        button {
+            padding: 10px 20px;
+            width: 100px;
+            font-size: 18px;
+            border-radius: 15px;
+            cursor: pointer;
+            &:hover {
+                background-color: #ccc;
+            }
+        }
+    }
+
+ }
+
+.matTooltipPosition {
+    position: absolute;
+    z-index: 9999;
+    font-size: 30px;
+}
+
+.matTooltip {
+    font-size: 20px;
+}
+
+.label-input {
+    font-family: inherit;
+    width: 50%;
+    border: 0;
+    border-bottom: 2px solid gray;
+    outline: 0;
+    font-size: 1.3rem;
+    color: black;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+        color: transparent;
+      }
+    
+      &:placeholder-shown ~ .label-input {
+        font-size: 1.3rem;
+        cursor: text;
+        top: 20px;
+      }
+}
