@@ -119,3 +119,21 @@ html {
 .modal-backdrop {
   z-index: -1;
 }
+
+/* Copyright */
+
+.copyright {
+    text-align: center;
+    margin: auto;
+    padding: 10px;
+    font-size: 15px;
+    line-height: 24px;
+    margin: 0; 
+}
+.copyright a {
+    color:steelblue; /*Colors of OsloMet: #808080; #17a2b8; #ffc107;*/
+}
+.copyright a:hover {
+    color: #d1811f;
+    text-decoration: none;
+}

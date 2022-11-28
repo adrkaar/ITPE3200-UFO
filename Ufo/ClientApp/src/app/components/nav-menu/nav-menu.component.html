@@ -36,19 +36,26 @@
 
             <li class="nav-item btn-primary" [routerLinkActive]="['link-active']">
                 <a class="nav-link" [routerLink]="['/contact']"><mat-icon>account_circle</mat-icon>Contact us</a>
-            
 
-            <!--
 
-            <li class="nav-item btn-primary" [routerLinkActive]="['link-active']" *ngIf="generalService.showLoginButton">
-                <a class="nav-link" (click)="generalService.showLoginDialog = true"><mat-icon>login</mat-icon>Log in</a>
-            </li>
-            
-            <li class="nav-item btn-primary" *ngIf="generalService.showLogoutButton">
-                <a class="nav-link" (click)="logOut()" ><mat-icon>logout</mat-icon>Log out</a>
-            </li>
+                <!--
 
-             -->
+                <li class="nav-item btn-primary" [routerLinkActive]="['link-active']" *ngIf="generalService.showLoginButton">
+                    <a class="nav-link" (click)="generalService.showLoginDialog = true"><mat-icon>login</mat-icon>Log in</a>
+                </li>
+
+                <li class="nav-item btn-primary" *ngIf="generalService.showLogoutButton">
+                    <a class="nav-link" (click)="logOut()" ><mat-icon>logout</mat-icon>Log out</a>
+                </li>
+
+                 -->
         </ul>
+    </div>
+
+    <div>
+        <br>
+        <br>
+        <p class="copyright"> Copyright &copy; 2022 <br>  All Rights Reserved by <a href="https://student.oslomet.no/en/studier/-/studieinfo/emne/ITPE3200/2022/H%C3%98ST" target="_blank"> OsloMet </a>
+        </p>
     </div>
 </div>
