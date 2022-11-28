@@ -50,8 +50,8 @@ namespace Ufo.Controllers
         [HttpGet("checkLogIn")]
         public async Task<ActionResult> CheckLogIn()
         {
-            var logIn = HttpContext.Session.GetString(_loggedIn);
-            return Ok(logIn == "loggedIn");
+            if (HttpContext.Session.GetString(_loggedIn) == "loggedIn") return Ok(true);
+            else return Ok(false);
         }
     }
 }
