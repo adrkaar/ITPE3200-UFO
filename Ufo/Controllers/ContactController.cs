@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Ufo.DAL;
 using Ufo.Models;
 
 namespace Ufo.Controllers
@@ -32,7 +30,6 @@ namespace Ufo.Controllers
             {
                 _log.LogInformation(contactMessage.Name + contactMessage.Email + contactMessage.Message);
 
-                
                 var smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
@@ -41,7 +38,6 @@ namespace Ufo.Controllers
                 };
 
                 smtpClient.Send("webapp2022ufo@gmail.com", contactMessage.Email, "UFO sightings", "Thanks for contacting us");
-                
             }
             return Ok();
         }

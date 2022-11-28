@@ -9,10 +9,10 @@
                 <span class="header-text">Administrator</span>
             </div>
         </div>
-        <div class="second-row" >
+        <div class="second-row">
             <div class="btn-user-box">
-                <div class="login-box" *ngIf="generalService.showLoginButton" (click)="generalService.showLoginDialog = true">
-                    <button class="nav-but" ><mat-icon>login</mat-icon>Login</button>
+                <div class="login-box" *ngIf="generalService.showLoginButton" (click)="generalService.showLoginDialog=true">
+                    <button class="nav-but"><mat-icon>login</mat-icon>Login</button>
                 </div>
                 <div class="login-box" *ngIf="generalService.showLogoutButton">
                     <button class="nav-but" (click)="logOut()"><mat-icon>login</mat-icon>Logout</button>

@@ -7,10 +7,8 @@ import { GeneralService } from 'src/app/services/general.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-
   constructor(public generalService: GeneralService) { }
 
   ngOnInit(): void {
   }
-
 }
