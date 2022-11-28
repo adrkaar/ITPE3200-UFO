@@ -74,7 +74,6 @@ export class CommentComponent {
                 }
             }, error => console.log(error)
             );
-        
     }
 
     deleteComment(id: number) {
