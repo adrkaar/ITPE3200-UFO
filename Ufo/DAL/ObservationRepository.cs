@@ -27,13 +27,6 @@ namespace Ufo.DAL
                 newObservationRow.Latitude = inObservation.Latitude;
                 newObservationRow.Longitude = inObservation.Longitude;
 
-                // setter brukeren
-                //var user = _db.Users.Where(u => inObservation.Username == u.Username);
-                //newObservationRow.Users = (Users)user;
-                //feiler på linjen over fordi bruker ikke var satt i client
-                // brukernav må hentes og settes i klient
-                // evt kan man her hent brukeren som er logget inn??
-
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => inObservation.UfoType.Contains(u.Type)).FirstOrDefault();
 
@@ -106,10 +99,6 @@ namespace Ufo.DAL
                 oneObservation.Description = changeObservation.Description;
                 oneObservation.Latitude = changeObservation.Latitude;
                 oneObservation.Longitude = changeObservation.Longitude;
-
-                // setter brukeren
-                //var user = _db.Users.Where(u => changeObservation.Username == u.Username);
-                //oneObservation.Users = (Users)user;
 
                 // henter ufo objekt fra ufo tabell 
                 var ufo = _db.UfoTypes.Where(u => changeObservation.UfoType.Contains(u.Type)).FirstOrDefault();

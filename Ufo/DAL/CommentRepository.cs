@@ -43,10 +43,6 @@ namespace Ufo.DAL
                 var newCommentRow = new Comments();
                 newCommentRow.Text = inComment.Text;
 
-                // setter brukeren
-                //var user = _db.Users.Where(u => inComment.Username == u.Username);
-                //newCommentRow.Users = (Users)user;
-
                 // henter observasjonen som kommentaren skal knyttes til
                 var enObservasjon = await _db.Observations.FindAsync(inComment.ObservationId);
 
