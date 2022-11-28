@@ -68,7 +68,6 @@ import { LoginmodalComponent } from './components/dialog/loginmodal/loginmodal.c
         ReactiveFormsModule,
         NgbModule,
         RouterModule, AppRoutingModule,
-
     ],
     providers: [],
     bootstrap: [AppComponent],

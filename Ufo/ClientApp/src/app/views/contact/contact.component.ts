@@ -45,9 +45,7 @@ export class ContactComponent {
     ngOnInit(): void {
     }
 
-    constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer) {
-        this.ContactForm = formBuilder.group(this.validation);
-    }
+    constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer) { this.ContactForm = formBuilder.group(this.validation); }
 
     mailtoHeader = "mailto:webapp2022ufo@gmail.com?";
     subjectProp = "subject=";
