@@ -7,10 +7,8 @@ import { GeneralService } from 'src/app/services/general.service';
   styleUrls: ['./warningmodal.component.scss']
 })
 export class WarningmodalComponent implements OnInit {
-
   constructor(public generalService: GeneralService) { }
 
   ngOnInit(): void {
   }
-
 }

@@ -7,10 +7,8 @@ import { GeneralService } from 'src/app/services/general.service';
   styleUrls: ['./welcomemodal.component.scss']
 })
 export class WelcomemodalComponent implements OnInit {
-
   constructor(public generalService: GeneralService) { }
 
   ngOnInit(): void {
   }
-
 }
