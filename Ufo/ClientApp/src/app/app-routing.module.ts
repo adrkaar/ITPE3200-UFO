@@ -7,7 +7,6 @@ import { AddObservationComponent } from './views/observation/addObservation.comp
 import { EditObservationComponent } from './views/observation/editObservation.component';
 import { ObservationComponent } from './views/observation/observation.component';
 import { ContactComponent } from './views/contact/contact.component';
-import { LoginComponent } from './views/login/login.component';
 import { ExternalComponent } from './views/external website/externalwebsite.component';
 
 const routes: Routes = [
@@ -20,7 +19,6 @@ const routes: Routes = [
       { path: 'comment/:id', component: CommentComponent },
       { path: 'contact', component: ContactComponent },
             /*LogIn*/
-    { path: 'logIn', component: LoginComponent },
     { path: 'externalwebsite', component: ExternalComponent },
 ];
 

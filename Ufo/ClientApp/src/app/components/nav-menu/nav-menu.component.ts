@@ -20,7 +20,6 @@ export class NavMenuComponent {
                 if (response) {
                     this.router.navigate(['addObservation'])
                     this.generalService.showLoginButton = false;
-                    //window.location.reload();
                 }
                 else {
                     this.generalService.showNotLoggedInDialog = true;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralService } from 'src/app/services/general.service';
-import { LoginComponent } from 'src/app/views/login/login.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,8 +17,7 @@ export class LoginmodalComponent implements OnInit {
     user: User = {
         id: '',
         username: '',
-        password: '',
-        token: ''
+        password: ''
     }
   
     positionOptions: TooltipPosition[] = ['after', 'before', 'above', 'below', 'left', 'right'];

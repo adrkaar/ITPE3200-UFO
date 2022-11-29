@@ -28,6 +28,10 @@
             </div>
         </div>
 
+        <div *ngIf="!Form.valid">
+            <p style="text-align: center;">Please enter correct credentials</p>
+        </div>
+
         <div id="actions">
             <button class="btn btn-primary" (click)="generalService.showLoginDialog= false">Cancel</button>
             <button type="submit" class="btn btn-primary" [disabled]="!Form.valid">Login</button>

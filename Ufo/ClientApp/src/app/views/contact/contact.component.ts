@@ -55,13 +55,6 @@ export class ContactComponent {
     contact() {
         /* https://stackblitz.com/edit/mailto-links-for-assets?file=src%2Fapp%2Fmailto-example%2Fmailto-example.component.ts */
         const url = `${this.mailtoHeader}${this.subjectProp}${this.newContactMessage.subject}&${this.bodyProp}${this.newContactMessage.message}`;
-        return this.sanitizer.bypassSecurityTrustUrl(url)
-
-        this.http.post<ContactMessage>('api/contact/handleContact', this.newContactMessage)
-            .subscribe(() => {
-                this.router.navigate(['contact'])
-            },
-                error => console.log(error)
-            );
+        return this.sanitizer.bypassSecurityTrustUrl(url);
     }
 }

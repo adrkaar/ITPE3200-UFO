@@ -115,7 +115,6 @@ export class EditObservationComponent implements OnInit {
         this.editObservation.ufoType = this.chosenType;
         this.http.put<Observation>("api/observation/editObservation", this.editObservation)
             .subscribe(res => {
-                console.log(res)
                 this.router.navigate(['observation'])
             }, error => console.log(error)
             );
@@ -124,7 +123,6 @@ export class EditObservationComponent implements OnInit {
     deleteObservation(id: number) {
         this.http.delete<Observation>("api/observation/deleteObservation/" + id)
             .subscribe(res => {
-                console.log(res)
                 this.router.navigate(['observation'])
             }, error => console.log(error)
             );

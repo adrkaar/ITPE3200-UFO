@@ -1,12 +1,13 @@
 <div class="frontweb">
-    <app-dialog *ngIf="generalService.showDialog"></app-dialog>
+    <!-- Modaler som vises -->
     <app-warningmodal *ngIf="generalService.showWarningDialog" ></app-warningmodal>
+    <app-loginmodal *ngIf="generalService.showLoginDialog" ></app-loginmodal>
+    <welcomemodal *ngIf="generalService.showWelcomeDialog"></welcomemodal>
     <notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
     <div class="left-side">
         <app-nav-menu></app-nav-menu>
     </div>
     <div class="right-side">
-        <app-loginmodal *ngIf="generalService.showLoginDialog" ></app-loginmodal>
         <router-outlet></router-outlet>
     </div>
 </div>
