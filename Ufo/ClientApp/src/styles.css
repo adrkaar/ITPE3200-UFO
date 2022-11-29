@@ -124,8 +124,10 @@ code {
 }
 
 .comment-page {
-    padding-left: 5%;
-    padding-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .comment-feed {
