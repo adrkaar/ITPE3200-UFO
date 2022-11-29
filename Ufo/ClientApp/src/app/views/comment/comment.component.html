@@ -1,4 +1,6 @@
 ﻿<div class="comment-page">
+    <notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
+
     <h1>Comments</h1>
 
     <form [formGroup]="CommentForm" #form="ngForm" (ngSubmit)="addComment()">

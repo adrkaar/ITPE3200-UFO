@@ -43,7 +43,6 @@ export class HomeComponent implements OnInit {
     /* https://stackoverflow.com/questions/13674194/google-maps-api-multiple-markers-info-window-only-showing-last-element */
     // legger til lokasjonene paa kartet
     addToMap(observations: Observation[]) {
-
         for (let i = 0; i < observations.length; i++) {
 
             var marker: google.maps.Marker;

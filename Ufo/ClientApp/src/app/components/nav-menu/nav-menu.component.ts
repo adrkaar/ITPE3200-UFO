@@ -23,8 +23,8 @@ export class NavMenuComponent {
                     //window.location.reload();
                 }
                 else {
-                    this.generalService.showNotLoggedInDialog = true;
-                    alert("Not logged in");
+                    //this.generalService.showNotLoggedInDialog = true;
+                    alert("You have to log in");
                 }
             }, error => console.log(error)
             );

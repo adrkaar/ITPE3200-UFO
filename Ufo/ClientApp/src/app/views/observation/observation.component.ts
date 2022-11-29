@@ -2,6 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Observation } from '../../models/observation.model';
 import { Router } from '@angular/router';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
     templateUrl: 'observation.component.html'
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class ObservationComponent {
     allObservations: Array<Observation>;
 
-    constructor(private http: HttpClient, private router: Router) { }
+    constructor(private http: HttpClient, private router: Router, public generalService: GeneralService) { }
 
     ngOnInit() {
         this.fetchAllObservations();
@@ -36,7 +37,7 @@ export class ObservationComponent {
                     this.router.navigate(['addObservation'])
                 }
                 else {
-                    alert("You have to log in");
+                    this.generalService.showNotLoggedInDialog = true;
                 }
             }, error => console.log(error)
             );
@@ -50,7 +51,7 @@ export class ObservationComponent {
                     this.router.navigate(['editObservation', observationId])
                 }
                 else {
-                    alert("You have to log in");
+                    this.generalService.showNotLoggedInDialog = true;
                 }
             }, error => console.log(error)
             );

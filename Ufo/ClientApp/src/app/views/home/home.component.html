@@ -3,7 +3,7 @@
     <div id="content">
         <welcomemodal *ngIf="generalService.showWelcomeDialog"></welcomemodal>
         <app-loginmodal *ngIf="generalService.showLoginDialog"></app-loginmodal>
-        <app-notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></app-notloggedinmodal>
+        <notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
         <div id="homeMap"></div>
     </div>
 </div>
