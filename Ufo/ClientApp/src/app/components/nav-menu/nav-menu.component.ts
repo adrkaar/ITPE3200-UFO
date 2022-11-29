@@ -24,7 +24,7 @@ export class NavMenuComponent {
                 }
                 else {
                     this.generalService.showNotLoggedInDialog = true;
-                    alert("Not logged in");
+                    // alert("Not logged in");
                 }
             }, error => console.log(error)
             );
