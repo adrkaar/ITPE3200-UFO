@@ -38,7 +38,7 @@ export class LoginmodalComponent implements OnInit {
                 Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$")
             ])]
     })
-}
+    }
 
 logIn() {
   this.http.post<User>('api/user/logIn', this.user)

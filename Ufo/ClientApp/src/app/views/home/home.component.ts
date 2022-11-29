@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
             );
     }
 
+    /* https://stackoverflow.com/questions/13674194/google-maps-api-multiple-markers-info-window-only-showing-last-element */
     // legger til lokasjonene paa kartet
     addToMap(observations: Observation[]) {
 
@@ -59,7 +60,6 @@ export class HomeComponent implements OnInit {
                 icon: this.icon,
             })
 
-            /* https://stackoverflow.com/questions/13674194/google-maps-api-multiple-markers-info-window-only-showing-last-element */
             // satter info vindu til hver markør med beskrivelsen av observasjonen
             marker.addListener("click", (function (marker, info) {
                 return function () {
@@ -68,5 +68,10 @@ export class HomeComponent implements OnInit {
                 }
             })(marker, info));
         }
+
+        // lukker infovindu når man trykker på kartet
+        google.maps.event.addListener(this.map, "click", function (event) {
+            infoWindow.close();
+        });
     }
 }

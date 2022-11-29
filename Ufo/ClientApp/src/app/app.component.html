@@ -5,6 +5,7 @@
         <app-nav-menu></app-nav-menu>
     </div>
     <div class="right-side">
+        <notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
         <app-loginmodal *ngIf="generalService.showLoginDialog" ></app-loginmodal>
         <router-outlet></router-outlet>
     </div>

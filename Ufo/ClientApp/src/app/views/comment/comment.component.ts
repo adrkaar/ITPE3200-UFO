@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from "@angular/router";
 import { Comment } from "../../models/comment.model"; 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { GeneralService } from 'src/app/services/general.service';
 
 @Component({
     templateUrl: 'comment.component.html'
@@ -32,7 +33,7 @@ export class CommentComponent {
         ],
     }
 
-    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder) {
+    constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute, private formBuilder: FormBuilder, public generalService: GeneralService) {
         this.CommentForm = formBuilder.group(this.validation);
     }
 
@@ -70,7 +71,7 @@ export class CommentComponent {
                         );
                 }
                 else {
-                    alert("You have to log in to be able to comment");
+                    this.generalService.showNotLoggedInDialog = true;
                 }
             }, error => console.log(error)
             );
