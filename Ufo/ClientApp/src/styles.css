@@ -63,7 +63,7 @@ code {
 .right-header {
     display: flex;
     margin: auto;
-    width: 30%;
+    width: 60%;
     justify-content: center;
     flex-direction: column;
     padding-top: 20px;
@@ -71,10 +71,7 @@ code {
 
 
 /*---------------------- Feed ------------------------ */
-.feed {
-    padding: 2%;
-    margin: 2%;
-}
+.feed { }
 
 .feedbox {
     padding: 2% 5%;
@@ -99,12 +96,38 @@ code {
     width: 90%;
     background: white;
     border-radius: 10px;
-    box-shadow: 2px 2px 7px #888
+    box-shadow: 2px 2px 7px #888;
+}
+
+.background-box-text {
+    padding: 2%;
+    margin: 2% auto;
+    width: 90%;
+    background: #00695F;
+    color: white;
+    border-radius: 10px;
+    border-color: none;
+    box-shadow: 2px 2px 7px #888;
+    text-align: center;
+}
+
+.background-box-button {
+    margin: auto;
+    width: 90%;
+    padding-left: 20%;
+    justify-content: center;
+}
+
+.background-box h1 {
+    justify-content: center;
+    text-align: center;
 }
 
 .comment-page {
-    padding-left: 5%;
-    padding-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
 }
 
 .comment-feed {
@@ -130,6 +153,52 @@ code {
 }
 
 
+
+
+
+/*---------------------- Contact ------------------------ */
+.contact-header {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.contact-header-left {
+    width: 40%;
+    padding-right: 40px;
+}
+
+.contact-header-right {
+    width: 40%;
+}
+
+.message-field {
+    width: 100%;
+    height: 10rem;
+    border-radius: 10px;
+    border: 1px solid #00695F;
+    padding: 10px;
+}
+
+.contact-text-field {
+    border-radius: 10px;
+    border: 1px solid #00695F;
+}
+
+.remove-a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+/*---------------------- AddObservation ------------------------ */
+
+.obs-header {
+    
+}
+
 /*---------------------- Button ------------------------ */
 .btn-primary {
     color: #E3E3E3;
@@ -142,6 +211,8 @@ code {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 20px;
     margin-bottom: 20px;
+    text-decoration: none;
+    
 }
 
 .btn-primary:hover {
@@ -232,7 +303,7 @@ table td {
 
 /*-----------  Form  ------------------*/
 .form {
-    width: 40em;
+    width: 60%;
     padding: 2%;
     margin: auto;
 }
@@ -298,6 +369,62 @@ table td {
 
 .ng-touched p {
     display: contents;
+}
+
+/* ----------- Add Observation ----------- */
+
+.form-add {
+    width: 60%;
+    margin: auto;
+}
+
+.form-group-add{
+    padding: 5%;
+    background: white;
+    border-radius: 10px;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.obs-header-first {
+    margin-top: 20px;
+}
+
+.obs-header-second {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.obs-header-second-first {
+    margin-top: 20px;
+    width: 40%;
+    padding-left: 20px;
+}
+
+.obs-header-second-second {
+    margin-top: 20px;
+    width: 40%;
+    padding-right: 20px;
+}
+
+.obs-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.obs-latalt {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.obs-save-button {
+    margin-top: 20px;
 }
 
 

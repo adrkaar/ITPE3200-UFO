@@ -19,7 +19,7 @@ export class NavMenuComponent {
             .subscribe(response => {
                 if (response) {
                     this.router.navigate(['addObservation'])
-                    //this.generalService.showLoginButton = false;
+                    this.generalService.showLoginButton = false;
                     //window.location.reload();
                 }
                 else {

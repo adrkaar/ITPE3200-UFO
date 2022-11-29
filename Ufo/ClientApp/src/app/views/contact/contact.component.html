@@ -1,24 +1,23 @@
-<notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
-
-<h1>Contact</h1>
-
 <form class="form" [formGroup]="ContactForm" #form="ngForm">
     <div class="form-group">
-        <label for="subject">Subject</label>
-        <input type="text" formControlName="subject" class="form-control" id="subject" name="subject" [(ngModel)]="newContactMessage.subject">
-        <p *ngIf="this.ContactForm.controls.subject.status=='INVALID'">Invalid subject format</p>
+        <h1>Contact</h1>
+        <div class="contact-header">
+            <div class="contact-header-left">
+                <label for="subject">Subject</label>
+                <input type="text" formControlName="subject" class="form-control contact-text-field" id="subject" name="subject" [(ngModel)]="newContactMessage.subject">
+                <p *ngIf="this.ContactForm.controls.subject.status=='INVALID'">Invalid subject format</p>
+            </div>
+            <div class="contact-header-right">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" class="form-control contact-text-field" id="email" name="email" [(ngModel)]="newContactMessage.email">
+                <p *ngIf="this.ContactForm.controls.email.status=='INVALID'">Invalid email format</p>
+            </div>
+        </div>
+        <div>
+            <label for="email">Message</label>
+            <input type="text" formControlName="message" class="form-control message-field" id="message" name="message" [(ngModel)]="newContactMessage.message">
+            <p *ngIf="this.ContactForm.controls.message.status=='INVALID'">Invalid message format</p>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!ContactForm.valid"><a [href]="contact()" class="remove-a">Submit message</a></button>
     </div>
-
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="text" formControlName="email" class="form-control" id="email" name="email" [(ngModel)]="newContactMessage.email">
-        <p *ngIf="this.ContactForm.controls.email.status=='INVALID'">Invalid email format</p>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Message</label>
-        <input type="text" formControlName="message" class="form-control" id="message" name="message" [(ngModel)]="newContactMessage.message">
-        <p *ngIf="this.ContactForm.controls.message.status=='INVALID'">Invalid message format</p>
-    </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!ContactForm.valid"><a [href]="contact()">Submit message</a></button>
 </form>

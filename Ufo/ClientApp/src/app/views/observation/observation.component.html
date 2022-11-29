@@ -1,8 +1,12 @@
-﻿<notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
-<div class="right-header">
+﻿<div class="right-header">
+    <div class="background-box-text">
     <h1>UFO Observations</h1>
-    <button class="btn btn-secondary" (click)="checkLogIn()" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
+    </div>
 </div>
+<div class="background-box-button">
+    <button class="btn-secondary" (click)="checkLogIn()" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
+</div>
+
 <div class="feed">
     <div class="feedbox" *ngFor="let observation of allObservations">
         <div class="feedboxField">
