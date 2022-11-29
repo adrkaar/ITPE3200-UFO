@@ -27,10 +27,8 @@ import { SafeHtml } from './pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ContactComponent } from './views/contact/contact.component';
 import { Router, RouterModule } from '@angular/router';
-import { LoginComponent } from './views/login/login.component';
 
 /* Modal */
-import { DialogComponent } from './components/dialog/dialog.component';
 import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
 import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomemodal.component';
 import { LoginmodalComponent } from './components/dialog/loginmodal/loginmodal.component';
@@ -49,10 +47,7 @@ import { NotloggedinmodalComponent } from './components/dialog/notloggedinmodal/
         /* Comment */
         CommentComponent,
         ContactComponent,
-        /* Login */
-        LoginComponent,
         /* Dialog / Modals */
-        DialogComponent,
         WarningmodalComponent,
         WelcomemodalComponent,
         LoginmodalComponent,
