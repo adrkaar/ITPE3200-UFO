@@ -123,11 +123,34 @@ code {
     text-align: center;
 }
 
-.comment-page {
-    display: flex;
+.form-comment {
+    flex-direction: column;	
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    width: 60%;
+    margin: 2%;
+}
+
+.comment-page {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 30%;
+    margin-top: 2%;
+}
+
+.form {
+    width: 60%;
+    padding: 2%;
+    margin: auto;
+}
+
+.form-group {
+    padding: 5%;
+    background: white;
+    border-radius: 10px;
+    margin: 2%;
 }
 
 .comment-feed {
@@ -367,6 +390,8 @@ table td {
 .ng-touched p {
     display: contents;
 }
+
+/*-----------  Comment  ------------------*/
 
 /* ----------- Add Observation ----------- */
 
