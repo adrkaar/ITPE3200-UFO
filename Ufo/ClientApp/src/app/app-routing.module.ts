@@ -8,6 +8,9 @@ import { EditObservationComponent } from './views/observation/editObservation.co
 import { ObservationComponent } from './views/observation/observation.component';
 import { ContactComponent } from './views/contact/contact.component';
 import { LoginComponent } from './views/login/login.component';
+import { ImageComponent } from './views/image/image.component';
+import { ExternalComponent } from './views/external website/externalwebsite.component';
+import { VideoComponent } from './views/video/video';
 
 const routes: Routes = [
       { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -19,7 +22,10 @@ const routes: Routes = [
       { path: 'comment/:id', component: CommentComponent },
       { path: 'contact', component: ContactComponent },
             /*LogIn*/
-      { path: 'logIn', component: LoginComponent },
+    { path: 'logIn', component: LoginComponent },
+    { path: 'image', component: ImageComponent },
+    { path: 'externalwebsite', component: ExternalComponent },
+    { path: 'video', component: VideoComponent }
 ];
 
 @NgModule({
