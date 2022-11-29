@@ -92,6 +92,16 @@ code {
     margin: 0 2%;
 }
 
+.background-box {
+    padding: 2%;
+    padding-bottom: 8%;
+    margin: 2% auto;
+    width: 90%;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 2px 2px 7px #888
+}
+
 .comment-page {
     padding-left: 5%;
     padding-top: 2%;
@@ -332,6 +342,7 @@ a.button {
     width: 100%;
     display: block;
     margin: 0 auto;
+    padding-bottom: 50px;
 }
 
 .photo img {
@@ -354,4 +365,8 @@ a.button {
     justify-content: center;
     padding-left: 6%;
     padding-right: 6%;
+}
+
+.share-button {
+    margin-right: 10px;
 }

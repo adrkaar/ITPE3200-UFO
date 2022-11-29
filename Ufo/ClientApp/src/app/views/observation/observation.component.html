@@ -26,11 +26,11 @@
         </div>
         <button class="btn btn-secondary" (click)="RouteEditObservation(observation.id)">View</button>
         <button class="btn btn-secondary" [routerLink]="['../comment', observation.id]">Comments</button>
-        <button>
-            <a class="button" href="https://twitter.com/share?ref_src=twsrc%5Etfw" target="_blank" cdata-show-count="false">Twitter</a>
+        <button mat-icon-button class="share-button">
+            <a class="button share-button" href="https://twitter.com/share?ref_src=twsrc%5Etfw" target="_blank" cdata-show-count="false">Twitter</a>
         </button>
-        <button>
-            <a class="button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FList_of_reported_UFO_sightings&amp;src=sdkpreparse">
+        <button mat-icon-button class="share-button">
+            <a class="button share-button" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FList_of_reported_UFO_sightings&amp;src=sdkpreparse">
                 Facebook
             </a>
         </button>
