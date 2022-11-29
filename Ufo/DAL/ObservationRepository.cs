@@ -12,6 +12,7 @@ namespace Ufo.DAL
     {
         private readonly ObservationContext _db;
         private ILogger<ObservationRepository> _log;
+        private ILogger<CommentRepository> commentLog;
 
         public ObservationRepository(ObservationContext db, ILogger<ObservationRepository> log)
         {
@@ -144,8 +145,7 @@ namespace Ufo.DAL
             try
             {
                 Observations oneObservation = await _db.Observations.FindAsync(id);
-
-                CommentRepository cRepo = new CommentRepository(_db);
+                CommentRepository cRepo = new CommentRepository(_db, commentLog);
 
                 // henter kommentarene til observasjonen, slik at de kan bli slettet først
                 var comments = cRepo.FetchAllComments(id);
