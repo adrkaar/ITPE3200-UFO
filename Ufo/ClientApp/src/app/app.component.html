@@ -1,6 +1,7 @@
 <div class="frontweb">
     <app-dialog *ngIf="generalService.showDialog"></app-dialog>
     <app-warningmodal *ngIf="generalService.showWarningDialog" ></app-warningmodal>
+    <notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
     <div class="left-side">
         <app-nav-menu></app-nav-menu>
     </div>

@@ -193,6 +193,12 @@ code {
     cursor: pointer;
 }
 
+/*---------------------- AddObservation ------------------------ */
+
+.obs-header {
+    
+}
+
 /*---------------------- Button ------------------------ */
 .btn-primary {
     color: #E3E3E3;
@@ -363,6 +369,62 @@ table td {
 
 .ng-touched p {
     display: contents;
+}
+
+/* ----------- Add Observation ----------- */
+
+.form-add {
+    width: 60%;
+    margin: auto;
+}
+
+.form-group-add{
+    padding: 5%;
+    background: white;
+    border-radius: 10px;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+.obs-header-first {
+    margin-top: 20px;
+}
+
+.obs-header-second {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.obs-header-second-first {
+    margin-top: 20px;
+    width: 40%;
+    padding-left: 20px;
+}
+
+.obs-header-second-second {
+    margin-top: 20px;
+    width: 40%;
+    padding-right: 20px;
+}
+
+.obs-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.obs-latalt {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.obs-save-button {
+    margin-top: 20px;
 }
 
 

@@ -1,51 +1,80 @@
-﻿<h1>Register New UFO Observation</h1>
+﻿
+<form class="form-add" [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
+    <div class="form-group-add">
+        <div class="obs-header">
+            <h1>Register New UFO Observation</h1>
 
-<form class="form" [formGroup]="AddObservationForm" #form="ngForm" (ngSubmit)="addObservation()">
-    <div class="form-group">
-        <label for="headline">Headline</label>
-        <textarea formControlName="headline" type="text" class="form-control" id="headline" name="headline" [(ngModel)]="newObservation.headline"></textarea>
-        <p *ngIf="this.AddObservationForm.controls.headline.status=='INVALID'">Headline cannot be empty, max 20 characters</p>
-    </div>
-    <div class="form-group">
-        <label for="date">Date</label>
-        <input type="date" formControlName="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" max="{{maxDate}}">
-        <p *ngIf="this.AddObservationForm.controls.date.status=='INVALID'">Date needs to be in the format DD/MM/YYYY, and cannot be a future date</p>
-    </div>
-    <div class="form-group">
-        <label for="time">Time</label>
-        <input type="time" formControlName="time" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
-        <p *ngIf="this.AddObservationForm.controls.time.status=='INVALID'">Time needs to be in the format HH:MM</p>
+            <div class="obs-header-first">
+                <div>
+                    <label for="headline">Headline</label>
+                    <textarea formControlName="headline" type="text" class="form-control" id="headline" name="headline" [(ngModel)]="newObservation.headline"></textarea>
+                    <p *ngIf="this.AddObservationForm.controls.headline.status=='INVALID'">Headline cannot be empty, max 20 characters</p>
+                </div>
+            </div>
+
+            <div class="obs-header-second">
+                <div class="obs-header-second-first">
+                    <label for="date">Date</label>
+                    <input type="date" formControlName="date" class="form-control" id="date" name="date" [(ngModel)]="newObservation.date" max="{{maxDate}}">
+                    <p *ngIf="this.AddObservationForm.controls.date.status=='INVALID'">Date needs to be in the format DD/MM/YYYY, and cannot be a future date</p>
+                </div>
+                <div class="obs-header-second-second">
+                    <label for="time">Time</label>
+                    <input type="time" formControlName="time" class="form-control" id="time" name="time" [(ngModel)]="newObservation.time">
+                    <p *ngIf="this.AddObservationForm.controls.time.status=='INVALID'">Time needs to be in the format HH:MM</p>
+                </div>
+            </div>
+
+            <div class="obs-buttons">
+                <div>
+                    <button type="button" class="btn btn-primary" (click)="fetchMyCoords()">Fetch my location</button>
+                </div>
+                
+                <div>
+                    <button type="button" class="btn btn-primary" (click)="addMap()">Add position via map</button>
+                </div>
+            </div>
+
+            <div>
+                <div id="map"></div>
+            </div>
+
+            <div class="obs-latalt">
+                <div class="latalt-left">
+                    <label for="latitude">Latitude</label>
+                    <input type="text" formControlName="latitude" class="form-control" id="latitude" name="latitude" [(ngModel)]="newObservation.latitude">
+                    <p *ngIf="this.AddObservationForm.controls.latitude.status=='INVALID'">Latitude needs to be a number, max 10 characters</p>
+                </div>
+                <div class="latalt-right">
+                    <label for="longitude">Longitude</label>
+                    <input type="text" formControlName="longitude" class="form-control" id="longitude" name="longitude" [(ngModel)]="newObservation.longitude">
+                    <p *ngIf="this.AddObservationForm.controls.longitude.status=='INVALID'">Longitude needs to be a number, max 10 characters</p>
+                </div>
+            </div>
+
+            <div class="obs-description">
+                <label for="description">Description</label>
+                <textarea formControlName="description" type="text" class="form-control" id="description" name="description" [(ngModel)]="newObservation.description"></textarea>
+                <p *ngIf="this.AddObservationForm.controls.description.status=='INVALID'">Description cannot be empty, max 160 characters</p>
+            </div>
+        
+            <div>
+                <label for="type">Type</label>
+                <select class="form-control" id="type" (change)="selectedOption($event.target.value)">
+                    <option disabled selected>Select Type</option>
+                    <option *ngFor="let type of types">{{ type.type }}</option>
+                    <option>Add new type</option>
+                </select>
+            </div>
+            <div *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
+            
+            <div class="obs-save-button">
+                <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>
+            </div>
+            
+
+        </div>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="fetchMyCoords()">Fetch my location</button>
-    <button type="button" class="btn btn-primary" (click)="addMap()">Add position via map</button>
-    <div id="map"></div>
-
-    <div class="form-group">
-        <label for="latitude">Latitude</label>
-        <input type="text" formControlName="latitude" class="form-control" id="latitude" name="latitude" [(ngModel)]="newObservation.latitude">
-        <p *ngIf="this.AddObservationForm.controls.latitude.status=='INVALID'">Latitude needs to be a number, max 10 characters</p>
-    </div>
-    <div class="form-group">
-        <label for="longitude">Longitude</label>
-        <input type="text" formControlName="longitude" class="form-control" id="longitude" name="longitude" [(ngModel)]="newObservation.longitude">
-        <p *ngIf="this.AddObservationForm.controls.longitude.status=='INVALID'">Longitude needs to be a number, max 10 characters</p>
-    </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <textarea formControlName="description" type="text" class="form-control" id="description" name="description" [(ngModel)]="newObservation.description"></textarea>
-        <p *ngIf="this.AddObservationForm.controls.description.status=='INVALID'">Description cannot be empty, max 160 characters</p>
-    </div>
-
-    <div class="form-group">
-        <label for="type">Type</label>
-        <select class="form-control" id="type" (change)="selectedOption($event.target.value)">
-            <option disabled selected>Select Type</option>
-            <option *ngFor="let type of types">{{ type.type }}</option>
-            <option>Add new type</option>
-        </select>
-    </div>
-    <div class="form-group" *ngIf="addNewType" [innerHtml]="addNewType | safeHtml"> </div>
-
-    <button type="submit" class="btn btn-primary" [disabled]="!AddObservationForm.valid">Save</button>
+    
 </form>
