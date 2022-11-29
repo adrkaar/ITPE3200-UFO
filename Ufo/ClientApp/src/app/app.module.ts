@@ -34,6 +34,7 @@ import { DialogComponent } from './components/dialog/dialog.component';
 import { WarningmodalComponent } from './components/dialog/warningmodal/warningmodal.component';
 import { WelcomemodalComponent } from './components/dialog/welcomemodal/welcomemodal.component';
 import { LoginmodalComponent } from './components/dialog/loginmodal/loginmodal.component';
+import { NotloggedinmodalComponent } from './components/dialog/notloggedinmodal/notloggedinmodal.component';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,7 @@ import { LoginmodalComponent } from './components/dialog/loginmodal/loginmodal.c
         WarningmodalComponent,
         WelcomemodalComponent,
         LoginmodalComponent,
+        NotloggedinmodalComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

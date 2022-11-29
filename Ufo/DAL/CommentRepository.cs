@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,12 +9,10 @@ namespace Ufo.DAL
     public class CommentRepository : InterfaceCommentRepository
     {
         private readonly ObservationContext _db;
-        private ILogger<CommentRepository> _log;
 
-        public CommentRepository(ObservationContext db, ILogger<CommentRepository> log)
+        public CommentRepository(ObservationContext db)
         {
             _db = db;
-            _log = log;
         }
 
         public async Task<List<Comment>> FetchAllComments(int observationId)
@@ -37,11 +33,7 @@ namespace Ufo.DAL
 
                 return allComments;
             }
-            catch (Exception e)
-            {
-                _log.LogInformation(e.Message);
-                return null;
-            }
+            catch { return null; }
         }
 
         public async Task<bool> AddComment(Comment inComment)
@@ -61,11 +53,7 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch (Exception e)
-            {
-                _log.LogInformation(e.Message);
-                return false;
-            }
+            catch { return false; }
         }
         public async Task<bool> DeleteComment(int id)
         {
@@ -77,11 +65,7 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch (Exception e)
-            {
-                _log.LogInformation(e.Message);
-                return false;
-            }
+            catch { return false; }
         }
 
         public async Task<bool> UpVote(int id)
@@ -94,11 +78,7 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch (Exception e)
-            {
-                _log.LogInformation(e.Message);
-                return false;
-            }
+            catch { return false; }
         }
 
         public async Task<bool> DownVote(int id)
@@ -111,11 +91,7 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch (Exception e)
-            {
-                _log.LogInformation(e.Message);
-                return false;
-            }
+            catch { return false; }
         }
     }
 }
