@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,10 +11,13 @@ namespace Ufo.DAL
     public class ObservationRepository : InterfaceObservationRepository
     {
         private readonly ObservationContext _db;
+        private ILogger<ObservationRepository> _log;
+        private ILogger<CommentRepository> commentLog;
 
-        public ObservationRepository(ObservationContext db)
+        public ObservationRepository(ObservationContext db, ILogger<ObservationRepository> log)
         {
             _db = db;
+            _log = log;
         }
 
         public async Task<bool> SaveObservation(Observation inObservation)
@@ -44,7 +49,11 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch { return false; }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
         }
 
         public async Task<List<Observation>> FetchAllObservations()
@@ -64,7 +73,11 @@ namespace Ufo.DAL
                 }).OrderByDescending(Date => Date.Date).ToListAsync();
                 return allObservations;
             }
-            catch { return null; }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return null;
+            }
         }
 
         public async Task<Observation> GetOneObservation(int id)
@@ -85,7 +98,11 @@ namespace Ufo.DAL
                 };
                 return fetchedObservation;
             }
-            catch { return null; }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return null;
+            }
         }
 
         public async Task<bool> ChangeObservation(Observation changeObservation)
@@ -116,7 +133,11 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch { return false; }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
         }
 
         public async Task<bool> DeleteObservation(int id)
@@ -124,8 +145,7 @@ namespace Ufo.DAL
             try
             {
                 Observations oneObservation = await _db.Observations.FindAsync(id);
-
-                CommentRepository cRepo = new CommentRepository(_db);
+                CommentRepository cRepo = new CommentRepository(_db, commentLog);
 
                 // henter kommentarene til observasjonen, slik at de kan bli slettet først
                 var comments = cRepo.FetchAllComments(id);
@@ -140,7 +160,11 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return true;
             }
-            catch { return false; }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return false;
+            }
         }
 
         public async Task<List<UfoType>> FetchUfoTypes()
@@ -153,7 +177,11 @@ namespace Ufo.DAL
                 }).ToListAsync();
                 return ufoTypes;
             }
-            catch { return null; }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return null;
+            }
         }
 
         public async Task<UfoTypes> AddUfoType(string newUfoType)
@@ -167,7 +195,11 @@ namespace Ufo.DAL
                 await _db.SaveChangesAsync();
                 return ufoType;
             }
-            catch { return null; }
+            catch (Exception e)
+            {
+                _log.LogInformation(e.Message);
+                return null;
+            }
         }
     }
 }
