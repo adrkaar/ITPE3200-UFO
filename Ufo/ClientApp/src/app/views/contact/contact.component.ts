@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ContactMessage } from '../../models/contactMessage.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { GeneralService } from '../../services/general.service';
 
 @Component({
     templateUrl: 'contact.component.html',
@@ -45,7 +46,7 @@ export class ContactComponent {
     ngOnInit(): void {
     }
 
-    constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer) { this.ContactForm = formBuilder.group(this.validation); }
+    constructor(private http: HttpClient, private router: Router, private formBuilder: FormBuilder, private sanitizer: DomSanitizer, public generalService: GeneralService) { this.ContactForm = formBuilder.group(this.validation); }
 
     mailtoHeader = "mailto:webapp2022ufo@gmail.com?";
     subjectProp = "subject=";

@@ -1,4 +1,5 @@
-﻿<div class="right-header">
+﻿<notloggedinmodal *ngIf="generalService.showNotLoggedInDialog"></notloggedinmodal>
+<div class="right-header">
     <h1>UFO Observations</h1>
     <button class="btn btn-secondary" (click)="checkLogIn()" style="margin-bottom: 1rem;"> <mat-icon>add_location</mat-icon> Add new observation</button>
 </div>

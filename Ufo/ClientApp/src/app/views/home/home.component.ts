@@ -40,9 +40,9 @@ export class HomeComponent implements OnInit {
             );
     }
 
+    /* https://stackoverflow.com/questions/13674194/google-maps-api-multiple-markers-info-window-only-showing-last-element */
     // legger til lokasjonene paa kartet
     addToMap(observations: Observation[]) {
-
         for (let i = 0; i < observations.length; i++) {
 
             var marker: google.maps.Marker;
@@ -57,16 +57,20 @@ export class HomeComponent implements OnInit {
                 position: { lat: Number(observations[i].latitude), lng: Number(observations[i].longitude) },
                 map: this.map,
                 icon: this.icon,
-                title: info
             })
 
-             marker.addListener("click", () => {
-                        infoWindow.open({
-                            anchor: marker,
-                            map: this.map
-                        });
-                    });
+            // satter info vindu til hver markør med beskrivelsen av observasjonen
+            marker.addListener("click", (function (marker, info) {
+                return function () {
+                    infoWindow.setContent(info);
+                    infoWindow.open(this.map, marker);
+                }
+            })(marker, info));
         }
-       
+
+        // lukker infovindu når man trykker på kartet
+        google.maps.event.addListener(this.map, "click", function (event) {
+            infoWindow.close();
+        });
     }
 }

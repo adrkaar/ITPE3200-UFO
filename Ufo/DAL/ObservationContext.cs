@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Ufo.DAL
 {
+    [ExcludeFromCodeCoverage]
     public class Observations
     {
         [Key]
@@ -18,6 +19,7 @@ namespace Ufo.DAL
         virtual public Users Users { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class Comments
     {
         [Key]
@@ -29,6 +31,7 @@ namespace Ufo.DAL
         virtual public Users Users { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class Users
     {
         public int Id { get; set; }
@@ -37,6 +40,7 @@ namespace Ufo.DAL
         public byte[] Salt { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class UfoTypes
     {
         public int Id { get; set; }
